@@ -1,0 +1,1307 @@
+{
+ "1": {
+  "class_type": "UnderdogBrief",
+  "inputs": {
+   "business_name": "Abuela's Bakery",
+   "business_type": "family bakery",
+   "owner": "the baker in round glasses and a yellow headscarf",
+   "rival": "the blond influencer in a gold puffer vest",
+   "partner": "the tired man with short wavy brown hair and light stubble in a navy delivery jacket",
+   "hero_1": "the muscular man with short curly dark hair and a light moustache in a plain black t-shirt",
+   "hero_2": "the muscular bearded man with wavy dark hair in a black t-shirt with thin green stripes",
+   "tone": "funny",
+   "model": "veo-3.1-lite",
+   "script_source": "preset: small-business-rescue-bakery"
+  },
+  "_meta": {
+   "title": "Your story"
+  }
+ },
+ "2": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "underdog_blank.png"
+  },
+  "_meta": {
+   "title": "Sheet: owner"
+  }
+ },
+ "3": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "underdog_blank.png"
+  },
+  "_meta": {
+   "title": "Sheet: rival"
+  }
+ },
+ "4": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "underdog_blank.png"
+  },
+  "_meta": {
+   "title": "Sheet: partner"
+  }
+ },
+ "5": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "underdog_blank.png"
+  },
+  "_meta": {
+   "title": "Sheet: hero1"
+  }
+ },
+ "6": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "underdog_blank.png"
+  },
+  "_meta": {
+   "title": "Sheet: hero2"
+  }
+ },
+ "7": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "underdog_blank.png"
+  },
+  "_meta": {
+   "title": "Sheet: location"
+  }
+ },
+ "8": {
+  "class_type": "GeminiNode",
+  "inputs": {
+   "prompt": [
+    "1",
+    1
+   ],
+   "model": "gemini-3-1-pro",
+   "seed": 42,
+   "system_prompt": ""
+  },
+  "_meta": {
+   "title": "Script writer (Gemini)"
+  }
+ },
+ "9": {
+  "class_type": "UnderdogScript",
+  "inputs": {
+   "brief": [
+    "1",
+    0
+   ],
+   "writer_reply": [
+    "8",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Script"
+  }
+ },
+ "10": {
+  "class_type": "PreviewAny",
+  "inputs": {
+   "source": [
+    "9",
+    1
+   ]
+  },
+  "_meta": {
+   "title": "Script preview"
+  }
+ },
+ "11": {
+  "class_type": "UnderdogScene",
+  "inputs": {
+   "script": [
+    "9",
+    0
+   ],
+   "scene": 1,
+   "owner": [
+    "2",
+    0
+   ],
+   "rival": [
+    "3",
+    0
+   ],
+   "partner": [
+    "4",
+    0
+   ],
+   "hero1": [
+    "5",
+    0
+   ],
+   "hero2": [
+    "6",
+    0
+   ],
+   "location": [
+    "7",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Scene 1"
+  }
+ },
+ "12": {
+  "class_type": "GeminiNanoBanana2",
+  "inputs": {
+   "prompt": [
+    "11",
+    0
+   ],
+   "model": "Nano Banana 2 (Gemini 3.1 Flash Image)",
+   "seed": 43,
+   "aspect_ratio": "9:16",
+   "resolution": "1K",
+   "response_modalities": "IMAGE",
+   "thinking_level": "MINIMAL",
+   "images": [
+    "11",
+    2
+   ]
+  },
+  "_meta": {
+   "title": "Keyframe 1"
+  }
+ },
+ "13": {
+  "class_type": "Veo3VideoGenerationNode",
+  "inputs": {
+   "prompt": [
+    "11",
+    1
+   ],
+   "aspect_ratio": "9:16",
+   "resolution": "720p",
+   "negative_prompt": "",
+   "duration_seconds": 8,
+   "enhance_prompt": true,
+   "person_generation": "ALLOW",
+   "seed": 0,
+   "image": [
+    "12",
+    0
+   ],
+   "model": [
+    "1",
+    2
+   ],
+   "generate_audio": true
+  },
+  "_meta": {
+   "title": "Video 1"
+  }
+ },
+ "14": {
+  "class_type": "UnderdogScene",
+  "inputs": {
+   "script": [
+    "9",
+    0
+   ],
+   "scene": 2,
+   "owner": [
+    "2",
+    0
+   ],
+   "rival": [
+    "3",
+    0
+   ],
+   "partner": [
+    "4",
+    0
+   ],
+   "hero1": [
+    "5",
+    0
+   ],
+   "hero2": [
+    "6",
+    0
+   ],
+   "location": [
+    "7",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Scene 2"
+  }
+ },
+ "15": {
+  "class_type": "GeminiNanoBanana2",
+  "inputs": {
+   "prompt": [
+    "14",
+    0
+   ],
+   "model": "Nano Banana 2 (Gemini 3.1 Flash Image)",
+   "seed": 44,
+   "aspect_ratio": "9:16",
+   "resolution": "1K",
+   "response_modalities": "IMAGE",
+   "thinking_level": "MINIMAL",
+   "images": [
+    "14",
+    2
+   ]
+  },
+  "_meta": {
+   "title": "Keyframe 2"
+  }
+ },
+ "16": {
+  "class_type": "Veo3VideoGenerationNode",
+  "inputs": {
+   "prompt": [
+    "14",
+    1
+   ],
+   "aspect_ratio": "9:16",
+   "resolution": "720p",
+   "negative_prompt": "",
+   "duration_seconds": 8,
+   "enhance_prompt": true,
+   "person_generation": "ALLOW",
+   "seed": 0,
+   "image": [
+    "15",
+    0
+   ],
+   "model": [
+    "1",
+    2
+   ],
+   "generate_audio": true
+  },
+  "_meta": {
+   "title": "Video 2"
+  }
+ },
+ "17": {
+  "class_type": "UnderdogScene",
+  "inputs": {
+   "script": [
+    "9",
+    0
+   ],
+   "scene": 3,
+   "owner": [
+    "2",
+    0
+   ],
+   "rival": [
+    "3",
+    0
+   ],
+   "partner": [
+    "4",
+    0
+   ],
+   "hero1": [
+    "5",
+    0
+   ],
+   "hero2": [
+    "6",
+    0
+   ],
+   "location": [
+    "7",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Scene 3"
+  }
+ },
+ "18": {
+  "class_type": "GeminiNanoBanana2",
+  "inputs": {
+   "prompt": [
+    "17",
+    0
+   ],
+   "model": "Nano Banana 2 (Gemini 3.1 Flash Image)",
+   "seed": 45,
+   "aspect_ratio": "9:16",
+   "resolution": "1K",
+   "response_modalities": "IMAGE",
+   "thinking_level": "MINIMAL",
+   "images": [
+    "17",
+    2
+   ]
+  },
+  "_meta": {
+   "title": "Keyframe 3"
+  }
+ },
+ "19": {
+  "class_type": "Veo3VideoGenerationNode",
+  "inputs": {
+   "prompt": [
+    "17",
+    1
+   ],
+   "aspect_ratio": "9:16",
+   "resolution": "720p",
+   "negative_prompt": "",
+   "duration_seconds": 8,
+   "enhance_prompt": true,
+   "person_generation": "ALLOW",
+   "seed": 0,
+   "image": [
+    "18",
+    0
+   ],
+   "model": [
+    "1",
+    2
+   ],
+   "generate_audio": true
+  },
+  "_meta": {
+   "title": "Video 3"
+  }
+ },
+ "20": {
+  "class_type": "UnderdogScene",
+  "inputs": {
+   "script": [
+    "9",
+    0
+   ],
+   "scene": 4,
+   "owner": [
+    "2",
+    0
+   ],
+   "rival": [
+    "3",
+    0
+   ],
+   "partner": [
+    "4",
+    0
+   ],
+   "hero1": [
+    "5",
+    0
+   ],
+   "hero2": [
+    "6",
+    0
+   ],
+   "location": [
+    "7",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Scene 4"
+  }
+ },
+ "21": {
+  "class_type": "GeminiNanoBanana2",
+  "inputs": {
+   "prompt": [
+    "20",
+    0
+   ],
+   "model": "Nano Banana 2 (Gemini 3.1 Flash Image)",
+   "seed": 46,
+   "aspect_ratio": "9:16",
+   "resolution": "1K",
+   "response_modalities": "IMAGE",
+   "thinking_level": "MINIMAL",
+   "images": [
+    "20",
+    2
+   ]
+  },
+  "_meta": {
+   "title": "Keyframe 4"
+  }
+ },
+ "22": {
+  "class_type": "Veo3VideoGenerationNode",
+  "inputs": {
+   "prompt": [
+    "20",
+    1
+   ],
+   "aspect_ratio": "9:16",
+   "resolution": "720p",
+   "negative_prompt": "",
+   "duration_seconds": 8,
+   "enhance_prompt": true,
+   "person_generation": "ALLOW",
+   "seed": 0,
+   "image": [
+    "21",
+    0
+   ],
+   "model": [
+    "1",
+    2
+   ],
+   "generate_audio": true
+  },
+  "_meta": {
+   "title": "Video 4"
+  }
+ },
+ "23": {
+  "class_type": "UnderdogScene",
+  "inputs": {
+   "script": [
+    "9",
+    0
+   ],
+   "scene": 5,
+   "owner": [
+    "2",
+    0
+   ],
+   "rival": [
+    "3",
+    0
+   ],
+   "partner": [
+    "4",
+    0
+   ],
+   "hero1": [
+    "5",
+    0
+   ],
+   "hero2": [
+    "6",
+    0
+   ],
+   "location": [
+    "7",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Scene 5"
+  }
+ },
+ "24": {
+  "class_type": "GeminiNanoBanana2",
+  "inputs": {
+   "prompt": [
+    "23",
+    0
+   ],
+   "model": "Nano Banana 2 (Gemini 3.1 Flash Image)",
+   "seed": 47,
+   "aspect_ratio": "9:16",
+   "resolution": "1K",
+   "response_modalities": "IMAGE",
+   "thinking_level": "MINIMAL",
+   "images": [
+    "23",
+    2
+   ]
+  },
+  "_meta": {
+   "title": "Keyframe 5"
+  }
+ },
+ "25": {
+  "class_type": "Veo3VideoGenerationNode",
+  "inputs": {
+   "prompt": [
+    "23",
+    1
+   ],
+   "aspect_ratio": "9:16",
+   "resolution": "720p",
+   "negative_prompt": "",
+   "duration_seconds": 8,
+   "enhance_prompt": true,
+   "person_generation": "ALLOW",
+   "seed": 0,
+   "image": [
+    "24",
+    0
+   ],
+   "model": [
+    "1",
+    2
+   ],
+   "generate_audio": true
+  },
+  "_meta": {
+   "title": "Video 5"
+  }
+ },
+ "26": {
+  "class_type": "UnderdogScene",
+  "inputs": {
+   "script": [
+    "9",
+    0
+   ],
+   "scene": 6,
+   "owner": [
+    "2",
+    0
+   ],
+   "rival": [
+    "3",
+    0
+   ],
+   "partner": [
+    "4",
+    0
+   ],
+   "hero1": [
+    "5",
+    0
+   ],
+   "hero2": [
+    "6",
+    0
+   ],
+   "location": [
+    "7",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Scene 6"
+  }
+ },
+ "27": {
+  "class_type": "GeminiNanoBanana2",
+  "inputs": {
+   "prompt": [
+    "26",
+    0
+   ],
+   "model": "Nano Banana 2 (Gemini 3.1 Flash Image)",
+   "seed": 48,
+   "aspect_ratio": "9:16",
+   "resolution": "1K",
+   "response_modalities": "IMAGE",
+   "thinking_level": "MINIMAL",
+   "images": [
+    "26",
+    2
+   ]
+  },
+  "_meta": {
+   "title": "Keyframe 6"
+  }
+ },
+ "28": {
+  "class_type": "Veo3VideoGenerationNode",
+  "inputs": {
+   "prompt": [
+    "26",
+    1
+   ],
+   "aspect_ratio": "9:16",
+   "resolution": "720p",
+   "negative_prompt": "",
+   "duration_seconds": 8,
+   "enhance_prompt": true,
+   "person_generation": "ALLOW",
+   "seed": 0,
+   "image": [
+    "27",
+    0
+   ],
+   "model": [
+    "1",
+    2
+   ],
+   "generate_audio": true
+  },
+  "_meta": {
+   "title": "Video 6"
+  }
+ },
+ "29": {
+  "class_type": "UnderdogScene",
+  "inputs": {
+   "script": [
+    "9",
+    0
+   ],
+   "scene": 7,
+   "owner": [
+    "2",
+    0
+   ],
+   "rival": [
+    "3",
+    0
+   ],
+   "partner": [
+    "4",
+    0
+   ],
+   "hero1": [
+    "5",
+    0
+   ],
+   "hero2": [
+    "6",
+    0
+   ],
+   "location": [
+    "7",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Scene 7"
+  }
+ },
+ "30": {
+  "class_type": "GeminiNanoBanana2",
+  "inputs": {
+   "prompt": [
+    "29",
+    0
+   ],
+   "model": "Nano Banana 2 (Gemini 3.1 Flash Image)",
+   "seed": 49,
+   "aspect_ratio": "9:16",
+   "resolution": "1K",
+   "response_modalities": "IMAGE",
+   "thinking_level": "MINIMAL",
+   "images": [
+    "29",
+    2
+   ]
+  },
+  "_meta": {
+   "title": "Keyframe 7"
+  }
+ },
+ "31": {
+  "class_type": "Veo3VideoGenerationNode",
+  "inputs": {
+   "prompt": [
+    "29",
+    1
+   ],
+   "aspect_ratio": "9:16",
+   "resolution": "720p",
+   "negative_prompt": "",
+   "duration_seconds": 8,
+   "enhance_prompt": true,
+   "person_generation": "ALLOW",
+   "seed": 0,
+   "image": [
+    "30",
+    0
+   ],
+   "model": [
+    "1",
+    2
+   ],
+   "generate_audio": true
+  },
+  "_meta": {
+   "title": "Video 7"
+  }
+ },
+ "32": {
+  "class_type": "UnderdogScene",
+  "inputs": {
+   "script": [
+    "9",
+    0
+   ],
+   "scene": 8,
+   "owner": [
+    "2",
+    0
+   ],
+   "rival": [
+    "3",
+    0
+   ],
+   "partner": [
+    "4",
+    0
+   ],
+   "hero1": [
+    "5",
+    0
+   ],
+   "hero2": [
+    "6",
+    0
+   ],
+   "location": [
+    "7",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Scene 8"
+  }
+ },
+ "33": {
+  "class_type": "GeminiNanoBanana2",
+  "inputs": {
+   "prompt": [
+    "32",
+    0
+   ],
+   "model": "Nano Banana 2 (Gemini 3.1 Flash Image)",
+   "seed": 50,
+   "aspect_ratio": "9:16",
+   "resolution": "1K",
+   "response_modalities": "IMAGE",
+   "thinking_level": "MINIMAL",
+   "images": [
+    "32",
+    2
+   ]
+  },
+  "_meta": {
+   "title": "Keyframe 8"
+  }
+ },
+ "34": {
+  "class_type": "Veo3VideoGenerationNode",
+  "inputs": {
+   "prompt": [
+    "32",
+    1
+   ],
+   "aspect_ratio": "9:16",
+   "resolution": "720p",
+   "negative_prompt": "",
+   "duration_seconds": 8,
+   "enhance_prompt": true,
+   "person_generation": "ALLOW",
+   "seed": 0,
+   "image": [
+    "33",
+    0
+   ],
+   "model": [
+    "1",
+    2
+   ],
+   "generate_audio": true
+  },
+  "_meta": {
+   "title": "Video 8"
+  }
+ },
+ "35": {
+  "class_type": "UnderdogScene",
+  "inputs": {
+   "script": [
+    "9",
+    0
+   ],
+   "scene": 9,
+   "owner": [
+    "2",
+    0
+   ],
+   "rival": [
+    "3",
+    0
+   ],
+   "partner": [
+    "4",
+    0
+   ],
+   "hero1": [
+    "5",
+    0
+   ],
+   "hero2": [
+    "6",
+    0
+   ],
+   "location": [
+    "7",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Scene 9"
+  }
+ },
+ "36": {
+  "class_type": "GeminiNanoBanana2",
+  "inputs": {
+   "prompt": [
+    "35",
+    0
+   ],
+   "model": "Nano Banana 2 (Gemini 3.1 Flash Image)",
+   "seed": 51,
+   "aspect_ratio": "9:16",
+   "resolution": "1K",
+   "response_modalities": "IMAGE",
+   "thinking_level": "MINIMAL",
+   "images": [
+    "35",
+    2
+   ]
+  },
+  "_meta": {
+   "title": "Keyframe 9"
+  }
+ },
+ "37": {
+  "class_type": "Veo3VideoGenerationNode",
+  "inputs": {
+   "prompt": [
+    "35",
+    1
+   ],
+   "aspect_ratio": "9:16",
+   "resolution": "720p",
+   "negative_prompt": "",
+   "duration_seconds": 8,
+   "enhance_prompt": true,
+   "person_generation": "ALLOW",
+   "seed": 0,
+   "image": [
+    "36",
+    0
+   ],
+   "model": [
+    "1",
+    2
+   ],
+   "generate_audio": true
+  },
+  "_meta": {
+   "title": "Video 9"
+  }
+ },
+ "38": {
+  "class_type": "UnderdogScene",
+  "inputs": {
+   "script": [
+    "9",
+    0
+   ],
+   "scene": 10,
+   "owner": [
+    "2",
+    0
+   ],
+   "rival": [
+    "3",
+    0
+   ],
+   "partner": [
+    "4",
+    0
+   ],
+   "hero1": [
+    "5",
+    0
+   ],
+   "hero2": [
+    "6",
+    0
+   ],
+   "location": [
+    "7",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Scene 10"
+  }
+ },
+ "39": {
+  "class_type": "GeminiNanoBanana2",
+  "inputs": {
+   "prompt": [
+    "38",
+    0
+   ],
+   "model": "Nano Banana 2 (Gemini 3.1 Flash Image)",
+   "seed": 52,
+   "aspect_ratio": "9:16",
+   "resolution": "1K",
+   "response_modalities": "IMAGE",
+   "thinking_level": "MINIMAL",
+   "images": [
+    "38",
+    2
+   ]
+  },
+  "_meta": {
+   "title": "Keyframe 10"
+  }
+ },
+ "40": {
+  "class_type": "Veo3VideoGenerationNode",
+  "inputs": {
+   "prompt": [
+    "38",
+    1
+   ],
+   "aspect_ratio": "9:16",
+   "resolution": "720p",
+   "negative_prompt": "",
+   "duration_seconds": 8,
+   "enhance_prompt": true,
+   "person_generation": "ALLOW",
+   "seed": 0,
+   "image": [
+    "39",
+    0
+   ],
+   "model": [
+    "1",
+    2
+   ],
+   "generate_audio": true
+  },
+  "_meta": {
+   "title": "Video 10"
+  }
+ },
+ "41": {
+  "class_type": "UnderdogScene",
+  "inputs": {
+   "script": [
+    "9",
+    0
+   ],
+   "scene": 11,
+   "owner": [
+    "2",
+    0
+   ],
+   "rival": [
+    "3",
+    0
+   ],
+   "partner": [
+    "4",
+    0
+   ],
+   "hero1": [
+    "5",
+    0
+   ],
+   "hero2": [
+    "6",
+    0
+   ],
+   "location": [
+    "7",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Scene 11"
+  }
+ },
+ "42": {
+  "class_type": "GeminiNanoBanana2",
+  "inputs": {
+   "prompt": [
+    "41",
+    0
+   ],
+   "model": "Nano Banana 2 (Gemini 3.1 Flash Image)",
+   "seed": 53,
+   "aspect_ratio": "9:16",
+   "resolution": "1K",
+   "response_modalities": "IMAGE",
+   "thinking_level": "MINIMAL",
+   "images": [
+    "41",
+    2
+   ]
+  },
+  "_meta": {
+   "title": "Keyframe 11"
+  }
+ },
+ "43": {
+  "class_type": "Veo3VideoGenerationNode",
+  "inputs": {
+   "prompt": [
+    "41",
+    1
+   ],
+   "aspect_ratio": "9:16",
+   "resolution": "720p",
+   "negative_prompt": "",
+   "duration_seconds": 8,
+   "enhance_prompt": true,
+   "person_generation": "ALLOW",
+   "seed": 0,
+   "image": [
+    "42",
+    0
+   ],
+   "model": [
+    "1",
+    2
+   ],
+   "generate_audio": true
+  },
+  "_meta": {
+   "title": "Video 11"
+  }
+ },
+ "44": {
+  "class_type": "UnderdogScene",
+  "inputs": {
+   "script": [
+    "9",
+    0
+   ],
+   "scene": 12,
+   "owner": [
+    "2",
+    0
+   ],
+   "rival": [
+    "3",
+    0
+   ],
+   "partner": [
+    "4",
+    0
+   ],
+   "hero1": [
+    "5",
+    0
+   ],
+   "hero2": [
+    "6",
+    0
+   ],
+   "location": [
+    "7",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Scene 12"
+  }
+ },
+ "45": {
+  "class_type": "GeminiNanoBanana2",
+  "inputs": {
+   "prompt": [
+    "44",
+    0
+   ],
+   "model": "Nano Banana 2 (Gemini 3.1 Flash Image)",
+   "seed": 54,
+   "aspect_ratio": "9:16",
+   "resolution": "1K",
+   "response_modalities": "IMAGE",
+   "thinking_level": "MINIMAL",
+   "images": [
+    "44",
+    2
+   ]
+  },
+  "_meta": {
+   "title": "Keyframe 12"
+  }
+ },
+ "46": {
+  "class_type": "Veo3VideoGenerationNode",
+  "inputs": {
+   "prompt": [
+    "44",
+    1
+   ],
+   "aspect_ratio": "9:16",
+   "resolution": "720p",
+   "negative_prompt": "",
+   "duration_seconds": 8,
+   "enhance_prompt": true,
+   "person_generation": "ALLOW",
+   "seed": 0,
+   "image": [
+    "45",
+    0
+   ],
+   "model": [
+    "1",
+    2
+   ],
+   "generate_audio": true
+  },
+  "_meta": {
+   "title": "Video 12"
+  }
+ },
+ "47": {
+  "class_type": "UnderdogContactSheet",
+  "inputs": {
+   "keyframe_01": [
+    "12",
+    0
+   ],
+   "keyframe_02": [
+    "15",
+    0
+   ],
+   "keyframe_03": [
+    "18",
+    0
+   ],
+   "keyframe_04": [
+    "21",
+    0
+   ],
+   "keyframe_05": [
+    "24",
+    0
+   ],
+   "keyframe_06": [
+    "27",
+    0
+   ],
+   "keyframe_07": [
+    "30",
+    0
+   ],
+   "keyframe_08": [
+    "33",
+    0
+   ],
+   "keyframe_09": [
+    "36",
+    0
+   ],
+   "keyframe_10": [
+    "39",
+    0
+   ],
+   "keyframe_11": [
+    "42",
+    0
+   ],
+   "keyframe_12": [
+    "45",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Keyframes"
+  }
+ },
+ "48": {
+  "class_type": "PreviewImage",
+  "inputs": {
+   "images": [
+    "47",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Keyframe preview"
+  }
+ },
+ "49": {
+  "class_type": "UnderdogFinish",
+  "inputs": {
+   "script": [
+    "9",
+    0
+   ],
+   "captions": true,
+   "ai_label": true,
+   "credit": true,
+   "scene_01": [
+    "13",
+    0
+   ],
+   "scene_02": [
+    "16",
+    0
+   ],
+   "scene_03": [
+    "19",
+    0
+   ],
+   "scene_04": [
+    "22",
+    0
+   ],
+   "scene_05": [
+    "25",
+    0
+   ],
+   "scene_06": [
+    "28",
+    0
+   ],
+   "scene_07": [
+    "31",
+    0
+   ],
+   "scene_08": [
+    "34",
+    0
+   ],
+   "scene_09": [
+    "37",
+    0
+   ],
+   "scene_10": [
+    "40",
+    0
+   ],
+   "scene_11": [
+    "43",
+    0
+   ],
+   "scene_12": [
+    "46",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Final cut"
+  }
+ },
+ "50": {
+  "class_type": "SaveVideo",
+  "inputs": {
+   "video": [
+    "49",
+    0
+   ],
+   "filename_prefix": "underdog/film",
+   "format": "mp4",
+   "format.codec": "auto"
+  },
+  "_meta": {
+   "title": "Your film"
+  }
+ }
+}

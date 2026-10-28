@@ -1,0 +1,9 @@
+.comfy-base/
+.testdeps/
+presets/*/assets/
+runs/
+__pycache__/
+.pytest_cache/
+*.mp4
+.env*
+node_modules/
