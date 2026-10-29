@@ -155,10 +155,12 @@ class UnderdogFinish:
         return {"required": {"script": ("STRING", {"forceInput": True}),
                              "captions": ("BOOLEAN", {"default": True}),
                              "ai_label": ("BOOLEAN", {"default": True, "tooltip": "Keep this on when you post: the film is AI-generated."}),
-                             "credit": ("BOOLEAN", {"default": True, "tooltip": "Small 'made with Underdog Story' on the end card"})},
+                             "credit": ("BOOLEAN", {"default": True, "tooltip": "Small 'made with Underdog Story' on the end card"}),
+                             "music_path": ("STRING", {"default": "", "tooltip": "Optional: path to a music track you OWN or licensed, mixed "
+                                                       "low under the dialogue. Empty = Veo's own sound only. Never a copyrighted song."})},
                 "optional": {f"scene_{i:02d}": ("VIDEO",) for i in range(1, len(core.BEATS) + 1)}}
 
-    def run(self, script, captions=True, ai_label=True, credit=True, **videos):
+    def run(self, script, captions=True, ai_label=True, credit=True, music_path="", **videos):
         s = json.loads(script)
         keys = [k for k in sorted(videos) if videos[k] is not None]
         if not keys:
@@ -182,7 +184,10 @@ class UnderdogFinish:
         out = out_dir / f"underdog_{tmp.name}.mp4"
         b = s["brief"]
         end = [b["business_name"], s.get("title") or "An Underdog Story"]
-        core.finish(clips, scenes, out, tmp, end, ai_label=ai_label, credit=credit)
+        music = Path(music_path.strip()).expanduser() if music_path.strip() else None
+        if music and not music.is_file():
+            raise ValueError(f"music_path does not exist: {music}")
+        core.finish(clips, scenes, out, tmp, end, ai_label=ai_label, credit=credit, music_path=music)
         return (VideoFromFile(str(out)),)
 
 

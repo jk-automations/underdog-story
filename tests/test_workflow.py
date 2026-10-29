@@ -15,6 +15,7 @@ def test_opens_in_app_mode_with_the_form():
         assert ("UnderdogBrief", w) in names
     outs = sorted(NODES[i]["type"] for i in WF["extra"]["linearData"]["outputs"])
     assert outs == ["PreviewAny", "PreviewImage", "SaveVideo"]
+    assert NODES[next(i for i in WF["extra"]["linearData"]["outputs"] if NODES[i]["type"] == "SaveVideo")]["title"] == "Your film"
 
 
 def test_partner_nodes_and_no_random_seeds():

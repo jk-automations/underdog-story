@@ -38,12 +38,28 @@ def test_preset_lines_fit_8_seconds(raw):
         assert sum(core._words(ln) for ln in lines) <= core.MAX_SCENE_WORDS
 
 
-def test_preset_has_the_founder_lines(raw):
-    lines = [st.get("line") for sc in raw["scenes"] for st in sc["performance"]]
-    for must in ["Mm. Tastes like... bankruptcy.", "First one's free! Second one's free! I'm RICH!", "Abuela's not paying rent.",
-                 "Three. One's a bot.", "Good. Gold paint can't cry on camera.", "You should try it.", "We're hiring. Dishwasher.",
-                 "We're in the wrong business.", "Is there dental?!", "Abuela baked here every morning at five."]:
-        assert must in lines
+def test_preset_is_the_v6_story(raw):
+    lines = [(sc["beat"], st["who"], st["line"]) for sc in raw["scenes"] for st in sc["performance"] if st.get("line")]
+    assert lines == [(1, "owner", "...Last one."), (2, "rival", "Love the little shop. Very... vintage."),
+                     (3, "partner", "Babe. Six today."), (4, "owner", "Go. You'll be late."), (5, "hero1", "Is that the last one?"),
+                     (6, "hero2", "Again. Slower."), (7, "owner", "Abuela's recipe. Forty years."), (8, "hero2", "We make ads."),
+                     (9, "owner", "...Oh no."), (10, "owner", "Back of the line, Chad."), (11, "partner", "Oh wow... that's your car?"),
+                     (12, "owner", "One of them."), (12, "owner", "Last one.")]
+    assert "CLOSING SUNDAY" in raw["scenes"][0]["keyframe"] and "recipe card" in raw["scenes"][6]["keyframe"]
+    assert "exhaust roar" in raw["scenes"][10]["camera"]
+
+
+def test_cast_matches_the_sheets(raw):
+    assert "striped" in raw["cast"]["hero1"] or "stripes" in raw["cast"]["hero1"]
+    assert "plain black t-shirt" in raw["cast"]["hero2"]
+
+
+def test_one_speaker_per_scene_in_rendered_prompts():
+    s = core.build_script(brief(), core.load_preset(PRESET))
+    for sc in s["scenes"]:
+        assert f"Only {s['brief']['cast'][sc['speaker']]} speaks in this shot" in sc["motion_prompt"]
+        assert "No new people enter the frame." in sc["motion_prompt"]
+        assert sc["motion_prompt"].count('"') == 2 * len(sc["captions"])   # only the one speaker's lines are quoted
 
 
 def test_rendered_prompts_follow_the_rules():
@@ -83,7 +99,7 @@ def test_tone_changes_the_performance_note():
 @pytest.mark.parametrize("breakit, msg", [
     (lambda r: r["scenes"].pop(), "exactly 12 scenes"),
     (lambda r: r["scenes"][0]["performance"][0].update(line=" ".join(["word"] * 21)), "21 words"),
-    (lambda r: r["scenes"][0]["performance"].append({"who": None, "how": "x", "line": " ".join(["la"] * 20)}), "won't fit 8 s"),
+    (lambda r: r["scenes"][0]["performance"].extend([{"who": "owner", "how": "x", "line": " ".join(["la"] * 20)}] * 2), "won't fit 8 s"),
     (lambda r: r["scenes"][2].update(keyframe="Rosa stands at the counter."), "character name 'rosa'"),
     (lambda r: r["scenes"][3]["performance"][0].update(line="Hey Zorbleton, look!"), "real person's name 'Zorbleton'"),
     (lambda r: r["scenes"][10].update(keyframe="A red Ferrari at the curb."), "brand name 'ferrari'"),
@@ -92,7 +108,12 @@ def test_tone_changes_the_performance_note():
     (lambda r: r["scenes"][6]["performance"][0].update(who="narrator"), "who must be"),
     (lambda r: r["scenes"][7].update(beat=3), "beat must be 8"),
     (lambda r: r["scenes"][8].update(transition="spin"), "transition must be"),
-    (lambda r: r["scenes"][9]["performance"][0].update(line='He said "hi"'), "double quotes"),
+    (lambda r: r["scenes"][9]["performance"][1].update(line='He said "hi"'), "double quotes"),
+    (lambda r: r["scenes"][2]["performance"][1].update(line="It's fine."), "exactly one on-screen speaker"),
+    (lambda r: r["scenes"][0]["performance"].append({"who": "rival", "how": "laughs", "line": "Ha."}), "exactly one on-screen speaker"),
+    (lambda r: r["scenes"][8]["performance"][0].update(who="offscreen"), "exactly one on-screen speaker"),
+    (lambda r: r["scenes"][1]["performance"][1].update(how="smiles and says nothing back"), "silent step must not speak"),
+    (lambda r: [st.update(line=None) for st in r["scenes"][10]["performance"]], "exactly one on-screen speaker"),
 ])
 def test_validator_rejects(raw, breakit, msg):
     breakit(raw)
@@ -108,7 +129,7 @@ def test_real_name_check_is_hashed():
 
 
 def test_names_allowed_inside_dialogue_only(raw):
-    assert any("Rosa" in (st.get("line") or "") for sc in raw["scenes"] for st in sc["performance"])
+    assert any("Chad" in (st.get("line") or "") for sc in raw["scenes"] for st in sc["performance"])
     assert core.validate_script(raw, BANNED) == []
 
 

@@ -7,8 +7,8 @@
    "owner": "the baker in round glasses and a yellow headscarf",
    "rival": "the blond influencer in a gold puffer vest",
    "partner": "the tired man with short wavy brown hair and light stubble in a navy delivery jacket",
-   "hero_1": "the muscular man with short curly dark hair and a light moustache in a plain black t-shirt",
-   "hero_2": "the muscular bearded man with wavy dark hair in a black t-shirt with thin green stripes",
+   "hero_1": "the muscular bearded man with wavy dark hair in a black t-shirt with thin green stripes",
+   "hero_2": "the muscular man with short curly dark hair and a thin moustache in a plain black t-shirt",
    "tone": "funny",
    "model": "veo-3.1-lite",
    "script_source": "preset: small-business-rescue-bakery"
@@ -202,6 +202,21 @@
   }
  },
  "14": {
+  "class_type": "SaveVideo",
+  "inputs": {
+   "video": [
+    "13",
+    0
+   ],
+   "filename_prefix": "underdog/scenes/scene_01",
+   "format": "mp4",
+   "format.codec": "auto"
+  },
+  "_meta": {
+   "title": "Save scene 1"
+  }
+ },
+ "15": {
   "class_type": "UnderdogScene",
   "inputs": {
    "script": [
@@ -238,11 +253,11 @@
    "title": "Scene 2"
   }
  },
- "15": {
+ "16": {
   "class_type": "GeminiNanoBanana2",
   "inputs": {
    "prompt": [
-    "14",
+    "15",
     0
    ],
    "model": "Nano Banana 2 (Gemini 3.1 Flash Image)",
@@ -252,7 +267,7 @@
    "response_modalities": "IMAGE",
    "thinking_level": "MINIMAL",
    "images": [
-    "14",
+    "15",
     2
    ]
   },
@@ -260,11 +275,11 @@
    "title": "Keyframe 2"
   }
  },
- "16": {
+ "17": {
   "class_type": "Veo3VideoGenerationNode",
   "inputs": {
    "prompt": [
-    "14",
+    "15",
     1
    ],
    "aspect_ratio": "9:16",
@@ -275,7 +290,7 @@
    "person_generation": "ALLOW",
    "seed": 0,
    "image": [
-    "15",
+    "16",
     0
    ],
    "model": [
@@ -288,7 +303,22 @@
    "title": "Video 2"
   }
  },
- "17": {
+ "18": {
+  "class_type": "SaveVideo",
+  "inputs": {
+   "video": [
+    "17",
+    0
+   ],
+   "filename_prefix": "underdog/scenes/scene_02",
+   "format": "mp4",
+   "format.codec": "auto"
+  },
+  "_meta": {
+   "title": "Save scene 2"
+  }
+ },
+ "19": {
   "class_type": "UnderdogScene",
   "inputs": {
    "script": [
@@ -325,11 +355,11 @@
    "title": "Scene 3"
   }
  },
- "18": {
+ "20": {
   "class_type": "GeminiNanoBanana2",
   "inputs": {
    "prompt": [
-    "17",
+    "19",
     0
    ],
    "model": "Nano Banana 2 (Gemini 3.1 Flash Image)",
@@ -339,7 +369,7 @@
    "response_modalities": "IMAGE",
    "thinking_level": "MINIMAL",
    "images": [
-    "17",
+    "19",
     2
    ]
   },
@@ -347,11 +377,11 @@
    "title": "Keyframe 3"
   }
  },
- "19": {
+ "21": {
   "class_type": "Veo3VideoGenerationNode",
   "inputs": {
    "prompt": [
-    "17",
+    "19",
     1
    ],
    "aspect_ratio": "9:16",
@@ -362,7 +392,7 @@
    "person_generation": "ALLOW",
    "seed": 0,
    "image": [
-    "18",
+    "20",
     0
    ],
    "model": [
@@ -375,7 +405,22 @@
    "title": "Video 3"
   }
  },
- "20": {
+ "22": {
+  "class_type": "SaveVideo",
+  "inputs": {
+   "video": [
+    "21",
+    0
+   ],
+   "filename_prefix": "underdog/scenes/scene_03",
+   "format": "mp4",
+   "format.codec": "auto"
+  },
+  "_meta": {
+   "title": "Save scene 3"
+  }
+ },
+ "23": {
   "class_type": "UnderdogScene",
   "inputs": {
    "script": [
@@ -412,11 +457,11 @@
    "title": "Scene 4"
   }
  },
- "21": {
+ "24": {
   "class_type": "GeminiNanoBanana2",
   "inputs": {
    "prompt": [
-    "20",
+    "23",
     0
    ],
    "model": "Nano Banana 2 (Gemini 3.1 Flash Image)",
@@ -426,7 +471,7 @@
    "response_modalities": "IMAGE",
    "thinking_level": "MINIMAL",
    "images": [
-    "20",
+    "23",
     2
    ]
   },
@@ -434,11 +479,11 @@
    "title": "Keyframe 4"
   }
  },
- "22": {
+ "25": {
   "class_type": "Veo3VideoGenerationNode",
   "inputs": {
    "prompt": [
-    "20",
+    "23",
     1
    ],
    "aspect_ratio": "9:16",
@@ -449,7 +494,7 @@
    "person_generation": "ALLOW",
    "seed": 0,
    "image": [
-    "21",
+    "24",
     0
    ],
    "model": [
@@ -462,7 +507,22 @@
    "title": "Video 4"
   }
  },
- "23": {
+ "26": {
+  "class_type": "SaveVideo",
+  "inputs": {
+   "video": [
+    "25",
+    0
+   ],
+   "filename_prefix": "underdog/scenes/scene_04",
+   "format": "mp4",
+   "format.codec": "auto"
+  },
+  "_meta": {
+   "title": "Save scene 4"
+  }
+ },
+ "27": {
   "class_type": "UnderdogScene",
   "inputs": {
    "script": [
@@ -499,11 +559,11 @@
    "title": "Scene 5"
   }
  },
- "24": {
+ "28": {
   "class_type": "GeminiNanoBanana2",
   "inputs": {
    "prompt": [
-    "23",
+    "27",
     0
    ],
    "model": "Nano Banana 2 (Gemini 3.1 Flash Image)",
@@ -513,7 +573,7 @@
    "response_modalities": "IMAGE",
    "thinking_level": "MINIMAL",
    "images": [
-    "23",
+    "27",
     2
    ]
   },
@@ -521,11 +581,11 @@
    "title": "Keyframe 5"
   }
  },
- "25": {
+ "29": {
   "class_type": "Veo3VideoGenerationNode",
   "inputs": {
    "prompt": [
-    "23",
+    "27",
     1
    ],
    "aspect_ratio": "9:16",
@@ -536,7 +596,7 @@
    "person_generation": "ALLOW",
    "seed": 0,
    "image": [
-    "24",
+    "28",
     0
    ],
    "model": [
@@ -549,7 +609,22 @@
    "title": "Video 5"
   }
  },
- "26": {
+ "30": {
+  "class_type": "SaveVideo",
+  "inputs": {
+   "video": [
+    "29",
+    0
+   ],
+   "filename_prefix": "underdog/scenes/scene_05",
+   "format": "mp4",
+   "format.codec": "auto"
+  },
+  "_meta": {
+   "title": "Save scene 5"
+  }
+ },
+ "31": {
   "class_type": "UnderdogScene",
   "inputs": {
    "script": [
@@ -586,11 +661,11 @@
    "title": "Scene 6"
   }
  },
- "27": {
+ "32": {
   "class_type": "GeminiNanoBanana2",
   "inputs": {
    "prompt": [
-    "26",
+    "31",
     0
    ],
    "model": "Nano Banana 2 (Gemini 3.1 Flash Image)",
@@ -600,7 +675,7 @@
    "response_modalities": "IMAGE",
    "thinking_level": "MINIMAL",
    "images": [
-    "26",
+    "31",
     2
    ]
   },
@@ -608,11 +683,11 @@
    "title": "Keyframe 6"
   }
  },
- "28": {
+ "33": {
   "class_type": "Veo3VideoGenerationNode",
   "inputs": {
    "prompt": [
-    "26",
+    "31",
     1
    ],
    "aspect_ratio": "9:16",
@@ -623,7 +698,7 @@
    "person_generation": "ALLOW",
    "seed": 0,
    "image": [
-    "27",
+    "32",
     0
    ],
    "model": [
@@ -636,7 +711,22 @@
    "title": "Video 6"
   }
  },
- "29": {
+ "34": {
+  "class_type": "SaveVideo",
+  "inputs": {
+   "video": [
+    "33",
+    0
+   ],
+   "filename_prefix": "underdog/scenes/scene_06",
+   "format": "mp4",
+   "format.codec": "auto"
+  },
+  "_meta": {
+   "title": "Save scene 6"
+  }
+ },
+ "35": {
   "class_type": "UnderdogScene",
   "inputs": {
    "script": [
@@ -673,11 +763,11 @@
    "title": "Scene 7"
   }
  },
- "30": {
+ "36": {
   "class_type": "GeminiNanoBanana2",
   "inputs": {
    "prompt": [
-    "29",
+    "35",
     0
    ],
    "model": "Nano Banana 2 (Gemini 3.1 Flash Image)",
@@ -687,7 +777,7 @@
    "response_modalities": "IMAGE",
    "thinking_level": "MINIMAL",
    "images": [
-    "29",
+    "35",
     2
    ]
   },
@@ -695,11 +785,11 @@
    "title": "Keyframe 7"
   }
  },
- "31": {
+ "37": {
   "class_type": "Veo3VideoGenerationNode",
   "inputs": {
    "prompt": [
-    "29",
+    "35",
     1
    ],
    "aspect_ratio": "9:16",
@@ -710,7 +800,7 @@
    "person_generation": "ALLOW",
    "seed": 0,
    "image": [
-    "30",
+    "36",
     0
    ],
    "model": [
@@ -723,7 +813,22 @@
    "title": "Video 7"
   }
  },
- "32": {
+ "38": {
+  "class_type": "SaveVideo",
+  "inputs": {
+   "video": [
+    "37",
+    0
+   ],
+   "filename_prefix": "underdog/scenes/scene_07",
+   "format": "mp4",
+   "format.codec": "auto"
+  },
+  "_meta": {
+   "title": "Save scene 7"
+  }
+ },
+ "39": {
   "class_type": "UnderdogScene",
   "inputs": {
    "script": [
@@ -760,11 +865,11 @@
    "title": "Scene 8"
   }
  },
- "33": {
+ "40": {
   "class_type": "GeminiNanoBanana2",
   "inputs": {
    "prompt": [
-    "32",
+    "39",
     0
    ],
    "model": "Nano Banana 2 (Gemini 3.1 Flash Image)",
@@ -774,7 +879,7 @@
    "response_modalities": "IMAGE",
    "thinking_level": "MINIMAL",
    "images": [
-    "32",
+    "39",
     2
    ]
   },
@@ -782,11 +887,11 @@
    "title": "Keyframe 8"
   }
  },
- "34": {
+ "41": {
   "class_type": "Veo3VideoGenerationNode",
   "inputs": {
    "prompt": [
-    "32",
+    "39",
     1
    ],
    "aspect_ratio": "9:16",
@@ -797,7 +902,7 @@
    "person_generation": "ALLOW",
    "seed": 0,
    "image": [
-    "33",
+    "40",
     0
    ],
    "model": [
@@ -810,7 +915,22 @@
    "title": "Video 8"
   }
  },
- "35": {
+ "42": {
+  "class_type": "SaveVideo",
+  "inputs": {
+   "video": [
+    "41",
+    0
+   ],
+   "filename_prefix": "underdog/scenes/scene_08",
+   "format": "mp4",
+   "format.codec": "auto"
+  },
+  "_meta": {
+   "title": "Save scene 8"
+  }
+ },
+ "43": {
   "class_type": "UnderdogScene",
   "inputs": {
    "script": [
@@ -847,11 +967,11 @@
    "title": "Scene 9"
   }
  },
- "36": {
+ "44": {
   "class_type": "GeminiNanoBanana2",
   "inputs": {
    "prompt": [
-    "35",
+    "43",
     0
    ],
    "model": "Nano Banana 2 (Gemini 3.1 Flash Image)",
@@ -861,7 +981,7 @@
    "response_modalities": "IMAGE",
    "thinking_level": "MINIMAL",
    "images": [
-    "35",
+    "43",
     2
    ]
   },
@@ -869,11 +989,11 @@
    "title": "Keyframe 9"
   }
  },
- "37": {
+ "45": {
   "class_type": "Veo3VideoGenerationNode",
   "inputs": {
    "prompt": [
-    "35",
+    "43",
     1
    ],
    "aspect_ratio": "9:16",
@@ -884,7 +1004,7 @@
    "person_generation": "ALLOW",
    "seed": 0,
    "image": [
-    "36",
+    "44",
     0
    ],
    "model": [
@@ -897,7 +1017,22 @@
    "title": "Video 9"
   }
  },
- "38": {
+ "46": {
+  "class_type": "SaveVideo",
+  "inputs": {
+   "video": [
+    "45",
+    0
+   ],
+   "filename_prefix": "underdog/scenes/scene_09",
+   "format": "mp4",
+   "format.codec": "auto"
+  },
+  "_meta": {
+   "title": "Save scene 9"
+  }
+ },
+ "47": {
   "class_type": "UnderdogScene",
   "inputs": {
    "script": [
@@ -934,11 +1069,11 @@
    "title": "Scene 10"
   }
  },
- "39": {
+ "48": {
   "class_type": "GeminiNanoBanana2",
   "inputs": {
    "prompt": [
-    "38",
+    "47",
     0
    ],
    "model": "Nano Banana 2 (Gemini 3.1 Flash Image)",
@@ -948,7 +1083,7 @@
    "response_modalities": "IMAGE",
    "thinking_level": "MINIMAL",
    "images": [
-    "38",
+    "47",
     2
    ]
   },
@@ -956,11 +1091,11 @@
    "title": "Keyframe 10"
   }
  },
- "40": {
+ "49": {
   "class_type": "Veo3VideoGenerationNode",
   "inputs": {
    "prompt": [
-    "38",
+    "47",
     1
    ],
    "aspect_ratio": "9:16",
@@ -971,7 +1106,7 @@
    "person_generation": "ALLOW",
    "seed": 0,
    "image": [
-    "39",
+    "48",
     0
    ],
    "model": [
@@ -984,7 +1119,22 @@
    "title": "Video 10"
   }
  },
- "41": {
+ "50": {
+  "class_type": "SaveVideo",
+  "inputs": {
+   "video": [
+    "49",
+    0
+   ],
+   "filename_prefix": "underdog/scenes/scene_10",
+   "format": "mp4",
+   "format.codec": "auto"
+  },
+  "_meta": {
+   "title": "Save scene 10"
+  }
+ },
+ "51": {
   "class_type": "UnderdogScene",
   "inputs": {
    "script": [
@@ -1021,11 +1171,11 @@
    "title": "Scene 11"
   }
  },
- "42": {
+ "52": {
   "class_type": "GeminiNanoBanana2",
   "inputs": {
    "prompt": [
-    "41",
+    "51",
     0
    ],
    "model": "Nano Banana 2 (Gemini 3.1 Flash Image)",
@@ -1035,7 +1185,7 @@
    "response_modalities": "IMAGE",
    "thinking_level": "MINIMAL",
    "images": [
-    "41",
+    "51",
     2
    ]
   },
@@ -1043,11 +1193,11 @@
    "title": "Keyframe 11"
   }
  },
- "43": {
+ "53": {
   "class_type": "Veo3VideoGenerationNode",
   "inputs": {
    "prompt": [
-    "41",
+    "51",
     1
    ],
    "aspect_ratio": "9:16",
@@ -1058,7 +1208,7 @@
    "person_generation": "ALLOW",
    "seed": 0,
    "image": [
-    "42",
+    "52",
     0
    ],
    "model": [
@@ -1071,7 +1221,22 @@
    "title": "Video 11"
   }
  },
- "44": {
+ "54": {
+  "class_type": "SaveVideo",
+  "inputs": {
+   "video": [
+    "53",
+    0
+   ],
+   "filename_prefix": "underdog/scenes/scene_11",
+   "format": "mp4",
+   "format.codec": "auto"
+  },
+  "_meta": {
+   "title": "Save scene 11"
+  }
+ },
+ "55": {
   "class_type": "UnderdogScene",
   "inputs": {
    "script": [
@@ -1108,11 +1273,11 @@
    "title": "Scene 12"
   }
  },
- "45": {
+ "56": {
   "class_type": "GeminiNanoBanana2",
   "inputs": {
    "prompt": [
-    "44",
+    "55",
     0
    ],
    "model": "Nano Banana 2 (Gemini 3.1 Flash Image)",
@@ -1122,7 +1287,7 @@
    "response_modalities": "IMAGE",
    "thinking_level": "MINIMAL",
    "images": [
-    "44",
+    "55",
     2
    ]
   },
@@ -1130,11 +1295,11 @@
    "title": "Keyframe 12"
   }
  },
- "46": {
+ "57": {
   "class_type": "Veo3VideoGenerationNode",
   "inputs": {
    "prompt": [
-    "44",
+    "55",
     1
    ],
    "aspect_ratio": "9:16",
@@ -1145,7 +1310,7 @@
    "person_generation": "ALLOW",
    "seed": 0,
    "image": [
-    "45",
+    "56",
     0
    ],
    "model": [
@@ -1158,7 +1323,22 @@
    "title": "Video 12"
   }
  },
- "47": {
+ "58": {
+  "class_type": "SaveVideo",
+  "inputs": {
+   "video": [
+    "57",
+    0
+   ],
+   "filename_prefix": "underdog/scenes/scene_12",
+   "format": "mp4",
+   "format.codec": "auto"
+  },
+  "_meta": {
+   "title": "Save scene 12"
+  }
+ },
+ "59": {
   "class_type": "UnderdogContactSheet",
   "inputs": {
    "keyframe_01": [
@@ -1166,47 +1346,47 @@
     0
    ],
    "keyframe_02": [
-    "15",
+    "16",
     0
    ],
    "keyframe_03": [
-    "18",
+    "20",
     0
    ],
    "keyframe_04": [
-    "21",
-    0
-   ],
-   "keyframe_05": [
     "24",
     0
    ],
+   "keyframe_05": [
+    "28",
+    0
+   ],
    "keyframe_06": [
-    "27",
+    "32",
     0
    ],
    "keyframe_07": [
-    "30",
-    0
-   ],
-   "keyframe_08": [
-    "33",
-    0
-   ],
-   "keyframe_09": [
     "36",
     0
    ],
+   "keyframe_08": [
+    "40",
+    0
+   ],
+   "keyframe_09": [
+    "44",
+    0
+   ],
    "keyframe_10": [
-    "39",
+    "48",
     0
    ],
    "keyframe_11": [
-    "42",
+    "52",
     0
    ],
    "keyframe_12": [
-    "45",
+    "56",
     0
    ]
   },
@@ -1214,11 +1394,11 @@
    "title": "Keyframes"
   }
  },
- "48": {
+ "60": {
   "class_type": "PreviewImage",
   "inputs": {
    "images": [
-    "47",
+    "59",
     0
    ]
   },
@@ -1226,7 +1406,7 @@
    "title": "Keyframe preview"
   }
  },
- "49": {
+ "61": {
   "class_type": "UnderdogFinish",
   "inputs": {
    "script": [
@@ -1236,52 +1416,53 @@
    "captions": true,
    "ai_label": true,
    "credit": true,
+   "music_path": "",
    "scene_01": [
     "13",
     0
    ],
    "scene_02": [
-    "16",
+    "17",
     0
    ],
    "scene_03": [
-    "19",
+    "21",
     0
    ],
    "scene_04": [
-    "22",
-    0
-   ],
-   "scene_05": [
     "25",
     0
    ],
+   "scene_05": [
+    "29",
+    0
+   ],
    "scene_06": [
-    "28",
+    "33",
     0
    ],
    "scene_07": [
-    "31",
-    0
-   ],
-   "scene_08": [
-    "34",
-    0
-   ],
-   "scene_09": [
     "37",
     0
    ],
+   "scene_08": [
+    "41",
+    0
+   ],
+   "scene_09": [
+    "45",
+    0
+   ],
    "scene_10": [
-    "40",
+    "49",
     0
    ],
    "scene_11": [
-    "43",
+    "53",
     0
    ],
    "scene_12": [
-    "46",
+    "57",
     0
    ]
   },
@@ -1289,11 +1470,11 @@
    "title": "Final cut"
   }
  },
- "50": {
+ "62": {
   "class_type": "SaveVideo",
   "inputs": {
    "video": [
-    "49",
+    "61",
     0
    ],
    "filename_prefix": "underdog/film",

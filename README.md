@@ -14,8 +14,9 @@ Built for the Comfy *Open Source Higgsfield* challenge, 2026. Apache-2.0.
 
 1. **Script.** `Underdog Story: Script` builds the 12 beats. Pick the built-in preset (*The Last Croissant*, a family
    bakery) or let **Gemini** (ComfyUI partner node) write new lines for your business. Either way the script is checked
-   before anything is drawn: exactly 12 beats, every spoken line 20 words or fewer and at most 32 per scene (fits an 8 s
-   take), characters are described by their looks and never named, no real brands or logos. A broken script stops the
+   before anything is drawn: exactly 12 beats, exactly one on-screen speaker per scene (everyone else silent, mouths
+   closed, nobody new enters), every spoken line 20 words or fewer and at most 32 per scene (fits an 8 s take),
+   characters described by their looks and named only inside spoken lines, no real brands or logos. A broken script stops the
    run before any image or video is paid for.
 2. **Keyframes.** For each scene, **Nano Banana 2** (partner node) draws the start frame, 9:16, from the reference sheets
    that scene needs (owner, rival, partner, hero 1, hero 2, location) plus the keyframe prompt.
@@ -23,7 +24,9 @@ Built for the Comfy *Open Source Higgsfield* challenge, 2026. Apache-2.0.
    sound. Every motion prompt quotes the lines and ends with *One continuous take, no cuts. No captions, no subtitles…*
 4. **Final cut.** `Underdog Story: Final Cut` joins the 12 clips with short video and audio transitions, burns in
    classic captions, adds an *AI-generated* label and an end card, normalises loudness to −14 LUFS and writes one
-   H.264 MP4 to `output/underdog/`.
+   H.264 MP4 to `output/underdog/`. Sound is Veo's own dialogue and effects. No music is added unless you set
+   `music_path` to a track you own or licensed (it is looped low under the dialogue). Never use a copyrighted song.
+   Every scene clip is also saved to `output/underdog/scenes/`.
 
 The App Mode outputs: the film, a sheet of all 12 keyframes, and the script as text.
 
@@ -83,6 +86,8 @@ python3 tools/check_graph.py workflows/underdog-story-api.json --url http://127.
 node tools/make_app.mjs http://127.0.0.1:8188 workflows/underdog-story-api.json workflows/underdog-story.json docs/img/app-mode.png
 python3 tools/write_preset.py                    # regenerate the preset from its source
 python3 -m pytest                                # unit tests (partner nodes mocked; ffmpeg test clips)
+python3 tools/run_demo.py --url http://127.0.0.1:8188   # dry run: stage preset sheets, build, check, price quote; $0
+python3 tools/run_demo.py --url ... --confirm-spend --cap 10 --quote-limit 9   # the paid demo run (owner approval first)
 ```
 
 `make_app.mjs` needs the `playwright` npm package. It loads the graph in the real ComfyUI frontend, saves it with App

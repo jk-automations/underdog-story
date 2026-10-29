@@ -7,3 +7,4 @@ __pycache__/
 *.mp4
 .env*
 node_modules/
+presets/*/out/

@@ -43,11 +43,12 @@ for k in range(1, len(core.BEATS) + 1):
     vid = node("Veo3VideoGenerationNode", f"Video {k}", prompt=o(sc, 1), aspect_ratio="9:16", resolution="720p", negative_prompt="",
                duration_seconds=8, enhance_prompt=True, person_generation="ALLOW", seed=0, image=o(kf, 0), model=o(brief, 2),
                generate_audio=True)
+    node("SaveVideo", f"Save scene {k}", video=o(vid), filename_prefix=f"underdog/scenes/scene_{k:02d}", format="mp4", **{"format.codec": "auto"})
     keyframes.append(kf); videos.append(vid)
 sheet = node("UnderdogContactSheet", "Keyframes", **{f"keyframe_{k:02d}": o(kf) for k, kf in enumerate(keyframes, 1)})
 node("PreviewImage", "Keyframe preview", images=o(sheet))
 # ---------- 4. final cut ----------
-fin = node("UnderdogFinish", "Final cut", script=o(script), captions=True, ai_label=True, credit=True,
+fin = node("UnderdogFinish", "Final cut", script=o(script), captions=True, ai_label=True, credit=True, music_path="",
            **{f"scene_{k:02d}": o(v) for k, v in enumerate(videos, 1)})
 save = node("SaveVideo", "Your film", video=o(fin), filename_prefix="underdog/film", format="mp4", **{"format.codec": "auto"})
 Path(a.out).parent.mkdir(parents=True, exist_ok=True)

@@ -32,7 +32,7 @@ def test_script_skips_gemini_for_preset(nodes):
     n = nodes.UnderdogScript()
     assert n.check_lazy_status(b, None) == []
     script, text = n.run(b)
-    assert len(json.loads(script)["scenes"]) == 12 and "BANKRUPTCY" not in text and "bankruptcy" in text
+    assert len(json.loads(script)["scenes"]) == 12 and "Back of the line, Chad." in text
 
 
 def test_script_uses_mocked_gemini_reply(nodes):
@@ -53,10 +53,11 @@ def test_scene_picks_sheets_and_skips_blanks(nodes):
     script = nodes.UnderdogScript().run(_brief(nodes)[0])[0]
     sheet = torch.rand(1, 600, 400, 3)
     blank = torch.ones(1, 64, 64, 3)
-    kp, mp, refs, cap = nodes.UnderdogScene().run(script, 1, owner=sheet, rival=blank, location=torch.rand(1, 300, 500, 3))
+    kp, mp, refs, cap = nodes.UnderdogScene().run(script, 2, owner=sheet, rival=blank, location=torch.rand(1, 300, 500, 3))
     assert refs.shape == (2, nodes.REF_SIZE, nodes.REF_SIZE, 3)     # owner + location; the rival slot was blank
     assert "1) the character sheet of the baker" in kp and "2) the location" in kp and "influencer in a gold puffer vest;" not in kp
-    assert mp.endswith(core.MOTION_TAIL) and "bankruptcy" in cap
+    kp, mp, refs, cap = nodes.UnderdogScene().run(script, 1, owner=sheet)
+    assert mp.endswith(core.MOTION_TAIL) and cap == "...Last one."
     assert nodes.UnderdogScene().run(script, 5)[2] is None              # no sheets at all -> Nano Banana gets no images
 
 
@@ -69,7 +70,9 @@ def test_contact_sheet(nodes):
 def test_finish_node_with_mocked_veo_clips(nodes, clips):
     script = nodes.UnderdogScript().run(_brief(nodes)[0])[0]
     vids = {f"scene_{i:02d}": nodes.VideoFromFile(str(c)) for i, c in enumerate(clips, 1)}
-    (video,) = nodes.UnderdogFinish().run(script, True, True, True, **vids)
+    (video,) = nodes.UnderdogFinish().run(script, True, True, True, "", **vids)
+    with pytest.raises(ValueError, match="music_path"):
+        nodes.UnderdogFinish().run(script, True, True, True, "/nope/song.mp3", **vids)
     import tempfile, pathlib
     p = pathlib.Path(tempfile.mkdtemp()) / "out.mp4"
     video.save_to(str(p))
@@ -86,6 +89,7 @@ def test_api_graph(tmp_path):
     g = json.loads(out.read_text())
     by = lambda cls: [k for k, v in g.items() if v["class_type"] == cls]
     assert len(by("GeminiNanoBanana2")) == 12 and len(by("Veo3VideoGenerationNode")) == 12 and len(by("LoadImage")) == 6
+    assert len(by("SaveVideo")) == 13   # every scene clip is kept (re-use, checks) + the film
     brief = by("UnderdogBrief")[0]
     for k in by("Veo3VideoGenerationNode"):
         i = g[k]["inputs"]

@@ -14,19 +14,19 @@ PRESETS_DIR = ROOT / "presets"
 FONT = ROOT / "fonts" / "Inter.ttf"
 
 # ---------------------------------------------------------------- the arc
-BEATS = [
-    (1, "threat", "The rival shows up and threatens to put the owner out of business."),
-    (2, "rival steals customers", "The rival lures the owner's regulars away, unfairly and loudly."),
-    (3, "low point", "The partner doubts the owner and walks out. The owner is alone; the viewer hurts for them."),
-    (4, "heroes arrive", "The hero duo bursts in, sees how tiny the owner's following is, and makes a joke about it."),
-    (5, "mission", "The heroes plan the comeback: the rival has money, the owner has a story."),
-    (6, "bad ideas", "The heroes pitch ridiculous over-the-top ad ideas and they get rejected."),
-    (7, "the heart", "They find the family story behind the business. Quiet, emotional. 'That's the ad.'"),
-    (8, "the ad goes viral", "They film the honest ad; a comic accident; the phone blows up: it's viral."),
-    (9, "showdown", "A line around the block. The rival storms over, demands to know how, and deflates."),
-    (10, "the partner returns", "Months later, success. The partner comes back sheepish; the owner shows who's boss now."),
-    (11, "riches", "The owner pulls up in a glossy exotic supercar with no badges. The heroes' jaws drop."),
-    (12, "button", "A final joke that loops back to the heroes ('we do this for the ...')."),
+BEATS = [   # the v6 spine: every beat joins the next with BUT or THEREFORE, one speaker per scene
+    (1, "last one", "Hook. The owner alone with the last unsold item and a CLOSING SUNDAY card. A two-word line."),
+    (2, "the rival", "The rival drops by and insults the shop sweetly. The owner keeps a tight smile."),
+    (3, "the doubter", "The partner states one dry fact about how bad sales are."),
+    (4, "alone", "The partner leaves for a 'real job'. The owner sends him off without looking at him."),
+    (5, "strangers", "The hero duo walks in; the talker points at the last item."),
+    (6, "the taste", "The talker tastes it in silence; the quiet one, filming, asks for it again, slower."),
+    (7, "the heart", "The owner shows the family craft behind the business (a recipe, an old photo)."),
+    (8, "who are you", "The owner looks up at the camera. The quiet one: they make ads."),
+    (9, "the reveal", "Next morning the owner opens up to a huge line outside: the video went viral."),
+    (10, "back of the line", "The rival tries to cut the line. The owner puts him in his place without stopping work."),
+    (11, "the car", "The partner, now in a rival-brand visor at the curb, as a supercar with no badges roars up."),
+    (12, "last one", "The owner in the car, smug and brief; ends on the line that loops back to scene 1."),
 ]
 ROLES = ["owner", "rival", "partner", "hero1", "hero2", "location"]       # reference image slots, in this order
 CHARACTERS = ROLES[:5]
@@ -34,7 +34,7 @@ SPEAKERS = set(CHARACTERS) | {"offscreen", "staff", "customer", "crowd", "robot"
 PLACEHOLDERS = set(CHARACTERS) | {"business"}
 TRANSITIONS = {"cut": ("fade", 0.05), "fade": ("fade", 0.5), "fadeblack": ("fadeblack", 0.6), "fadewhite": ("fadewhite", 0.3),
                "dissolve": ("dissolve", 0.5), "whip_left": ("slideleft", 0.3), "whip_right": ("slideright", 0.3)}
-TONES = {"funny": "Comedy timing, big expressive reactions.",
+TONES = {"funny": "Dry comedy timing, natural understated delivery, reactions carry the laughs.",
          "heartfelt": "Sincere, warm performances; let the quiet moments breathe."}
 VEO_MODELS = ["veo-3.1-lite", "veo-3.1-fast-generate", "veo-3.1-generate"]   # exact Veo3VideoGenerationNode values
 MAX_LINE_WORDS = 20          # one spoken line must fit comfortably in an 8 s take
@@ -44,6 +44,7 @@ KEYFRAME_HEAD = (f"Keyframe for an animated film. {STYLE}, vertical 9:16 cinemat
                  "facial hair, glasses, build and outfit exactly as in the reference images. No captions, no subtitles, no real brand logos.")
 MOTION_TAIL = (f"{STYLE}. Keep every character, face, outfit and the setting exactly as in the start frame. "
                "One continuous take, no cuts. No captions, no subtitles, no on-screen text except signs already in the frame.")
+SILENT_VERBS = ("says", "shouts", "yells", "whispers", "asks", "replies", "mutters")
 # Real people never appear by name. Brand names never appear (no real logos, no real car models).
 # Stored as SHA-256 of the lower-case first name, so the repo itself holds no real names.
 REAL_NAME_SHA256 = {"102cf10b5286bad9fcfe5e275ace3ddd7dcc23931fb0ca93dc223daf9877cabd",
@@ -121,7 +122,7 @@ def validate_script(script, banned_names=()):
         perf = sc.get("performance")
         if not isinstance(perf, list) or not (1 <= len(perf) <= 8):
             errors.append(f"{w}: performance must be a list of 1 to 8 steps"); continue
-        spoken = 0
+        spoken, speakers = 0, set()
         for j, st in enumerate(perf):
             pw = f"{w} step {j + 1}"
             if not isinstance(st, dict) or not isinstance(st.get("how"), str) or not st["how"].strip():
@@ -130,7 +131,10 @@ def validate_script(script, banned_names=()):
                 errors.append(f"{pw}: who must be one of {sorted(SPEAKERS)} or null")
             _check_text(pw, st["how"], banned_names, errors)
             line = st.get("line")
+            if line is None and any(_has_word(st["how"], v) for v in SILENT_VERBS):
+                errors.append(f"{pw}: a silent step must not speak ('{st['how']}')")
             if line is not None:
+                speakers.add(st.get("who"))
                 if not isinstance(line, str) or not line.strip():
                     errors.append(f"{pw}: line must be a non-empty string or null"); continue
                 if '"' in line:
@@ -140,6 +144,8 @@ def validate_script(script, banned_names=()):
                 if n > MAX_LINE_WORDS:
                     errors.append(f"{pw}: line has {n} words (max {MAX_LINE_WORDS}): {line!r}")
                 _check_text(pw, line, banned_names, errors, dialogue=True)
+        if len(speakers) != 1 or not speakers <= set(CHARACTERS):
+            errors.append(f"{w}: exactly one on-screen speaker per scene (a cast member), got {sorted(map(str, speakers))}")
         if spoken > MAX_SCENE_WORDS:
             errors.append(f"{w}: {spoken} spoken words won't fit 8 s (max {MAX_SCENE_WORDS})")
     return errors
@@ -176,7 +182,8 @@ The beats, one 8-second scene each, in this order:
 {beats}
 
 Rules:
-- Every scene is ONE continuous 8-second take. Up to 3 short spoken lines, each line at most {MAX_LINE_WORDS} words, at most {MAX_SCENE_WORDS} spoken words per scene. Jokes land fast.
+- Every scene is ONE continuous 8-second take with EXACTLY ONE speaker (a cast member); everyone else is silent. No new people enter.
+- Natural dialogue: short, specific, mostly under 8 words; not a joke on every line. Laughs come from reactions. Up to 2 short spoken lines, each line at most {MAX_LINE_WORDS} words, at most {MAX_SCENE_WORDS} spoken words per scene. Jokes land fast.
 - Never use any person's name anywhere outside spoken lines; use the placeholders. Spoken lines may say "babe", "boss" and the like, not names.
 - No real brands, logos, products, apps or car makers. The supercar in beat 11 is a glossy original exotic with no badges.
 - "keyframe": the single start frame: time of day, place, who stands where, expressions, camera framing, light. Use placeholders.
@@ -236,10 +243,13 @@ def build_script(brief, raw):
                 s = "A voice off-screen " + s
             s = _cap(s)
             steps.append(f'{s}: "{st["line"]}"' if st.get("line") else s.rstrip(".") + ".")
+        speaker = next(st["who"] for st in sc["performance"] if st.get("line"))
+        only = (f"Only {_fill('{' + speaker + '}', brief)} speaks in this shot; everyone else stays silent with mouth closed and "
+                "no lip movement. No new people enter the frame.")
         motion = " ".join([f"Animate this start frame: {_fill(sc['camera'], brief).rstrip('.')}."] + steps +
-                          [_cap(_fill(sc["music"], brief).rstrip(".")) + ".", TONES[brief["tone"]], MOTION_TAIL])
+                          [only, _cap(_fill(sc["music"], brief).rstrip(".")) + ".", TONES[brief["tone"]], MOTION_TAIL])
         scenes.append({"beat": sc["beat"], "name": BEATS[sc["beat"] - 1][1],
-                       "keyframe_body": _cap(_fill(sc["keyframe"], brief)), "motion_prompt": motion, "refs": sc["refs"],
+                       "keyframe_body": _cap(_fill(sc["keyframe"], brief)), "motion_prompt": motion, "refs": sc["refs"], "speaker": speaker,
                        "captions": [st["line"] for st in sc["performance"] if st.get("line")],
                        "transition": sc.get("transition", "cut")})
         for k in ("keyframe_body", "motion_prompt"):   # descriptions typed by the user are checked once filled in
@@ -322,8 +332,9 @@ def caption_cues(lines, start, dur, lead=0.3, tail=0.4):
     return cues
 
 
-def finish(clips, scenes, out, work, end_lines, ai_label=True, credit=True, end_secs=3.0, fps=24):
-    """clips: mp4 paths in order; scenes: the matching rendered scenes (captions + transition). Returns a receipt."""
+def finish(clips, scenes, out, work, end_lines, ai_label=True, credit=True, end_secs=3.0, fps=24, music_path=None, music_db=-20):
+    """clips: mp4 paths in order; scenes: the matching rendered scenes (captions + transition). Returns a receipt.
+    No music is added unless music_path points at a track you own or have licensed; it is looped under the dialogue."""
     ffmpeg, _ = _ff()
     work = Path(work); ov = work / "ov"; ov.mkdir(parents=True, exist_ok=True)
     info = [probe(c) for c in clips]
@@ -389,12 +400,19 @@ def finish(clips, scenes, out, work, end_lines, ai_label=True, credit=True, end_
     for k, (a, b, _) in enumerate(cues):
         extra += ["-i", str(ov / f"cap{k:02d}.png")]
         fc.append(f"[{base}][{idx}:v]overlay=(W-w)/2:H*0.74:enable='between(t,{a:.3f},{b:.3f})'[c{k}]"); base = f"c{k}"; idx += 1
+    if music_path:
+        mi = idx
+        extra += ["-stream_loop", "-1", "-i", str(music_path)]
+        fc.append(f"[{mi}:a]aresample=48000,aformat=sample_fmts=fltp:channel_layouts=stereo,atrim=0:{total:.3f},"
+                  f"volume={music_db}dB,afade=t=out:st={max(0, total - 1.5):.3f}:d=1.5[mus]")
+        fc.append(f"[{aprev}][mus]amix=inputs=2:duration=first:normalize=0[mix]")
+        aprev = "mix"
     fc.append(f"[{aprev}]loudnorm=I=-14:TP=-1.5:LRA=9,aresample=48000[aout]")
     cmd = [ffmpeg, "-v", "error", "-y"] + inp + extra + ["-filter_complex", ";".join(fc), "-map", f"[{base}]", "-map", "[aout]",
            "-c:v", "libx264", "-crf", "18", "-preset", "medium", "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "192k",
            "-movflags", "+faststart", str(out)]
     (work / "ffmpeg_cmd.txt").write_text(" ".join(cmd))
     subprocess.run(cmd, check=True)
-    receipt = {"starts": starts, "end_start": end_start, "total": total, "size": [W, H], "transitions": trans, "cues": cues}
+    receipt = {"music": str(music_path) if music_path else None, "starts": starts, "end_start": end_start, "total": total, "size": [W, H], "transitions": trans, "cues": cues}
     (work / "receipt.json").write_text(json.dumps(receipt, indent=1))
     return receipt

@@ -39,3 +39,14 @@ def test_finish_without_captions_or_label(clips, tmp_path):
     r = core.finish(clips[:2], sc, tmp_path / "f.mp4", tmp_path / "w", ["Shop"], ai_label=False, credit=False)
     assert r["cues"] == [] and not (tmp_path / "w" / "ov" / "ai.png").exists()
     assert core.probe(tmp_path / "f.mp4")["dur"] > 4
+
+
+def test_no_music_by_default_and_owned_track_mixed(clips, tmp_path):
+    r = core.finish(clips[:2], _scenes(2), tmp_path / "a.mp4", tmp_path / "a", ["Shop"])
+    assert r["music"] is None and "amix" not in (tmp_path / "a" / "ffmpeg_cmd.txt").read_text()
+    track = tmp_path / "owned.wav"   # stands in for a track you own: a generated tone
+    subprocess.run([FFMPEG, "-v", "error", "-y", "-f", "lavfi", "-i", "sine=frequency=220:duration=1.5", str(track)], check=True)
+    r = core.finish(clips[:2], _scenes(2), tmp_path / "b.mp4", tmp_path / "b", ["Shop"], music_path=track)
+    cmd = (tmp_path / "b" / "ffmpeg_cmd.txt").read_text()
+    assert r["music"] == str(track) and "amix" in cmd and "-stream_loop -1" in cmd
+    assert core.probe(tmp_path / "b.mp4")["dur"] == pytest.approx(core.probe(tmp_path / "a.mp4")["dur"], abs=0.1)

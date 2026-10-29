@@ -17,7 +17,8 @@ const INPUTS = [
   [brief, "hero_1"], [brief, "hero_2"], ...sheets.map((s) => [s, "image"]),
   [brief, "tone"], [brief, "model"], [brief, "script_source"], [ids("UnderdogFinish")[0], "captions"],
 ];
-const OUTPUTS = [ids("SaveVideo")[0], ids("PreviewImage")[0], ids("PreviewAny")[0]];
+const film = ids("SaveVideo").find((k) => api[api[k].inputs.video[0]].class_type === "UnderdogFinish");   // not the per-scene saves
+const OUTPUTS = [film, ids("PreviewImage")[0], ids("PreviewAny")[0]];
 
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1440, height: 1300 } });
