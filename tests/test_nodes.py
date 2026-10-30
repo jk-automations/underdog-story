@@ -32,7 +32,7 @@ def test_script_skips_gemini_for_preset(nodes):
     n = nodes.UnderdogScript()
     assert n.check_lazy_status(b, None) == []
     script, text = n.run(b)
-    assert len(json.loads(script)["scenes"]) == 15 and "Back of the line, kid." in text and "[SIX MONTHS LATER]" in text
+    assert len(json.loads(script)["scenes"]) == 15 and "Back of the line, pal." in text and "[SIX MONTHS LATER]" in text
 
 
 def test_script_uses_mocked_gemini_for_any_business(nodes):

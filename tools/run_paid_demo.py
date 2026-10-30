@@ -89,6 +89,7 @@ def main(argv=None):
     ap.add_argument("--confirm-spend", action="store_true", help="really queue the paid run")
     ap.add_argument("--cap", type=float, default=HARD_CAP)
     ap.add_argument("--max-attempts", type=int, default=2)
+    ap.add_argument("--resume", action="store_true", help="keep saved scene clips; count them (plus every keyframe) as already spent")
     ap.add_argument("--whisper-model", default=str(Path.home() / ".cache/whisper.cpp/ggml-base.en.bin"))
     a = ap.parse_args(argv)
     if a.cap > HARD_CAP:
@@ -155,9 +156,14 @@ def main(argv=None):
         return {int(m.group(1)) for p in scene_dir.glob("scene_*.mp4") if (m := re.match(r"scene_(\d+)", p.name))}
 
     films_before = set(film_dir.glob("film*.mp4"))
-    if saved_scenes():
-        raise SystemExit(f"old scene clips in {scene_dir}; move them away first so the accounting is exact")
     spent_worst = 0.0
+    if saved_scenes() and not a.resume:
+        raise SystemExit(f"old scene clips in {scene_dir}; move them away first so the accounting is exact")
+    if a.resume:
+        # blocked or never-run Veo clips are not charged; saved scenes and every keyframe may have been
+        missing = [s for s in range(1, n_scenes + 1) if s not in saved_scenes()]
+        spent_worst = round(sum(per_scene[s] for s in saved_scenes()) + NB2_1K * len(missing), 4)
+        log(f"resume: scenes saved {sorted(saved_scenes())}; counted as already spent ${spent_worst:.2f}")
     for attempt in range(1, a.max_attempts + 1):
         todo = [s for s in range(1, n_scenes + 1) if s not in saved_scenes()]
         add = round(sum(per_scene[s] for s in todo) + sonilo, 4)

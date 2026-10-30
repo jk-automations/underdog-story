@@ -73,7 +73,7 @@ PRESETS = {
    "heirloom": "an old straight razor in a small glass case and a framed black-and-white photo of the shop on opening day",
    "heirloom_line": "My father's razor. Fifty years in this chair.",
    "craft": "giving a careful straight-razor shave with a hot towel", "craft_line": "Don't look at us. Look at the razor.",
-   "showdown_line": "Back of the line, kid.",
+   "showdown_line": "Back of the line, pal.",
    "old_car": "the old rusty green pickup truck",
    "payoff": f"a glossy cherry-red original vintage-style coupe with whitewall tires, {NO_BADGES}",
    "dm_business": "nail salon"}},
