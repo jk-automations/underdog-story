@@ -20,7 +20,7 @@ sys.path.insert(0, str(ROOT))
 sys.path.insert(0, str(ROOT / "tools"))
 import underdog_core as core  # noqa: E402
 
-HARD_CAP = 10.0
+HARD_CAP = 12.5  # founder raised 10 -> 12.50 on 10-30 01:30 PT to finish the barber demo
 VEO_PPS = {"veo-3.1-lite": 0.05, "veo-3.1-fast-generate": 0.10, "veo-3.1-generate": 0.40}   # 720p, audio on (badge)
 NB2_1K = 0.0835
 SONILO_PPS = 0.009
