@@ -23,7 +23,7 @@ Built for the Comfy *Open Source Higgsfield* challenge, 2026. Apache-2.0.
 ## The sample: The Last Croissant (bakery)
 
 The arc comes from *The Last Croissant*, a family-bakery episode. Its v9 rough cut was **drafted in Google Flow with the
-same arc** (not made by this app): `docs/examples/the-last-croissant-v9-flow-draft.mp4` (89 s, 17 MB). The app's
+same arc** (not made by this app): `docs/examples/the-last-croissant-v9-polished.mp4` (89 s, 17 MB). The app's
 bakery preset carries the same lines; the other presets fill the same beats for their own business.
 
 <p align="center"><img src="docs/img/v9-frames.png" width="720" alt="Frames from The Last Croissant v9: the MEGABUN grand opening, the bakery, the broken-down car, the agency duo, the line around the block, the red car, the episode 2 DM"></p>
