@@ -4,7 +4,7 @@
 
 **Title:** Underdog Story: any small business, one underdog sitcom
 
-**One line:** Pick a business, press Run, get a 105-second vertical underdog episode with voices, a score, captions and
+**One line:** Pick a business, press Run, get a 105-second (barber: 104.6 s) vertical underdog episode with voices, a score, captions and
 an episode-2 tease, built from ComfyUI partner nodes in one App Mode app.
 
 **Why it is made to travel**
@@ -26,7 +26,7 @@ the script checks, the cut and the mix. A free draft mode runs the whole pipelin
 
 **Cost:** about $7.60 per film on Veo 3.1 lite (price badges, ComfyUI 0.42). Free draft: $0.
 
-**Links (fill in):** repo URL · barber film · demo video · bakery v9 Flow draft (labelled as such).
+**Links:** repo https://github.com/jk-automations/underdog-story · demo video docs/demo/underdog-story-demo.mp4 (94 s) · barber film (app output) docs/examples/corner-chair-barbershop-paid-app-run.mp4 · bakery film (drafted in Google Flow, polished) docs/examples/the-last-croissant-v9-polished.mp4
 
 **Honesty notes:** the bakery film was drafted in Google Flow, not rendered by this app; the barber film is the app's own
-output. All characters are fictional. Every film carries an AI-generated label.
+output. The two heroes are stylized versions of the app's two founders, used with their consent; every other character is fictional. Every film carries an AI-generated label.
