@@ -17,7 +17,7 @@ def test_opens_in_app_mode_with_the_form(name):
     wf, nodes = load(name)
     assert wf["extra"]["linearMode"] is True
     ins = [(nodes[i]["type"], w) for i, w in wf["extra"]["linearData"]["inputs"]]
-    assert ins.count(("LoadImage", "image")) == 7
+    assert ins.count(("LoadImage", "image")) == 10     # reference sheets for everything: cast, places, props, states
     for w in ("script_source", "business_name", "business_type", "owner", "rival", "regular"):
         assert ("UnderdogBrief", w) in ins
     film = [i for i in wf["extra"]["linearData"]["outputs"] if nodes[i]["type"] == "SaveVideo"]

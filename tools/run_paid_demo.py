@@ -2,11 +2,11 @@
 app's own ComfyUI. The founder runs this himself.
 
   python3 tools/run_paid_demo.py                       # dry run: stage sheets, build, check graph, estimate. $0, no key read
-  python3 tools/run_paid_demo.py --confirm-spend       # the paid run (hard cap $10)
+  python3 tools/run_paid_demo.py --confirm-spend       # the paid run (hard cap $12.50)
 
 Money rules built in:
 - the estimate comes from the partner nodes' own price badges on the live ComfyUI (it aborts if a badge changed);
-- the run is refused when the estimate is over --cap, and --cap can never be above $10;
+- the run is refused when the estimate is over --cap, and --cap can never be above HARD_CAP ($12.50);
 - before anything is queued, a ledger row with the estimate is appended to runs/paid/ledger.jsonl;
 - a retry only re-runs what has no saved output (ComfyUI re-uses finished steps), and only while the worst-case total
   stays under the cap; auth or balance errors stop at once (no top-ups).
@@ -118,8 +118,10 @@ def main(argv=None):
                              a.preset]).returncode == 0
     if not staged:
         if a.confirm_spend:
-            raise SystemExit(f"REFUSED: the character sheets are not all in presets/{a.preset}/assets/ (see its README.md)")
-        log("sheets missing: estimating with blank sheets (a paid run will refuse until they are present)")
+            from stage_preset import sheet_status
+            missing = [r for r, _, ok, _ in sheet_status(a.preset) if not ok]
+            raise SystemExit(f"REFUSED: {core.missing_sheets_message(missing)} Add them to presets/{a.preset}/assets/ (see its README.md).")
+        log("WARNING: sheets missing; estimating with blank sheets (a paid run will refuse until they are present)")
     api_path = out / "underdog-story-api.json"
     subprocess.run([sys.executable, str(ROOT / "tools/build_app.py"), "--preset", a.preset, "--out", str(api_path)] +
                    (["--staged"] if staged else []), check=True)

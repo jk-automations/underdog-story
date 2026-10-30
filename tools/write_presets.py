@@ -12,7 +12,8 @@ HERO_ASSETS = {"hero1": "../small-business-rescue-bakery/assets/hero1.png", "her
 NO_BADGES = "no badges, no emblems and no plate text"
 
 
-def assets(own=("owner", "rival", "regular", "location", "rival_store"), heroes=HERO_ASSETS):
+def assets(own=("owner", "rival", "regular", "location", "rival_store_open", "rival_store_closed", "old_car", "prize_car"),
+           heroes=HERO_ASSETS):
     a = {r: f"assets/{r}.png" for r in own}
     a.update(heroes)
     return a
@@ -137,9 +138,52 @@ PRESETS = {
    "dm_business": "pizza shop"}},
 }
 
+# Per-preset notes under the sheet table in presets/<name>/assets/README.md.
+NOTES = {
+ "small-business-rescue-bakery": "`owner.png`, `rival.png`, `hero1.png`, `hero2.png` and `location.png` come from the v6/v9 work. "
+   "`partner.png` and `rival_with_hero_orig.png` are from the older v6 story and are not used.",
+ "barber-shop": "Example: one paid run (`runs/paid/barber-shop/`) was made before the prop and state sheets existed; the "
+   "cast held (they had sheets) but the prize car, the old pickup and the MEGAFADE building drifted. These sheets fix that. "
+   "The earlier `rival_store.png` (grand opening, balloons) is kept as `rival_store_open.png`.",
+}
+HERO_NOTE = "Hero 1 and hero 2 (the agency duo) are shared with the bakery sample and used automatically."
+
+
+def assets_readme(name):
+    import sys
+    sys.path.insert(0, str(ROOT))
+    import underdog_core as core
+    p = PRESETS[name]
+    use = core.sheet_use()
+    rows = "\n".join(f"| `{rel.split('/')[-1] if rel.startswith('assets/') else rel}` | {', '.join(map(str, use[r]))} | {desc} |"
+                     for r, rel, desc in core.sheet_rows(name))
+    return f"""# {p['business_type'].capitalize()}: reference sheets for everything
+
+Every recurring person, place and prop in the film has a sheet, and the rival store has one sheet per state (open,
+closed), so nothing is re-invented between scenes. Each scene's keyframe (Nano Banana 2) gets only the sheets of what is
+on screen in that scene, at most {core.MAX_REFS}. The paid app and `tools/run_paid_demo.py` refuse to run while a sheet is
+missing; the free draft runs with placeholders and prints the same list as a warning.
+Check: `python3 tools/stage_preset.py --preset {name} --check`.
+
+Every sheet: PNG, at least 1024 px on the short side, the same glossy 3D animated family-film style, fictional people
+only, no real logos, no readable text except the rival sign and "FOR LEASE" where noted.
+
+| File | Scenes | What it shows |
+|---|---|---|
+{rows}
+
+{" ".join(x for x in (NOTES.get(name), None if name == "small-business-rescue-bakery" else HERO_NOTE) if x)}
+"""
+
+
 if __name__ == "__main__":
     for name, p in PRESETS.items():
         out = ROOT / "presets" / name / "preset.json"
         out.parent.mkdir(parents=True, exist_ok=True)
         out.write_text(json.dumps({"name": name, **p}, indent=1, ensure_ascii=False) + "\n")
+        print("wrote", out.relative_to(ROOT))
+    for name in PRESETS:   # after every preset.json is written (the sheet list reads them)
+        out = ROOT / "presets" / name / "assets" / "README.md"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(assets_readme(name))
         print("wrote", out.relative_to(ROOT))

@@ -84,6 +84,33 @@ class UnderdogBrief:
         return (json.dumps(brief), core.writer_prompt(brief), model)
 
 
+class UnderdogSheetCheck:
+    """Reference sheets for everything: every recurring person, prop and place (and each state of the rival store) needs its
+    sheet. With 'require' on (the paid app) a missing sheet stops the run before anything is paid for, listing which; with
+    it off (the free draft) the same list is printed as a warning and the draft goes on with placeholders.
+    brief and writer_prompt pass through, so Gemini and the script wait for this check."""
+    CATEGORY = "Underdog Story"
+    RETURN_TYPES = ("STRING", "STRING", "STRING")
+    RETURN_NAMES = ("brief", "writer_prompt", "report")
+    FUNCTION = "run"
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {"required": {"brief": ("STRING", {"forceInput": True}), "writer_prompt": ("STRING", {"forceInput": True}),
+                             "require": ("BOOLEAN", {"default": True, "tooltip": "On: refuse to run (and spend) with a sheet missing."})},
+                "optional": {r: ("IMAGE",) for r in core.ROLES}}
+
+    def run(self, brief, writer_prompt, require=True, **images):
+        missing = [r for r in core.ROLES if _is_blank(images.get(r))]
+        msg = core.missing_sheets_message(missing)
+        if missing and require:
+            raise ValueError("REFUSED (nothing was paid for): " + msg)
+        if missing:
+            print("[Underdog Story] WARNING: " + msg)
+            msg = "WARNING (free draft, placeholders used): " + msg
+        return (brief, writer_prompt, msg)
+
+
 class UnderdogScript:
     """Builds the 15-beat script: the preset's slots, or Gemini's (asked for only when Gemini is picked), checked against
     the rules (one speaker per scene, lines that fit the take, no names, no brands, locked-off camera on the landmark,
@@ -131,13 +158,13 @@ class UnderdogScene:
     def run(self, script, scene, **images):
         s = json.loads(script)
         sc = s["scenes"][scene - 1]
-        present = [r for r in sc["refs"] if not _is_blank(images.get(r))]
+        present = [r for r in sc["refs"] if not _is_blank(images.get(r))][:core.MAX_REFS]   # refs are in on-screen priority order
         refs = torch.cat([_fit(images[r]) for r in present]) if present else None
         return (core.keyframe_prompt(s, scene - 1, present), sc["motion_prompt"], refs, " / ".join(sc["captions"]), sc["seconds"])
 
 
 class UnderdogDraftScene:
-    """The free draft: one storyboard clip per scene (the scene's location or rival sheet as the backdrop, the shot and the
+    """The free draft: one storyboard clip per scene (the scene's location, rival-store or car sheet as the backdrop, the shot and the
     lines), at the scene's real length, with a quiet ambience bed. Nothing is generated and nothing is paid for."""
     CATEGORY = "Underdog Story"
     RETURN_TYPES = ("VIDEO",)
@@ -152,7 +179,8 @@ class UnderdogDraftScene:
     def run(self, script, scene, **images):
         s = json.loads(script)
         sc = s["scenes"][scene - 1]
-        order = (["rival_store", "location"] if sc["landmark"] else ["location", "rival_store"]) + core.CHARACTERS
+        stores = ["rival_store_closed", "rival_store_open"]
+        order = (stores + ["location"] if sc["landmark"] else ["location"] + stores) + ["old_car", "prize_car"] + core.CHARACTERS
         bg = next((_pil(images[r]) for r in order if r in sc["refs"] and not _is_blank(images.get(r))), None)
         tmp = Path(tempfile.mkdtemp(prefix="underdog_draft_"))
         out = core.draft_clip(_out_dir(tmp) / f"underdog_draft_{tmp.name}_{scene:02d}.mp4", sc, s, bg)
@@ -256,10 +284,10 @@ class UnderdogScoreMix:
         return (VideoFromFile(str(out)),)
 
 
-NODE_CLASS_MAPPINGS = {"UnderdogBrief": UnderdogBrief, "UnderdogScript": UnderdogScript, "UnderdogScene": UnderdogScene,
+NODE_CLASS_MAPPINGS = {"UnderdogBrief": UnderdogBrief, "UnderdogSheetCheck": UnderdogSheetCheck, "UnderdogScript": UnderdogScript, "UnderdogScene": UnderdogScene,
                        "UnderdogDraftScene": UnderdogDraftScene, "UnderdogContactSheet": UnderdogContactSheet,
                        "UnderdogFinish": UnderdogFinish, "UnderdogScoreMix": UnderdogScoreMix}
-NODE_DISPLAY_NAME_MAPPINGS = {"UnderdogBrief": "Underdog Story: Brief", "UnderdogScript": "Underdog Story: Script",
+NODE_DISPLAY_NAME_MAPPINGS = {"UnderdogBrief": "Underdog Story: Brief", "UnderdogSheetCheck": "Underdog Story: Sheet Check", "UnderdogScript": "Underdog Story: Script",
                               "UnderdogScene": "Underdog Story: Scene", "UnderdogDraftScene": "Underdog Story: Draft Scene ($0)",
                               "UnderdogContactSheet": "Underdog Story: Keyframe Sheet", "UnderdogFinish": "Underdog Story: Final Cut",
                               "UnderdogScoreMix": "Underdog Story: Score Mix"}

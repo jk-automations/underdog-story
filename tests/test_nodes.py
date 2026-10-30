@@ -53,12 +53,12 @@ def test_scene_picks_sheets_skips_blanks_and_gives_seconds(nodes):
     import torch
     script = nodes.UnderdogScript().run(_brief(nodes)[0])[0]
     sheet, blank = torch.rand(1, 600, 400, 3), torch.ones(1, 64, 64, 3)
-    kp, mp, refs, cap, secs = nodes.UnderdogScene().run(script, 1, rival=sheet, owner=blank, rival_store=torch.rand(1, 300, 500, 3))
-    assert refs.shape == (2, nodes.REF_SIZE, nodes.REF_SIZE, 3)     # rival + rival_store; owner slot blank, location absent
-    assert "1) the character sheet of the young influencer" in kp and "2) the rival's storefront" in kp
+    kp, mp, refs, cap, secs = nodes.UnderdogScene().run(script, 1, rival=sheet, owner=blank, rival_store_open=torch.rand(1, 300, 500, 3))
+    assert refs.shape == (2, nodes.REF_SIZE, nodes.REF_SIZE, 3)     # rival + rival_store_open; owner slot blank, location absent
+    assert "1) the character sheet of the young influencer" in kp and '2) the rival\'s storefront "MEGAFADE", OPEN' in kp
     assert secs == 8 and core.LOCKED in mp and cap.startswith("What's up, everybody! MEGAFADE")
     assert nodes.UnderdogScene().run(script, 2)[4] == 6
-    assert nodes.UnderdogScene().run(script, 5)[2] is None              # no sheets at all -> Nano Banana gets no images
+    assert nodes.UnderdogScene().run(script, 4)[2] is None              # no sheets at all -> Nano Banana gets no images
 
 
 def test_contact_sheet(nodes):
@@ -107,7 +107,7 @@ def _graph(tmp_path, *args):
 def test_api_graph(tmp_path):
     g = _graph(tmp_path)
     by = lambda cls: [k for k, v in g.items() if v["class_type"] == cls]
-    assert len(by("GeminiNanoBanana2")) == 15 and len(by("Veo3VideoGenerationNode")) == 15 and len(by("LoadImage")) == 7
+    assert len(by("GeminiNanoBanana2")) == 15 and len(by("Veo3VideoGenerationNode")) == 15 and len(by("LoadImage")) == len(core.ROLES) == 10
     assert len(by("SaveVideo")) == 16 and len(by("SoniloVideoToMusic")) == 1
     brief = by("UnderdogBrief")[0]
     assert g[brief]["inputs"]["script_source"] == "preset: barber-shop"

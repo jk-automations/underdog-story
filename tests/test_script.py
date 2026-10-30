@@ -120,8 +120,8 @@ def test_prompt_rules_are_baked_in(preset):
 
 def test_keyframe_legend_lists_only_attached_sheets():
     s = script("barber-shop")
-    kp = core.keyframe_prompt(s, 0, ["rival", "rival_store"])
-    assert "1) the character sheet of the young influencer" in kp and "2) the rival's storefront" in kp and "3)" not in kp
+    kp = core.keyframe_prompt(s, 0, ["rival", "rival_store_open"])
+    assert "1) the character sheet of the young influencer" in kp and '2) the rival\'s storefront "MEGAFADE", OPEN' in kp and "3)" not in kp
     assert "Reference images" not in core.keyframe_prompt(s, 0, [])
 
 

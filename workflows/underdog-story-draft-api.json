@@ -77,14 +77,110 @@
    "image": "underdog_blank.png"
   },
   "_meta": {
-   "title": "Sheet: rival_store"
+   "title": "Sheet: rival_store_open"
   }
  },
  "9": {
-  "class_type": "UnderdogScript",
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "underdog_blank.png"
+  },
+  "_meta": {
+   "title": "Sheet: rival_store_closed"
+  }
+ },
+ "10": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "underdog_blank.png"
+  },
+  "_meta": {
+   "title": "Sheet: old_car"
+  }
+ },
+ "11": {
+  "class_type": "LoadImage",
+  "inputs": {
+   "image": "underdog_blank.png"
+  },
+  "_meta": {
+   "title": "Sheet: prize_car"
+  }
+ },
+ "12": {
+  "class_type": "UnderdogSheetCheck",
   "inputs": {
    "brief": [
     "1",
+    0
+   ],
+   "writer_prompt": [
+    "1",
+    1
+   ],
+   "require": false,
+   "owner": [
+    "2",
+    0
+   ],
+   "rival": [
+    "3",
+    0
+   ],
+   "regular": [
+    "4",
+    0
+   ],
+   "hero1": [
+    "5",
+    0
+   ],
+   "hero2": [
+    "6",
+    0
+   ],
+   "location": [
+    "7",
+    0
+   ],
+   "rival_store_open": [
+    "8",
+    0
+   ],
+   "rival_store_closed": [
+    "9",
+    0
+   ],
+   "old_car": [
+    "10",
+    0
+   ],
+   "prize_car": [
+    "11",
+    0
+   ]
+  },
+  "_meta": {
+   "title": "Sheet check"
+  }
+ },
+ "13": {
+  "class_type": "PreviewAny",
+  "inputs": {
+   "source": [
+    "12",
+    2
+   ]
+  },
+  "_meta": {
+   "title": "Sheet check report"
+  }
+ },
+ "14": {
+  "class_type": "UnderdogScript",
+  "inputs": {
+   "brief": [
+    "12",
     0
    ]
   },
@@ -92,11 +188,11 @@
    "title": "Script"
   }
  },
- "10": {
+ "15": {
   "class_type": "PreviewAny",
   "inputs": {
    "source": [
-    "9",
+    "14",
     1
    ]
   },
@@ -104,40 +200,28 @@
    "title": "Script preview"
   }
  },
- "11": {
+ "16": {
   "class_type": "UnderdogDraftScene",
   "inputs": {
    "script": [
-    "9",
+    "14",
     0
    ],
    "scene": 1,
-   "owner": [
-    "2",
-    0
-   ],
    "rival": [
     "3",
     0
    ],
-   "regular": [
-    "4",
+   "owner": [
+    "2",
     0
    ],
-   "hero1": [
-    "5",
-    0
-   ],
-   "hero2": [
-    "6",
+   "rival_store_open": [
+    "8",
     0
    ],
    "location": [
     "7",
-    0
-   ],
-   "rival_store": [
-    "8",
     0
    ]
   },
@@ -145,11 +229,11 @@
    "title": "Draft scene 1"
   }
  },
- "12": {
+ "17": {
   "class_type": "UnderdogDraftScene",
   "inputs": {
    "script": [
-    "9",
+    "14",
     0
    ],
    "scene": 2,
@@ -157,28 +241,12 @@
     "2",
     0
    ],
-   "rival": [
-    "3",
-    0
-   ],
    "regular": [
     "4",
     0
    ],
-   "hero1": [
-    "5",
-    0
-   ],
-   "hero2": [
-    "6",
-    0
-   ],
    "location": [
     "7",
-    0
-   ],
-   "rival_store": [
-    "8",
     0
    ]
   },
@@ -186,11 +254,11 @@
    "title": "Draft scene 2"
   }
  },
- "13": {
+ "18": {
   "class_type": "UnderdogDraftScene",
   "inputs": {
    "script": [
-    "9",
+    "14",
     0
    ],
    "scene": 3,
@@ -198,27 +266,15 @@
     "2",
     0
    ],
-   "rival": [
-    "3",
-    0
-   ],
    "regular": [
     "4",
-    0
-   ],
-   "hero1": [
-    "5",
-    0
-   ],
-   "hero2": [
-    "6",
     0
    ],
    "location": [
     "7",
     0
    ],
-   "rival_store": [
+   "rival_store_open": [
     "8",
     0
    ]
@@ -227,11 +283,11 @@
    "title": "Draft scene 3"
   }
  },
- "14": {
+ "19": {
   "class_type": "UnderdogDraftScene",
   "inputs": {
    "script": [
-    "9",
+    "14",
     0
    ],
    "scene": 4,
@@ -239,28 +295,8 @@
     "2",
     0
    ],
-   "rival": [
-    "3",
-    0
-   ],
-   "regular": [
-    "4",
-    0
-   ],
-   "hero1": [
-    "5",
-    0
-   ],
-   "hero2": [
-    "6",
-    0
-   ],
    "location": [
     "7",
-    0
-   ],
-   "rival_store": [
-    "8",
     0
    ]
   },
@@ -268,11 +304,11 @@
    "title": "Draft scene 4"
   }
  },
- "15": {
+ "20": {
   "class_type": "UnderdogDraftScene",
   "inputs": {
    "script": [
-    "9",
+    "14",
     0
    ],
    "scene": 5,
@@ -280,28 +316,8 @@
     "2",
     0
    ],
-   "rival": [
-    "3",
-    0
-   ],
-   "regular": [
-    "4",
-    0
-   ],
-   "hero1": [
-    "5",
-    0
-   ],
-   "hero2": [
-    "6",
-    0
-   ],
-   "location": [
-    "7",
-    0
-   ],
-   "rival_store": [
-    "8",
+   "old_car": [
+    "10",
     0
    ]
   },
@@ -309,11 +325,11 @@
    "title": "Draft scene 5"
   }
  },
- "16": {
+ "21": {
   "class_type": "UnderdogDraftScene",
   "inputs": {
    "script": [
-    "9",
+    "14",
     0
    ],
    "scene": 6,
@@ -321,14 +337,6 @@
     "2",
     0
    ],
-   "rival": [
-    "3",
-    0
-   ],
-   "regular": [
-    "4",
-    0
-   ],
    "hero1": [
     "5",
     0
@@ -339,10 +347,6 @@
    ],
    "location": [
     "7",
-    0
-   ],
-   "rival_store": [
-    "8",
     0
    ]
   },
@@ -350,11 +354,11 @@
    "title": "Draft scene 6"
   }
  },
- "17": {
+ "22": {
   "class_type": "UnderdogDraftScene",
   "inputs": {
    "script": [
-    "9",
+    "14",
     0
    ],
    "scene": 7,
@@ -362,14 +366,6 @@
     "2",
     0
    ],
-   "rival": [
-    "3",
-    0
-   ],
-   "regular": [
-    "4",
-    0
-   ],
    "hero1": [
     "5",
     0
@@ -380,10 +376,6 @@
    ],
    "location": [
     "7",
-    0
-   ],
-   "rival_store": [
-    "8",
     0
    ]
   },
@@ -391,11 +383,11 @@
    "title": "Draft scene 7"
   }
  },
- "18": {
+ "23": {
   "class_type": "UnderdogDraftScene",
   "inputs": {
    "script": [
-    "9",
+    "14",
     0
    ],
    "scene": 8,
@@ -403,28 +395,12 @@
     "2",
     0
    ],
-   "rival": [
-    "3",
-    0
-   ],
-   "regular": [
-    "4",
-    0
-   ],
-   "hero1": [
-    "5",
-    0
-   ],
    "hero2": [
     "6",
     0
    ],
    "location": [
     "7",
-    0
-   ],
-   "rival_store": [
-    "8",
     0
    ]
   },
@@ -432,11 +408,11 @@
    "title": "Draft scene 8"
   }
  },
- "19": {
+ "24": {
   "class_type": "UnderdogDraftScene",
   "inputs": {
    "script": [
-    "9",
+    "14",
     0
    ],
    "scene": 9,
@@ -444,28 +420,12 @@
     "2",
     0
    ],
-   "rival": [
-    "3",
-    0
-   ],
-   "regular": [
-    "4",
-    0
-   ],
-   "hero1": [
-    "5",
-    0
-   ],
    "hero2": [
     "6",
     0
    ],
    "location": [
     "7",
-    0
-   ],
-   "rival_store": [
-    "8",
     0
    ]
   },
@@ -473,39 +433,23 @@
    "title": "Draft scene 9"
   }
  },
- "20": {
+ "25": {
   "class_type": "UnderdogDraftScene",
   "inputs": {
    "script": [
-    "9",
+    "14",
     0
    ],
    "scene": 10,
-   "owner": [
-    "2",
-    0
-   ],
-   "rival": [
-    "3",
-    0
-   ],
    "regular": [
     "4",
-    0
-   ],
-   "hero1": [
-    "5",
-    0
-   ],
-   "hero2": [
-    "6",
     0
    ],
    "location": [
     "7",
     0
    ],
-   "rival_store": [
+   "rival_store_open": [
     "8",
     0
    ]
@@ -514,11 +458,11 @@
    "title": "Draft scene 10"
   }
  },
- "21": {
+ "26": {
   "class_type": "UnderdogDraftScene",
   "inputs": {
    "script": [
-    "9",
+    "14",
     0
    ],
    "scene": 11,
@@ -530,23 +474,11 @@
     "3",
     0
    ],
-   "regular": [
-    "4",
-    0
-   ],
-   "hero1": [
-    "5",
-    0
-   ],
-   "hero2": [
-    "6",
-    0
-   ],
    "location": [
     "7",
     0
    ],
-   "rival_store": [
+   "rival_store_open": [
     "8",
     0
    ]
@@ -555,40 +487,24 @@
    "title": "Draft scene 11"
   }
  },
- "22": {
+ "27": {
   "class_type": "UnderdogDraftScene",
   "inputs": {
    "script": [
-    "9",
+    "14",
     0
    ],
    "scene": 12,
-   "owner": [
-    "2",
-    0
-   ],
    "rival": [
     "3",
     0
    ],
-   "regular": [
-    "4",
-    0
-   ],
-   "hero1": [
-    "5",
-    0
-   ],
-   "hero2": [
-    "6",
+   "rival_store_closed": [
+    "9",
     0
    ],
    "location": [
     "7",
-    0
-   ],
-   "rival_store": [
-    "8",
     0
    ]
   },
@@ -596,11 +512,11 @@
    "title": "Draft scene 12"
   }
  },
- "23": {
+ "28": {
   "class_type": "UnderdogDraftScene",
   "inputs": {
    "script": [
-    "9",
+    "14",
     0
    ],
    "scene": 13,
@@ -608,28 +524,20 @@
     "2",
     0
    ],
-   "rival": [
-    "3",
+   "prize_car": [
+    "11",
     0
    ],
-   "regular": [
-    "4",
-    0
-   ],
-   "hero1": [
-    "5",
-    0
-   ],
-   "hero2": [
-    "6",
+   "old_car": [
+    "10",
     0
    ],
    "location": [
     "7",
     0
    ],
-   "rival_store": [
-    "8",
+   "rival_store_closed": [
+    "9",
     0
    ]
   },
@@ -637,40 +545,32 @@
    "title": "Draft scene 13"
   }
  },
- "24": {
+ "29": {
   "class_type": "UnderdogDraftScene",
   "inputs": {
    "script": [
-    "9",
+    "14",
     0
    ],
    "scene": 14,
-   "owner": [
-    "2",
-    0
-   ],
    "rival": [
     "3",
     0
    ],
-   "regular": [
-    "4",
+   "prize_car": [
+    "11",
     0
    ],
-   "hero1": [
-    "5",
-    0
-   ],
-   "hero2": [
-    "6",
+   "owner": [
+    "2",
     0
    ],
    "location": [
     "7",
     0
    ],
-   "rival_store": [
-    "8",
+   "rival_store_closed": [
+    "9",
     0
    ]
   },
@@ -678,11 +578,11 @@
    "title": "Draft scene 14"
   }
  },
- "25": {
+ "30": {
   "class_type": "UnderdogDraftScene",
   "inputs": {
    "script": [
-    "9",
+    "14",
     0
    ],
    "scene": 15,
@@ -694,24 +594,16 @@
     "3",
     0
    ],
-   "regular": [
-    "4",
-    0
-   ],
-   "hero1": [
-    "5",
-    0
-   ],
-   "hero2": [
-    "6",
+   "prize_car": [
+    "11",
     0
    ],
    "location": [
     "7",
     0
    ],
-   "rival_store": [
-    "8",
+   "rival_store_closed": [
+    "9",
     0
    ]
   },
@@ -719,74 +611,74 @@
    "title": "Draft scene 15"
   }
  },
- "26": {
+ "31": {
   "class_type": "UnderdogFinish",
   "inputs": {
    "script": [
-    "9",
+    "14",
     0
    ],
    "captions": true,
    "ai_label": true,
    "credit": true,
    "scene_01": [
-    "11",
-    0
-   ],
-   "scene_02": [
-    "12",
-    0
-   ],
-   "scene_03": [
-    "13",
-    0
-   ],
-   "scene_04": [
-    "14",
-    0
-   ],
-   "scene_05": [
-    "15",
-    0
-   ],
-   "scene_06": [
     "16",
     0
    ],
-   "scene_07": [
+   "scene_02": [
     "17",
     0
    ],
-   "scene_08": [
+   "scene_03": [
     "18",
     0
    ],
-   "scene_09": [
+   "scene_04": [
     "19",
     0
    ],
-   "scene_10": [
+   "scene_05": [
     "20",
     0
    ],
-   "scene_11": [
+   "scene_06": [
     "21",
     0
    ],
-   "scene_12": [
+   "scene_07": [
     "22",
     0
    ],
-   "scene_13": [
+   "scene_08": [
     "23",
     0
    ],
-   "scene_14": [
+   "scene_09": [
     "24",
     0
    ],
-   "scene_15": [
+   "scene_10": [
     "25",
+    0
+   ],
+   "scene_11": [
+    "26",
+    0
+   ],
+   "scene_12": [
+    "27",
+    0
+   ],
+   "scene_13": [
+    "28",
+    0
+   ],
+   "scene_14": [
+    "29",
+    0
+   ],
+   "scene_15": [
+    "30",
     0
    ]
   },
@@ -794,11 +686,11 @@
    "title": "Final cut"
   }
  },
- "27": {
+ "32": {
   "class_type": "UnderdogScoreMix",
   "inputs": {
    "video": [
-    "26",
+    "31",
     0
    ],
    "score": false,
@@ -808,11 +700,11 @@
    "title": "Master"
   }
  },
- "28": {
+ "33": {
   "class_type": "SaveVideo",
   "inputs": {
    "video": [
-    "27",
+    "32",
     0
    ],
    "filename_prefix": "underdog/draft",

@@ -38,8 +38,8 @@ bakery preset carries the same lines; the other presets fill the same beats for 
    and fits its take, characters described by looks (names only inside dialogue), no real brands, the rival landmark shot
    on a **LOCKED-OFF STATIC CAMERA**, a title card on every time jump, no answer without its question on screen, no crowd
    filing out through a door. A broken script stops the run before anything is paid for.
-2. **Keyframes.** For each scene, **Nano Banana 2** draws the 9:16 start frame from the sheets that scene needs (owner,
-   rival influencer, loyal regular, hero 1, hero 2, location, rival storefront). Props that matter later are in frame
+2. **Keyframes.** For each scene, **Nano Banana 2** draws the 9:16 start frame from the sheets of what that scene shows
+   (see *Reference sheets for everything* below), in the right state for the beat. Props that matter later are in frame
    from the first shot.
 3. **Animation.** For each scene, **Veo 3.1** turns the keyframe into a 6 or 8 s clip with dialogue and sound. Every
    motion prompt carries the rules: one continuous take, background life (extras walk, cars pass), no prop appears or
@@ -52,6 +52,37 @@ bakery preset carries the same lines; the other presets fill the same beats for 
    mixed, and the film is mastered to −14 LUFS / −1 dBTP.
 
 The App Mode outputs: the film, a sheet of all 15 keyframes, and the script as text.
+
+## Reference sheets for everything
+
+Anything that appears in more than one scene gets a reference sheet, and anything that changes state gets one sheet per
+state. Without a sheet the model re-invents the thing every scene, and it drifts.
+
+| Sheet | Scenes | What it holds |
+|---|---|---|
+| `owner`, `rival`, `regular`, `hero1`, `hero2` | per character | the cast: front, three-quarter, side, a few expressions |
+| `location` | 1-4, 6-15 | the owner's place, outside and in |
+| `rival_store_open` | 1, 3, 10, 11 | the rival chain's building, open (grand-opening day) |
+| `rival_store_closed` | 12-15 | the **same** building closed: dark, shutter down, FOR LEASE, no banner |
+| `old_car` | 5, 13 | the owner's worn car, including its broken-down state (hood up, steam) |
+| `prize_car` | 13-15 | the earned prize car, every side, no badges |
+
+- Each scene's keyframe gets only the sheets of what is on screen, ordered by on-screen importance and capped at
+  10 per call (Nano Banana 2 takes up to 14). The state sheet is picked by the beat: before the fall the rival is open;
+  from scene 12 on only the closed sheet is ever attached.
+- The prompts say the same thing as the sheets. Every beat with a stateful prop carries a state line, e.g. *"The rival
+  store MEGAFADE is CLOSED for good: dark windows, sign unlit, the metal shutter all the way down with a FOR LEASE sign on
+  it, no banner"*, *"the old pickup is BROKEN DOWN: hood up, steam"*, *"the prize car exactly as in its sheet"*.
+- **The paid app refuses to run with a sheet missing.** The *Sheet check* node runs before Gemini and before any
+  keyframe and stops with the list (*"Missing reference sheets (3 of 10): rival_store_closed (scenes 12, 13, 14, 15);
+  old_car (scenes 5, 13); ..."*), so nothing is paid for. The free draft runs on placeholders and shows the same list
+  as a warning. `python3 tools/stage_preset.py --preset <name> --check` lists every file a preset needs;
+  `presets/<name>/assets/README.md` describes each one.
+
+**The barber example** (`docs/examples/corner-chair-barbershop-paid-app-run.mp4`, 104.6 s) is one paid run made *before*
+the prop and state sheets existed. The cast held (they had sheets). Known drift where there were none: the prize car
+changes shape between scenes 13 and 15, the MEGAFADE building changes design when it closes in scene 12, and the old
+pickup is inconsistent. The prop and state sheets above are the fix; that film has not been re-made with them yet.
 
 ### The free draft ($0)
 
@@ -103,8 +134,9 @@ again.
 2. Optional: describe the **owner**, the **rival influencer** and the **loyal regular** by their looks (*the barber in
    his sixties with a grey pompadour*). No names: the models don't know who "Lou" is, and the app refuses real people's
    names. Empty = the preset's cast (or Gemini's). Hero 1 and hero 2 default to the house agency duo.
-3. Add the **character sheets** (owner, rival influencer, loyal regular, hero 1, hero 2, location, rival storefront).
-   Empty slots are skipped.
+3. Add the **reference sheets**: the cast (owner, rival influencer, loyal regular, hero 1, hero 2), the location, the
+   rival store open and closed, the old car and the prize car. The paid app will not run until all ten are there; the
+   free draft runs without them and lists what is missing.
 4. **Tone** (`funny` or `heartfelt`), **video model** (`veo-3.1-lite` default), **Sonilo score** on or off.
 5. **Run.** The script shows first, then the keyframe sheet, then the finished film.
 
@@ -120,7 +152,7 @@ node tools/make_app.mjs <url> workflows/underdog-story-api.json workflows/underd
 node tools/e2e_draft.mjs <url> workflows/underdog-story-draft.json docs/img/app-mode.png    # real browser, runs the $0 draft
 python3 -m pytest                              # partner nodes mocked; ffmpeg test clips; nothing is sent anywhere
 python3 tools/run_paid_demo.py                 # dry run: sheets, graph check, estimate. $0, no key read
-python3 tools/run_paid_demo.py --confirm-spend # the paid barber-shop demo (hard cap $10, ledger row before queueing)
+python3 tools/run_paid_demo.py --confirm-spend # the paid barber-shop demo (hard cap $12.50, ledger row before queueing)
 ```
 
 `make_app.mjs` and `e2e_draft.mjs` need the `playwright` npm package. `e2e_draft.mjs` refuses any `POST /prompt` that

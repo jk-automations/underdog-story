@@ -17,8 +17,12 @@ PRESETS_DIR = ROOT / "presets"
 FONT = ROOT / "fonts" / "Inter.ttf"
 
 # ---------------------------------------------------------------- cast, slots, rules
-ROLES = ["owner", "rival", "regular", "hero1", "hero2", "location", "rival_store"]   # reference image slots, in this order
-CHARACTERS = ROLES[:5]
+# Reference sheets for everything: every recurring person, place and prop has a sheet, and a prop that changes state has
+# one sheet per state (the rival store open / closed), so nothing is left for the model to re-invent between scenes.
+CHARACTERS = ["owner", "rival", "regular", "hero1", "hero2"]
+PROP_SHEETS = ["location", "rival_store_open", "rival_store_closed", "old_car", "prize_car"]
+ROLES = CHARACTERS + PROP_SHEETS   # reference image slots, in this order
+MAX_REFS = 10   # Nano Banana 2 takes up to 14 (node tooltip); above 10 the node switches to inline upload, so stay at 10
 SPEAKERS = set(CHARACTERS) | {"offscreen", "customer", "crowd"}
 PLACEHOLDERS = set(CHARACTERS) | {"business"}
 CARDS = {"SIX MONTHS LATER", "NEXT MORNING", "ONE YEAR LATER", "THREE MONTHS LATER", "SIX MONTHS EARLIER"}
@@ -32,7 +36,8 @@ WORDS_PER_SECOND = 4         # everything spoken in one take: 8 s -> 32 words, 6
 STYLE = "Glossy 3D animated family-film style"
 LOCKED = "LOCKED-OFF STATIC CAMERA"
 KEYFRAME_HEAD = (f"Keyframe for an animated film. {STYLE}, vertical 9:16 cinematic frame. Keep every character's face, hair, "
-                 "facial hair, glasses, build and outfit exactly as in the reference images. No captions, no subtitles, no real brand logos.")
+                 "facial hair, glasses, build and outfit exactly as in the reference images, and every building, vehicle and place exactly "
+                 "as in its reference sheet (same shape, color and details). No captions, no subtitles, no real brand logos.")
 RULES_TAIL = ("Background life: extras keep walking and cars keep passing; nobody in the background freezes. "
               "No object, prop or furniture appears or disappears during the take. "
               "Nobody walks through a counter or a wall, and no crowd files out through a door. "
@@ -101,9 +106,26 @@ SLOT_DEFAULTS = {
 LINE_SLOTS = {k for k, v in SLOTS.items() if v.startswith("LINE")} | set(SLOT_DEFAULTS)
 
 # ---------------------------------------------------------------- the arc (v9 "The Last Croissant", generalized)
-AT = "At {place}: {owner} works screen-left at {counter}, visitors screen-right."
+# State lines: what state a recurring prop is in, per beat, so the prompt text and the attached state sheet agree.
+RIVAL_GRAND = ('The rival store "{rival_brand}" is OPEN on its GRAND OPENING day: sign lit, balloons and bunting, the same building as '
+               "its sheet.")
+RIVAL_OPEN = ('The rival store "{rival_brand}" is OPEN and busy: sign lit, doors open; the same building as its sheet, the '
+              "grand-opening balloons and bunting are gone.")
+RIVAL_OPEN_EMPTY = ('The rival store "{rival_brand}" is still OPEN but EMPTY: sign lit, nobody inside or in line; the same building as '
+                    "its sheet, no balloons, no bunting.")
+RIVAL_CLOSED = ('The rival store "{rival_brand}" is CLOSED for good: dark windows, sign unlit, the metal shutter all the way down with '
+                'a "FOR LEASE" sign on it, no banner, no balloons, nobody inside; the same building as its sheet.')
+RIVAL_CLOSED_BG = ('If the rival store "{rival_brand}" across the street is in view, it is still CLOSED: dark, shutter down, '
+                   '"FOR LEASE" sign, no banner, no balloons.')
+OLD_CAR_BROKEN = ("{old_car} is BROKEN DOWN at the curb: hood up, steam pouring from the engine; the same vehicle as its sheet "
+                  "(shape, color, dents).")
+OLD_CAR_TOWED = "{old_car}, still broken down, is hooked to a tow truck; the same vehicle as its sheet (shape, color, dents)."
+PRIZE_CAR = ("{payoff} is brand new and shiny, exactly as in its sheet: the same body shape, color, wheels and details in every "
+             "shot.")
+AT ="At {place}: {owner} works screen-left at {counter}, visitors screen-right."
 ARC = [
-    dict(name="grand opening", seconds=8, landmark=True, refs=["rival", "owner", "rival_store", "location"], transition="dissolve",
+    dict(name="grand opening", seconds=8, landmark=True, refs=["rival", "owner", "rival_store_open", "location"], state=[RIVAL_GRAND],
+         transition="dissolve",
          keyframe='Bright morning on the street. Across the street, the brand-new {rival_place} with the big sign "{rival_brand}" is having its '
                   "grand opening: a ribbon, confetti cannons, gold balloons, a lively moving crowd. In the foreground screen-right, {rival} "
                   "vlogs to a phone on a selfie stick, grinning. Screen-left, {owner} watches from the doorway of {place}, arms folded. "
@@ -119,8 +141,8 @@ ARC = [
          camera="slow push-in on {regular}",
          performance=[("regular", "says warmly to {owner}", "{regular_line}"), ("owner", "smiles, mouth closed, and keeps working")],
          props=["{counter}"], ambience="Busy room tone, happy chatter.", music="A warm, light theme."),
-    dict(name="the drift", seconds=8, card="SIX MONTHS LATER", landmark=True, refs=["owner", "regular", "location", "rival_store"],
-         transition="dissolve",
+    dict(name="the drift", seconds=8, card="SIX MONTHS LATER", landmark=True, refs=["owner", "regular", "location", "rival_store_open"],
+         state=[RIVAL_OPEN], transition="dissolve",
          keyframe="Grey afternoon. " + AT + " The place is nearly empty. {regular} sits alone in the usual spot. Behind them, across the "
                   'street, a long line of people waits outside the {rival_place} with the sign "{rival_brand}", holding {gimmick}; the line '
                   'shuffles forward. The only readable text is "{rival_brand}".',
@@ -134,7 +156,7 @@ ARC = [
          camera="slow push-in on {owner}",
          performance=[("owner", "looks at the coins, sighs and says quietly", "{count_line}")],
          props=["{counter}", "the coins"], ambience="Rain, a ticking clock.", music="A slow sad piano note."),
-    dict(name="the low point", seconds=8, refs=["owner"], transition="dissolve_long",
+    dict(name="the low point", seconds=8, refs=["owner", "old_car"], state=[OLD_CAR_BROKEN], transition="dissolve_long",
          keyframe="Cold early morning on a quiet street. {owner} stands beside {old_car}, stalled at the curb with steam pouring from "
                   "the hood, holding an open wallet with only a few coins and a folded repair quote. Far down the road the gold "
                   '"{rival_brand}" sign glows. Cars pass in the background.',
@@ -170,15 +192,16 @@ ARC = [
                       ("owner", "looks up at the phone, unsure, mouth closed, then back to work"),
                       ("hero2", "nods toward the work and says", "{craft_line}")],
          props=["the phone", "{heirloom}"], ambience="Quiet room tone.", music="The theme returns, building."),
-    dict(name="the line comes back", seconds=8, card="NEXT MORNING", landmark=True, refs=["regular", "location", "rival_store"],
-         transition="dissolve",
+    dict(name="the line comes back", seconds=8, card="NEXT MORNING", landmark=True, refs=["regular", "location", "rival_store_open"],
+         state=[RIVAL_OPEN_EMPTY], transition="dissolve",
          keyframe="Bright morning on the street. Outside {place}, a long line of excited customers wraps around the block, phones up, the "
                   "line moving forward step by step. {regular} stands first in line, beaming. Across the street, the {rival_place} with "
                   'the sign "{rival_brand}" stands empty. The only readable text is "{rival_brand}".',
          camera="wide on the street, both storefronts in frame",
          performance=[("regular", "turns to the people behind and says proudly", "{regular_back_line}")],
          props=['the "{rival_brand}" sign', "the line of customers"], ambience="Crowd murmur, street ambience.", music="The theme, full."),
-    dict(name="the showdown", seconds=8, landmark=True, refs=["owner", "rival", "location", "rival_store"], transition="dissolve",
+    dict(name="the showdown", seconds=8, landmark=True, refs=["owner", "rival", "location", "rival_store_open"], state=[RIVAL_OPEN_EMPTY],
+         transition="dissolve",
          keyframe="Busy morning. " + AT + " The place is full and lively. {rival} stands screen-right at the front of {counter}, having cut "
                   'the line, holding up a phone on a selfie stick. Through the window behind, the "{rival_brand}" sign across the street '
                   "stays in view. Customers wait behind {rival}, shifting and chatting.",
@@ -188,28 +211,32 @@ ARC = [
                       ("rival", "deflates, mouth closed, and walks straight to the back of the line")],
          props=["{counter}", "the selfie stick", 'the "{rival_brand}" sign across the street'],
          ambience="Busy room tone, chatter.", music="An upbeat bass line."),
-    dict(name="the fall", seconds=6, landmark=True, refs=["rival", "rival_store"], transition="dissolve_long",
-         keyframe='Late afternoon across the street. The {rival_place} with the sign "{rival_brand}" is closing for good: its metal shutter '
-                  'is half down with a "FOR LEASE" sign on it. {rival} stands in front of it, vlogging to the selfie stick, deflated. '
+    dict(name="the fall", seconds=6, landmark=True, refs=["rival", "rival_store_closed", "location"], state=[RIVAL_CLOSED],
+         transition="dissolve_long",
+         keyframe='Late afternoon across the street. The {rival_place} with the sign "{rival_brand}" has closed for good: dark windows, '
+                  'its metal shutter all the way down with a "FOR LEASE" sign on it, no banner. {rival} stands in front of it, vlogging to the selfie stick, deflated. '
                   'Across the street behind, the line outside {place} still moves. The only readable texts are "{rival_brand}" and "FOR LEASE".',
          camera="medium shot on {rival}, the shutter and sign in frame",
          performance=[("rival", "looks at the phone and says weakly", "{fall_line}")],
          props=['the "{rival_brand}" sign', 'the "FOR LEASE" sign', "the selfie stick"],
-         ambience="Street ambience, a rattling shutter.", music="A deflating trombone note."),
-    dict(name="the payoff", seconds=8, card="SIX MONTHS LATER", refs=["owner", "location"], transition="dissolve",
+         ambience="Street ambience, a lonely gust of wind.", music="A deflating trombone note."),
+    dict(name="the payoff", seconds=8, card="SIX MONTHS LATER", refs=["owner", "prize_car", "old_car", "location", "rival_store_closed"],
+         state=[PRIZE_CAR, OLD_CAR_TOWED, RIVAL_CLOSED_BG], transition="dissolve",
          keyframe="Sunny morning at the curb outside {place}, a line of customers out the door. {owner} holds a set of new car keys "
                   "beside {payoff}. Behind, a tow truck slowly hauls away {old_car}. Cars pass.",
          camera="medium shot on {owner}, the old car leaving behind",
          performance=[("owner", "looks from the keys to the old car being towed away, grins and says", "{payoff_line}")],
          props=["{payoff}", "{old_car}", "the keys"], ambience="Street ambience, a tow truck winch.", music="A smug little sting."),
-    dict(name="the ask", seconds=6, refs=["owner", "rival", "location"], transition="dissolve",
+    dict(name="the ask", seconds=6, refs=["rival", "prize_car", "owner", "location", "rival_store_closed"], state=[PRIZE_CAR, RIVAL_CLOSED_BG],
+         transition="dissolve",
          keyframe="Sunny afternoon on the sidewalk outside {place}. {rival} stands at the curb with no selfie stick, hands in pockets. "
                   "{payoff} with {owner} at the wheel, window down, has just pulled up beside {rival}. Pedestrians pass.",
          camera="medium shot on {rival} at the car window",
          performance=[("rival", "leans toward the car window, sheepish, and asks", "{ask_line}"),
                       ("owner", "looks at {rival}, mouth closed, eyebrows raised")],
          props=["{payoff}"], ambience="Street ambience.", music="A held, hopeful note."),
-    dict(name="the last laugh", seconds=6, dm=True, refs=["owner", "rival"], transition="dissolve",
+    dict(name="the last laugh", seconds=6, dm=True, refs=["owner", "rival", "prize_car", "location", "rival_store_closed"],
+         state=[PRIZE_CAR, RIVAL_CLOSED_BG], transition="dissolve",
          keyframe="Same sidewalk. {owner} sits at the wheel of {payoff}, window down, sunglasses on. {rival} leans toward the window, "
                   "screen-right. Pedestrians pass.",
          camera="static close medium shot on {owner}",
@@ -227,6 +254,52 @@ def list_presets():
 
 def load_preset(name):
     return json.loads((PRESETS_DIR / name / "preset.json").read_text())
+
+
+# ---------------------------------------------------------------- reference sheets for everything
+SHEET_SPEC = {
+    "owner": "The owner: {owner}. Character sheet: front, three-quarter, side; proud, tired and smug expressions.",
+    "rival": "The rival influencer: {rival}, with a phone on a selfie stick. Front, three-quarter, side; a grin and a deflated look.",
+    "regular": "The loyal regular: {regular}. Front, three-quarter, side; a warm smile.",
+    "hero1": "Agency duo, hero 1: {hero1}. Front, three-quarter, side.",
+    "hero2": "Agency duo, hero 2: {hero2}. Front, three-quarter, side.",
+    "location": "The owner's place: {place}. Street exterior and interior ({counter}). No readable shop sign.",
+    "rival_store_open": 'The rival landmark OPEN, grand-opening day: the {rival_place}, sign lit and reading exactly "{rival_brand}", '
+                        "balloons and bunting. Street level, the whole storefront in frame.",
+    "rival_store_closed": 'The SAME rival building CLOSED for good: dark windows, the "{rival_brand}" sign unlit, the metal shutter all the '
+                          'way down with a "FOR LEASE" sign, no banner, no balloons, nobody inside. Same angle as rival_store_open '
+                          "(make it from that sheet so the building matches).",
+    "old_car": "The owner's old car: {old_car}. Two views of the same vehicle: parked and worn; BROKEN DOWN with the hood up and "
+               "steam pouring out. No badges, no plate text.",
+    "prize_car": "The prize car: {payoff}. Front, three-quarter, side and rear views of the same car.",
+}
+
+
+def sheet_use():
+    """{role: [beats that attach this sheet]}: every sheet some scene uses (all of ROLES)."""
+    use = {r: [] for r in ROLES}
+    for i, a in enumerate(ARC):
+        for r in a["refs"][:MAX_REFS]:
+            use[r].append(i + 1)
+    return use
+
+
+def sheet_rows(preset):
+    """[(role, asset path relative to the preset folder, one-line description)] for every sheet a preset needs."""
+    p = load_preset(preset)
+    words = dict(p.get("cast", {}), **p.get("slots", {}))
+    assets = p.get("assets", {})
+    return [(r, assets.get(r, f"assets/{r}.png"), _fill_slots(SHEET_SPEC[r], words)) for r in ROLES]
+
+
+def missing_sheets_message(missing):
+    """The one message for missing sheets: the paid path raises it, the free draft prints it as a warning."""
+    if not missing:
+        return f"All {len(ROLES)} reference sheets are attached."
+    use = sheet_use()
+    rows = "; ".join(f"{r} (scene{'s' if len(use[r]) > 1 else ''} {', '.join(map(str, use[r]))})" for r in missing)
+    return (f"Missing reference sheets ({len(missing)} of {len(ROLES)}): {rows}. Every recurring person, prop and place needs its "
+            "sheet, or it drifts between scenes.")
 
 
 # ---------------------------------------------------------------- small text helpers
@@ -318,8 +391,9 @@ def arc_scenes(slots):
         camera = f(a["camera"])
         if a.get("landmark"):
             camera = f'{LOCKED}, no pan, no zoom; the "{s["rival_brand"]}" storefront stays visible in frame the whole take; ' + camera
+        state = " ".join(f(x) for x in a.get("state", []))
         raw.append({"beat": i + 1, "name": a["name"], "seconds": a["seconds"], "card": a.get("card"), "landmark": bool(a.get("landmark")),
-                    "views": bool(a.get("views")), "dm": bool(a.get("dm")), "keyframe": f(a["keyframe"]), "camera": camera,
+                    "views": bool(a.get("views")), "dm": bool(a.get("dm")), "keyframe": f(a["keyframe"]), "state": state, "camera": camera,
                     "performance": [{"who": p[0], "how": f(p[1]), "line": f(p[2]) if len(p) > 2 else None} for p in a["performance"]],
                     "props": [f(p) for p in a["props"]], "ambience": f(a["ambience"]), "music": f(a["music"]),
                     "refs": list(a["refs"]), "transition": a["transition"]})
@@ -381,6 +455,8 @@ def validate_script(script, banned_names=()):
                 errors.append(f"{w}: '{k}' must be a non-empty string")
             else:
                 _check_text(f"{w} {k}", sc[k], banned_names, errors)
+        if sc.get("state"):
+            _check_text(f"{w} state", sc["state"], banned_names, errors)
         if sc.get("card") is not None and sc["card"] not in CARDS:
             errors.append(f"{w}: title card must be one of {sorted(CARDS)}")
         if isinstance(sc.get("keyframe"), str) and TIME_JUMP.search(sc["keyframe"]) and not sc.get("card"):
@@ -536,31 +612,43 @@ def build_script(brief, story):
                 "no lip movement. No new people enter the frame.")
         props = [_fill_cast(p, brief) for p in sc["props"]]
         keep = f"Visible from the first frame and staying in place: {'; '.join(props)}." if props else ""
-        motion = " ".join(x for x in [f"Animate this start frame: {_cap(_fill_cast(sc['camera'], brief)).rstrip('.')}."] + steps +
+        state = _sentence_case(_fill_cast(sc.get("state") or "", brief))
+        motion = " ".join(x for x in [f"Animate this start frame: {_cap(_fill_cast(sc['camera'], brief)).rstrip('.')}.", state] + steps +
                           [only, keep, f"Ambience bed: {_fill_cast(sc['ambience'], brief).rstrip('.')}.",
                            _cap(_fill_cast(sc["music"], brief).rstrip(".")) + ".", TONES[brief["tone"]], MOTION_TAIL] if x)
         motion = _sentence_case(motion)
         body = _sentence_case(_fill_cast(sc["keyframe"], brief))
+        if state:
+            body += " " + state
         if sc["landmark"]:
             body += f" {LOCKED} framing: the rival's storefront and sign are clearly in frame."
         if props:
             body += f" In the frame: {'; '.join(props)}."
         scenes.append({"beat": sc["beat"], "name": sc["name"], "seconds": sc["seconds"], "card": sc["card"], "landmark": sc["landmark"],
-                       "views": sc["views"], "dm": sc["dm"], "keyframe_body": body, "motion_prompt": motion, "refs": sc["refs"],
+                       "views": sc["views"], "dm": sc["dm"], "keyframe_body": body, "motion_prompt": motion, "refs": sc["refs"][:MAX_REFS],
+                       "state": state,
                        "speaker": speaker, "captions": [st["line"] for st in sc["performance"] if st.get("line")],
                        "transition": sc["transition"]})
         for k in ("keyframe_body", "motion_prompt"):   # descriptions typed by the user are checked once filled in
             for n in real_names_in(scenes[-1][k]):
                 raise ValueError(f"scene {sc['beat']}: a real person's name ('{n}') ended up in the prompt")
     slots = dict(SLOT_DEFAULTS, **story["slots"])
-    return {"title": story.get("title") or "An Underdog Story", "brief": brief, "scenes": scenes,
+    labels = {r: _sentence_free(_fill_cast(_fill_slots(REF_LABEL[r], slots), brief)) for r in ROLES}
+    return {"title": story.get("title") or "An Underdog Story", "brief": brief, "scenes": scenes, "ref_labels": labels,
             "overlay": {"rival_brand": slots["rival_brand"], "dm_business": slots["dm_business"], "business_name": brief["business_name"]}}
 
 
 REF_LABEL = {"owner": "the character sheet of {owner}", "rival": "the character sheet of {rival}",
              "regular": "the character sheet of {regular}", "hero1": "the character sheet of {hero1}",
-             "hero2": "the character sheet of {hero2}", "location": "the location ({business})",
-             "rival_store": "the rival's storefront across the street"}
+             "hero2": "the character sheet of {hero2}", "location": "the location ({place})",
+             "rival_store_open": 'the rival\'s storefront "{rival_brand}", OPEN',
+             "rival_store_closed": 'the same rival storefront "{rival_brand}", CLOSED (dark, shutter down, FOR LEASE, no banner)',
+             "old_car": "the owner's old car ({old_car}), normal and broken down",
+             "prize_car": "the prize car ({payoff})"}
+
+
+def _sentence_free(s):
+    return re.sub(r"\s+", " ", s).strip()
 
 
 def keyframe_prompt(script, scene_idx, present_refs):
@@ -568,8 +656,9 @@ def keyframe_prompt(script, scene_idx, present_refs):
     sc = script["scenes"][scene_idx]
     legend = ""
     if present_refs:
+        labels = script.get("ref_labels") or {}
         legend = " Reference images, in order: " + "; ".join(
-            f"{k + 1}) {_fill_cast(REF_LABEL[r], script['brief'])}" for k, r in enumerate(present_refs)) + "."
+            f"{k + 1}) {labels.get(r) or _fill_cast(REF_LABEL[r], script['brief'])}" for k, r in enumerate(present_refs)) + "."
     return f"{KEYFRAME_HEAD}{legend}\n{sc['keyframe_body']}"
 
 

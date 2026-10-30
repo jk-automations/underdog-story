@@ -29,17 +29,21 @@ def build(preset=None, staged=False, draft=False, writer_model="gemini-3-1-pro")
     brief = node("UnderdogBrief", "Your story", business_name="", business_type="", owner="", rival="", regular="", hero_1="",
                  hero_2="", tone="funny", model="veo-3.1-lite", script_source=f"preset: {preset}")
     refs = {r: node("LoadImage", f"Sheet: {r}", image=(f"underdog_{r}.png" if staged else "underdog_blank.png")) for r in core.ROLES}
+    # ---------- 0. reference sheets for everything: the paid app refuses with a sheet missing, the draft warns ----------
+    check = node("UnderdogSheetCheck", "Sheet check", brief=o(brief, 0), writer_prompt=o(brief, 1), require=not draft,
+                 **{r: o(refs[r]) for r in core.ROLES})
+    node("PreviewAny", "Sheet check report", source=o(check, 2))
     # ---------- 1. script (Gemini only runs when picked: the Script node asks for its reply lazily) ----------
     if draft:
-        script = node("UnderdogScript", "Script", brief=o(brief, 0))
+        script = node("UnderdogScript", "Script", brief=o(check, 0))
     else:
-        writer = node("GeminiNode", "Business details (Gemini)", prompt=o(brief, 1), model=writer_model, seed=42, system_prompt="")
-        script = node("UnderdogScript", "Script", brief=o(brief, 0), writer_reply=o(writer, 0))
+        writer = node("GeminiNode", "Business details (Gemini)", prompt=o(check, 1), model=writer_model, seed=42, system_prompt="")
+        script = node("UnderdogScript", "Script", brief=o(check, 0), writer_reply=o(writer, 0))
     node("PreviewAny", "Script preview", source=o(script, 1))
     # ---------- 2 + 3. per scene: keyframe (Nano Banana 2 + sheets) -> Veo 3.1 image-to-video with audio ----------
     keyframes, videos = [], []
     for k in range(1, len(core.ARC) + 1):
-        sheets = {r: o(refs[r]) for r in core.ROLES}
+        sheets = {r: o(refs[r]) for r in core.ARC[k - 1]["refs"][:core.MAX_REFS]}   # only the sheets this scene uses
         if draft:
             videos.append(node("UnderdogDraftScene", f"Draft scene {k}", script=o(script), scene=k, **sheets))
             continue

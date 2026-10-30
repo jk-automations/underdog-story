@@ -1,8 +1,8 @@
 {
- "id": "ecbb484d-1c08-4b6d-8aba-a28428a57237",
+ "id": "91d6e53e-a808-4ce2-aa2e-0df551166cdb",
  "revision": 0,
- "last_node_id": 28,
- "last_link_id": 140,
+ "last_node_id": 33,
+ "last_link_id": 102,
  "nodes": [
   {
    "id": 1,
@@ -129,7 +129,9 @@
      "localized_name": "writer_prompt",
      "name": "writer_prompt",
      "type": "STRING",
-     "links": null
+     "links": [
+      2
+     ]
     },
     {
      "localized_name": "veo_model",
@@ -208,21 +210,20 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      4,
-      12,
-      20,
-      28,
-      36,
-      44,
-      52,
-      60,
+      3,
+      18,
+      22,
+      26,
+      31,
+      34,
+      37,
+      42,
+      47,
+      51,
+      59,
       68,
       76,
-      84,
-      92,
-      100,
-      108,
-      116
+      80
      ]
     },
     {
@@ -286,21 +287,12 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      5,
-      13,
-      21,
-      29,
-      37,
-      45,
-      53,
-      61,
-      69,
-      77,
-      85,
-      93,
-      101,
-      109,
-      117
+      4,
+      17,
+      60,
+      64,
+      74,
+      81
      ]
     },
     {
@@ -364,21 +356,10 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      6,
-      14,
-      22,
-      30,
-      38,
-      46,
-      54,
-      62,
-      70,
-      78,
-      86,
-      94,
-      102,
-      110,
-      118
+      5,
+      23,
+      27,
+      55
      ]
     },
     {
@@ -442,21 +423,9 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      7,
-      15,
-      23,
-      31,
-      39,
-      47,
-      55,
-      63,
-      71,
-      79,
-      87,
-      95,
-      103,
-      111,
-      119
+      6,
+      38,
+      43
      ]
     },
     {
@@ -520,21 +489,11 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      8,
-      16,
-      24,
-      32,
-      40,
+      7,
+      39,
+      44,
       48,
-      56,
-      64,
-      72,
-      80,
-      88,
-      96,
-      104,
-      112,
-      120
+      52
      ]
     },
     {
@@ -598,21 +557,21 @@
      "name": "IMAGE",
      "type": "IMAGE",
      "links": [
-      9,
-      17,
-      25,
-      33,
-      41,
+      8,
+      20,
+      24,
+      28,
+      32,
+      40,
+      45,
       49,
-      57,
-      65,
-      73,
-      81,
-      89,
-      97,
-      105,
-      113,
-      121
+      53,
+      56,
+      61,
+      66,
+      71,
+      77,
+      83
      ]
     },
     {
@@ -651,7 +610,75 @@
    "mode": 0,
    "inputs": [
     {
-     "label": "Sheet: rival storefront",
+     "label": "Sheet: rival store OPEN (grand opening)",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      9,
+      19,
+      29,
+      57,
+      62
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Sheet: rival_store_open",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "underdog_blank.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "underdog_blank.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 9,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    2168
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 8,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Sheet: rival store CLOSED (dark, FOR LEASE)",
      "localized_name": "image",
      "name": "image",
      "type": "COMBO",
@@ -677,20 +704,10 @@
      "type": "IMAGE",
      "links": [
       10,
-      18,
-      26,
-      34,
-      42,
-      50,
-      58,
-      66,
-      74,
-      82,
-      90,
-      98,
-      106,
-      114,
-      122
+      65,
+      72,
+      78,
+      84
      ]
     },
     {
@@ -700,7 +717,7 @@
      "links": null
     }
    ],
-   "title": "Sheet: rival_store",
+   "title": "Sheet: rival_store_closed",
    "properties": {
     "Node name for S&R": "LoadImage"
    },
@@ -714,18 +731,151 @@
    }
   },
   {
-   "id": 9,
-   "type": "UnderdogScript",
+   "id": 10,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    2380
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 9,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Sheet: old car (incl. broken down)",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      11,
+      35,
+      70
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Sheet: old_car",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "underdog_blank.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "underdog_blank.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 11,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    2592
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 10,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Sheet: prize car",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      12,
+      69,
+      75,
+      82
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Sheet: prize_car",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "underdog_blank.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "underdog_blank.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 12,
+   "type": "UnderdogSheetCheck",
    "pos": [
     560,
     110
    ],
    "size": [
-    191.93125,
-    46
+    297.4517578125,
+    278
    ],
    "flags": {},
-   "order": 8,
+   "order": 11,
    "mode": 0,
    "inputs": [
     {
@@ -733,6 +883,185 @@
      "name": "brief",
      "type": "STRING",
      "link": 1
+    },
+    {
+     "localized_name": "writer_prompt",
+     "name": "writer_prompt",
+     "type": "STRING",
+     "link": 2
+    },
+    {
+     "localized_name": "owner",
+     "name": "owner",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 3
+    },
+    {
+     "localized_name": "rival",
+     "name": "rival",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 4
+    },
+    {
+     "localized_name": "regular",
+     "name": "regular",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 5
+    },
+    {
+     "localized_name": "hero1",
+     "name": "hero1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 6
+    },
+    {
+     "localized_name": "hero2",
+     "name": "hero2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 7
+    },
+    {
+     "localized_name": "location",
+     "name": "location",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 8
+    },
+    {
+     "localized_name": "rival_store_open",
+     "name": "rival_store_open",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 9
+    },
+    {
+     "localized_name": "rival_store_closed",
+     "name": "rival_store_closed",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 10
+    },
+    {
+     "localized_name": "old_car",
+     "name": "old_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 11
+    },
+    {
+     "localized_name": "prize_car",
+     "name": "prize_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 12
+    },
+    {
+     "localized_name": "require",
+     "name": "require",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "require"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "brief",
+     "name": "brief",
+     "type": "STRING",
+     "links": [
+      14
+     ]
+    },
+    {
+     "localized_name": "writer_prompt",
+     "name": "writer_prompt",
+     "type": "STRING",
+     "links": null
+    },
+    {
+     "localized_name": "report",
+     "name": "report",
+     "type": "STRING",
+     "links": [
+      13
+     ]
+    }
+   ],
+   "title": "Sheet check",
+   "properties": {
+    "Node name for S&R": "UnderdogSheetCheck"
+   },
+   "widgets_values": [
+    false
+   ],
+   "widgets_values_named": {
+    "require": false
+   }
+  },
+  {
+   "id": 13,
+   "type": "PreviewAny",
+   "pos": [
+    937.4517578125,
+    266
+   ],
+   "size": [
+    210,
+    122
+   ],
+   "flags": {},
+   "order": 13,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "source",
+     "name": "source",
+     "type": "*",
+     "link": 13
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "STRING",
+     "name": "STRING",
+     "type": "STRING",
+     "links": null
+    }
+   ],
+   "title": "Sheet check report",
+   "properties": {
+    "Node name for S&R": "PreviewAny"
+   },
+   "widgets_values": [],
+   "widgets_values_named": {}
+  },
+  {
+   "id": 14,
+   "type": "UnderdogScript",
+   "pos": [
+    937.4517578125,
+    110
+   ],
+   "size": [
+    191.93125,
+    46
+   ],
+   "flags": {},
+   "order": 12,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "brief",
+     "name": "brief",
+     "type": "STRING",
+     "link": 14
     },
     {
      "localized_name": "writer_reply",
@@ -748,22 +1077,22 @@
      "name": "script",
      "type": "STRING",
      "links": [
-      3,
-      11,
-      19,
-      27,
-      35,
-      43,
-      51,
-      59,
+      16,
+      21,
+      25,
+      30,
+      33,
+      36,
+      41,
+      46,
+      50,
+      54,
+      58,
+      63,
       67,
-      75,
-      83,
-      91,
-      99,
-      107,
-      115,
-      123
+      73,
+      79,
+      85
      ]
     },
     {
@@ -771,7 +1100,7 @@
      "name": "script_text",
      "type": "STRING",
      "links": [
-      2
+      15
      ]
     }
    ],
@@ -781,25 +1110,25 @@
    }
   },
   {
-   "id": 10,
+   "id": 15,
    "type": "PreviewAny",
    "pos": [
-    831.93125,
-    4730
+    1227.4517578125,
+    5630
    ],
    "size": [
     210,
     122
    ],
    "flags": {},
-   "order": 24,
+   "order": 29,
    "mode": 0,
    "inputs": [
     {
      "localized_name": "source",
      "name": "source",
      "type": "*",
-     "link": 2
+     "link": 15
     }
    ],
    "outputs": [
@@ -818,74 +1147,95 @@
    "widgets_values_named": {}
   },
   {
-   "id": 11,
+   "id": 16,
    "type": "UnderdogDraftScene",
    "pos": [
-    831.93125,
+    1227.4517578125,
     110
    ],
    "size": [
     322.99765625,
-    198
+    258
    ],
    "flags": {},
-   "order": 9,
+   "order": 14,
    "mode": 0,
    "inputs": [
     {
      "localized_name": "script",
      "name": "script",
      "type": "STRING",
-     "link": 3
+     "link": 16
     },
     {
      "localized_name": "owner",
      "name": "owner",
      "shape": 7,
      "type": "IMAGE",
-     "link": 4
+     "link": 18
     },
     {
      "localized_name": "rival",
      "name": "rival",
      "shape": 7,
      "type": "IMAGE",
-     "link": 5
+     "link": 17
     },
     {
      "localized_name": "regular",
      "name": "regular",
      "shape": 7,
      "type": "IMAGE",
-     "link": 6
+     "link": null
     },
     {
      "localized_name": "hero1",
      "name": "hero1",
      "shape": 7,
      "type": "IMAGE",
-     "link": 7
+     "link": null
     },
     {
      "localized_name": "hero2",
      "name": "hero2",
      "shape": 7,
      "type": "IMAGE",
-     "link": 8
+     "link": null
     },
     {
      "localized_name": "location",
      "name": "location",
      "shape": 7,
      "type": "IMAGE",
-     "link": 9
+     "link": 20
     },
     {
-     "localized_name": "rival_store",
-     "name": "rival_store",
+     "localized_name": "rival_store_open",
+     "name": "rival_store_open",
      "shape": 7,
      "type": "IMAGE",
-     "link": 10
+     "link": 19
+    },
+    {
+     "localized_name": "rival_store_closed",
+     "name": "rival_store_closed",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "old_car",
+     "name": "old_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "prize_car",
+     "name": "prize_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
     },
     {
      "localized_name": "scene",
@@ -903,7 +1253,7 @@
      "name": "VIDEO",
      "type": "VIDEO",
      "links": [
-      124
+      86
      ]
     }
    ],
@@ -919,74 +1269,95 @@
    }
   },
   {
-   "id": 12,
+   "id": 17,
    "type": "UnderdogDraftScene",
    "pos": [
-    831.93125,
-    418
+    1227.4517578125,
+    478
    ],
    "size": [
     322.99765625,
-    198
+    258
    ],
    "flags": {},
-   "order": 10,
+   "order": 15,
    "mode": 0,
    "inputs": [
     {
      "localized_name": "script",
      "name": "script",
      "type": "STRING",
-     "link": 11
+     "link": 21
     },
     {
      "localized_name": "owner",
      "name": "owner",
      "shape": 7,
      "type": "IMAGE",
-     "link": 12
+     "link": 22
     },
     {
      "localized_name": "rival",
      "name": "rival",
      "shape": 7,
      "type": "IMAGE",
-     "link": 13
+     "link": null
     },
     {
      "localized_name": "regular",
      "name": "regular",
      "shape": 7,
      "type": "IMAGE",
-     "link": 14
+     "link": 23
     },
     {
      "localized_name": "hero1",
      "name": "hero1",
      "shape": 7,
      "type": "IMAGE",
-     "link": 15
+     "link": null
     },
     {
      "localized_name": "hero2",
      "name": "hero2",
      "shape": 7,
      "type": "IMAGE",
-     "link": 16
+     "link": null
     },
     {
      "localized_name": "location",
      "name": "location",
      "shape": 7,
      "type": "IMAGE",
-     "link": 17
+     "link": 24
     },
     {
-     "localized_name": "rival_store",
-     "name": "rival_store",
+     "localized_name": "rival_store_open",
+     "name": "rival_store_open",
      "shape": 7,
      "type": "IMAGE",
-     "link": 18
+     "link": null
+    },
+    {
+     "localized_name": "rival_store_closed",
+     "name": "rival_store_closed",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "old_car",
+     "name": "old_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "prize_car",
+     "name": "prize_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
     },
     {
      "localized_name": "scene",
@@ -1004,7 +1375,7 @@
      "name": "VIDEO",
      "type": "VIDEO",
      "links": [
-      125
+      87
      ]
     }
    ],
@@ -1020,74 +1391,95 @@
    }
   },
   {
-   "id": 13,
+   "id": 18,
    "type": "UnderdogDraftScene",
    "pos": [
-    831.93125,
-    726
+    1227.4517578125,
+    846
    ],
    "size": [
     322.99765625,
-    198
+    258
    ],
    "flags": {},
-   "order": 11,
+   "order": 16,
    "mode": 0,
    "inputs": [
     {
      "localized_name": "script",
      "name": "script",
      "type": "STRING",
-     "link": 19
+     "link": 25
     },
     {
      "localized_name": "owner",
      "name": "owner",
      "shape": 7,
      "type": "IMAGE",
-     "link": 20
+     "link": 26
     },
     {
      "localized_name": "rival",
      "name": "rival",
      "shape": 7,
      "type": "IMAGE",
-     "link": 21
+     "link": null
     },
     {
      "localized_name": "regular",
      "name": "regular",
      "shape": 7,
      "type": "IMAGE",
-     "link": 22
+     "link": 27
     },
     {
      "localized_name": "hero1",
      "name": "hero1",
      "shape": 7,
      "type": "IMAGE",
-     "link": 23
+     "link": null
     },
     {
      "localized_name": "hero2",
      "name": "hero2",
      "shape": 7,
      "type": "IMAGE",
-     "link": 24
+     "link": null
     },
     {
      "localized_name": "location",
      "name": "location",
      "shape": 7,
      "type": "IMAGE",
-     "link": 25
+     "link": 28
     },
     {
-     "localized_name": "rival_store",
-     "name": "rival_store",
+     "localized_name": "rival_store_open",
+     "name": "rival_store_open",
      "shape": 7,
      "type": "IMAGE",
-     "link": 26
+     "link": 29
+    },
+    {
+     "localized_name": "rival_store_closed",
+     "name": "rival_store_closed",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "old_car",
+     "name": "old_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "prize_car",
+     "name": "prize_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
     },
     {
      "localized_name": "scene",
@@ -1105,7 +1497,7 @@
      "name": "VIDEO",
      "type": "VIDEO",
      "links": [
-      126
+      88
      ]
     }
    ],
@@ -1121,74 +1513,95 @@
    }
   },
   {
-   "id": 14,
+   "id": 19,
    "type": "UnderdogDraftScene",
    "pos": [
-    831.93125,
-    1034
+    1227.4517578125,
+    1214
    ],
    "size": [
     322.99765625,
-    198
+    258
    ],
    "flags": {},
-   "order": 12,
+   "order": 17,
    "mode": 0,
    "inputs": [
     {
      "localized_name": "script",
      "name": "script",
      "type": "STRING",
-     "link": 27
+     "link": 30
     },
     {
      "localized_name": "owner",
      "name": "owner",
      "shape": 7,
      "type": "IMAGE",
-     "link": 28
+     "link": 31
     },
     {
      "localized_name": "rival",
      "name": "rival",
      "shape": 7,
      "type": "IMAGE",
-     "link": 29
+     "link": null
     },
     {
      "localized_name": "regular",
      "name": "regular",
      "shape": 7,
      "type": "IMAGE",
-     "link": 30
+     "link": null
     },
     {
      "localized_name": "hero1",
      "name": "hero1",
      "shape": 7,
      "type": "IMAGE",
-     "link": 31
+     "link": null
     },
     {
      "localized_name": "hero2",
      "name": "hero2",
      "shape": 7,
      "type": "IMAGE",
-     "link": 32
+     "link": null
     },
     {
      "localized_name": "location",
      "name": "location",
      "shape": 7,
      "type": "IMAGE",
-     "link": 33
+     "link": 32
     },
     {
-     "localized_name": "rival_store",
-     "name": "rival_store",
+     "localized_name": "rival_store_open",
+     "name": "rival_store_open",
      "shape": 7,
      "type": "IMAGE",
-     "link": 34
+     "link": null
+    },
+    {
+     "localized_name": "rival_store_closed",
+     "name": "rival_store_closed",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "old_car",
+     "name": "old_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "prize_car",
+     "name": "prize_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
     },
     {
      "localized_name": "scene",
@@ -1206,7 +1619,7 @@
      "name": "VIDEO",
      "type": "VIDEO",
      "links": [
-      127
+      89
      ]
     }
    ],
@@ -1222,74 +1635,95 @@
    }
   },
   {
-   "id": 15,
+   "id": 20,
    "type": "UnderdogDraftScene",
    "pos": [
-    831.93125,
-    1342
+    1227.4517578125,
+    1582
    ],
    "size": [
     322.99765625,
-    198
+    258
    ],
    "flags": {},
-   "order": 13,
+   "order": 18,
    "mode": 0,
    "inputs": [
     {
      "localized_name": "script",
      "name": "script",
      "type": "STRING",
-     "link": 35
+     "link": 33
     },
     {
      "localized_name": "owner",
      "name": "owner",
      "shape": 7,
      "type": "IMAGE",
-     "link": 36
+     "link": 34
     },
     {
      "localized_name": "rival",
      "name": "rival",
      "shape": 7,
      "type": "IMAGE",
-     "link": 37
+     "link": null
     },
     {
      "localized_name": "regular",
      "name": "regular",
      "shape": 7,
      "type": "IMAGE",
-     "link": 38
+     "link": null
     },
     {
      "localized_name": "hero1",
      "name": "hero1",
      "shape": 7,
      "type": "IMAGE",
-     "link": 39
+     "link": null
     },
     {
      "localized_name": "hero2",
      "name": "hero2",
      "shape": 7,
      "type": "IMAGE",
-     "link": 40
+     "link": null
     },
     {
      "localized_name": "location",
      "name": "location",
      "shape": 7,
      "type": "IMAGE",
-     "link": 41
+     "link": null
     },
     {
-     "localized_name": "rival_store",
-     "name": "rival_store",
+     "localized_name": "rival_store_open",
+     "name": "rival_store_open",
      "shape": 7,
      "type": "IMAGE",
-     "link": 42
+     "link": null
+    },
+    {
+     "localized_name": "rival_store_closed",
+     "name": "rival_store_closed",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "old_car",
+     "name": "old_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 35
+    },
+    {
+     "localized_name": "prize_car",
+     "name": "prize_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
     },
     {
      "localized_name": "scene",
@@ -1307,7 +1741,7 @@
      "name": "VIDEO",
      "type": "VIDEO",
      "links": [
-      128
+      90
      ]
     }
    ],
@@ -1323,53 +1757,297 @@
    }
   },
   {
-   "id": 16,
+   "id": 21,
    "type": "UnderdogDraftScene",
    "pos": [
-    831.93125,
-    1650
+    1227.4517578125,
+    1950
    ],
    "size": [
     322.99765625,
-    198
+    258
    ],
    "flags": {},
-   "order": 14,
+   "order": 19,
    "mode": 0,
    "inputs": [
     {
      "localized_name": "script",
      "name": "script",
      "type": "STRING",
-     "link": 43
+     "link": 36
     },
     {
      "localized_name": "owner",
      "name": "owner",
      "shape": 7,
      "type": "IMAGE",
-     "link": 44
+     "link": 37
     },
     {
      "localized_name": "rival",
      "name": "rival",
      "shape": 7,
      "type": "IMAGE",
-     "link": 45
+     "link": null
     },
     {
      "localized_name": "regular",
      "name": "regular",
      "shape": 7,
      "type": "IMAGE",
-     "link": 46
+     "link": null
     },
     {
      "localized_name": "hero1",
      "name": "hero1",
      "shape": 7,
      "type": "IMAGE",
+     "link": 38
+    },
+    {
+     "localized_name": "hero2",
+     "name": "hero2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 39
+    },
+    {
+     "localized_name": "location",
+     "name": "location",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 40
+    },
+    {
+     "localized_name": "rival_store_open",
+     "name": "rival_store_open",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "rival_store_closed",
+     "name": "rival_store_closed",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "old_car",
+     "name": "old_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "prize_car",
+     "name": "prize_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "scene",
+     "name": "scene",
+     "type": "INT",
+     "widget": {
+      "name": "scene"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      91
+     ]
+    }
+   ],
+   "title": "Draft scene 6",
+   "properties": {
+    "Node name for S&R": "UnderdogDraftScene"
+   },
+   "widgets_values": [
+    6
+   ],
+   "widgets_values_named": {
+    "scene": 6
+   }
+  },
+  {
+   "id": 22,
+   "type": "UnderdogDraftScene",
+   "pos": [
+    1227.4517578125,
+    2318
+   ],
+   "size": [
+    322.99765625,
+    258
+   ],
+   "flags": {},
+   "order": 20,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "script",
+     "name": "script",
+     "type": "STRING",
+     "link": 41
+    },
+    {
+     "localized_name": "owner",
+     "name": "owner",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 42
+    },
+    {
+     "localized_name": "rival",
+     "name": "rival",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "regular",
+     "name": "regular",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "hero1",
+     "name": "hero1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 43
+    },
+    {
+     "localized_name": "hero2",
+     "name": "hero2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 44
+    },
+    {
+     "localized_name": "location",
+     "name": "location",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 45
+    },
+    {
+     "localized_name": "rival_store_open",
+     "name": "rival_store_open",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "rival_store_closed",
+     "name": "rival_store_closed",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "old_car",
+     "name": "old_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "prize_car",
+     "name": "prize_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "scene",
+     "name": "scene",
+     "type": "INT",
+     "widget": {
+      "name": "scene"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      92
+     ]
+    }
+   ],
+   "title": "Draft scene 7",
+   "properties": {
+    "Node name for S&R": "UnderdogDraftScene"
+   },
+   "widgets_values": [
+    7
+   ],
+   "widgets_values_named": {
+    "scene": 7
+   }
+  },
+  {
+   "id": 23,
+   "type": "UnderdogDraftScene",
+   "pos": [
+    1227.4517578125,
+    2686
+   ],
+   "size": [
+    322.99765625,
+    258
+   ],
+   "flags": {},
+   "order": 21,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "script",
+     "name": "script",
+     "type": "STRING",
+     "link": 46
+    },
+    {
+     "localized_name": "owner",
+     "name": "owner",
+     "shape": 7,
+     "type": "IMAGE",
      "link": 47
+    },
+    {
+     "localized_name": "rival",
+     "name": "rival",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "regular",
+     "name": "regular",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "hero1",
+     "name": "hero1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
     },
     {
      "localized_name": "hero2",
@@ -1386,11 +2064,32 @@
      "link": 49
     },
     {
-     "localized_name": "rival_store",
-     "name": "rival_store",
+     "localized_name": "rival_store_open",
+     "name": "rival_store_open",
      "shape": 7,
      "type": "IMAGE",
-     "link": 50
+     "link": null
+    },
+    {
+     "localized_name": "rival_store_closed",
+     "name": "rival_store_closed",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "old_car",
+     "name": "old_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "prize_car",
+     "name": "prize_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
     },
     {
      "localized_name": "scene",
@@ -1408,209 +2107,7 @@
      "name": "VIDEO",
      "type": "VIDEO",
      "links": [
-      129
-     ]
-    }
-   ],
-   "title": "Draft scene 6",
-   "properties": {
-    "Node name for S&R": "UnderdogDraftScene"
-   },
-   "widgets_values": [
-    6
-   ],
-   "widgets_values_named": {
-    "scene": 6
-   }
-  },
-  {
-   "id": 17,
-   "type": "UnderdogDraftScene",
-   "pos": [
-    831.93125,
-    1958
-   ],
-   "size": [
-    322.99765625,
-    198
-   ],
-   "flags": {},
-   "order": 15,
-   "mode": 0,
-   "inputs": [
-    {
-     "localized_name": "script",
-     "name": "script",
-     "type": "STRING",
-     "link": 51
-    },
-    {
-     "localized_name": "owner",
-     "name": "owner",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 52
-    },
-    {
-     "localized_name": "rival",
-     "name": "rival",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 53
-    },
-    {
-     "localized_name": "regular",
-     "name": "regular",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 54
-    },
-    {
-     "localized_name": "hero1",
-     "name": "hero1",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 55
-    },
-    {
-     "localized_name": "hero2",
-     "name": "hero2",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 56
-    },
-    {
-     "localized_name": "location",
-     "name": "location",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 57
-    },
-    {
-     "localized_name": "rival_store",
-     "name": "rival_store",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 58
-    },
-    {
-     "localized_name": "scene",
-     "name": "scene",
-     "type": "INT",
-     "widget": {
-      "name": "scene"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "localized_name": "VIDEO",
-     "name": "VIDEO",
-     "type": "VIDEO",
-     "links": [
-      130
-     ]
-    }
-   ],
-   "title": "Draft scene 7",
-   "properties": {
-    "Node name for S&R": "UnderdogDraftScene"
-   },
-   "widgets_values": [
-    7
-   ],
-   "widgets_values_named": {
-    "scene": 7
-   }
-  },
-  {
-   "id": 18,
-   "type": "UnderdogDraftScene",
-   "pos": [
-    831.93125,
-    2266
-   ],
-   "size": [
-    322.99765625,
-    198
-   ],
-   "flags": {},
-   "order": 16,
-   "mode": 0,
-   "inputs": [
-    {
-     "localized_name": "script",
-     "name": "script",
-     "type": "STRING",
-     "link": 59
-    },
-    {
-     "localized_name": "owner",
-     "name": "owner",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 60
-    },
-    {
-     "localized_name": "rival",
-     "name": "rival",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 61
-    },
-    {
-     "localized_name": "regular",
-     "name": "regular",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 62
-    },
-    {
-     "localized_name": "hero1",
-     "name": "hero1",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 63
-    },
-    {
-     "localized_name": "hero2",
-     "name": "hero2",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 64
-    },
-    {
-     "localized_name": "location",
-     "name": "location",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 65
-    },
-    {
-     "localized_name": "rival_store",
-     "name": "rival_store",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 66
-    },
-    {
-     "localized_name": "scene",
-     "name": "scene",
-     "type": "INT",
-     "widget": {
-      "name": "scene"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "localized_name": "VIDEO",
-     "name": "VIDEO",
-     "type": "VIDEO",
-     "links": [
-      131
+      93
      ]
     }
    ],
@@ -1626,18 +2123,506 @@
    }
   },
   {
-   "id": 19,
+   "id": 24,
    "type": "UnderdogDraftScene",
    "pos": [
-    831.93125,
-    2574
+    1227.4517578125,
+    3054
    ],
    "size": [
     322.99765625,
-    198
+    258
    ],
    "flags": {},
-   "order": 17,
+   "order": 22,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "script",
+     "name": "script",
+     "type": "STRING",
+     "link": 50
+    },
+    {
+     "localized_name": "owner",
+     "name": "owner",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 51
+    },
+    {
+     "localized_name": "rival",
+     "name": "rival",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "regular",
+     "name": "regular",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "hero1",
+     "name": "hero1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "hero2",
+     "name": "hero2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 52
+    },
+    {
+     "localized_name": "location",
+     "name": "location",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 53
+    },
+    {
+     "localized_name": "rival_store_open",
+     "name": "rival_store_open",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "rival_store_closed",
+     "name": "rival_store_closed",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "old_car",
+     "name": "old_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "prize_car",
+     "name": "prize_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "scene",
+     "name": "scene",
+     "type": "INT",
+     "widget": {
+      "name": "scene"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      94
+     ]
+    }
+   ],
+   "title": "Draft scene 9",
+   "properties": {
+    "Node name for S&R": "UnderdogDraftScene"
+   },
+   "widgets_values": [
+    9
+   ],
+   "widgets_values_named": {
+    "scene": 9
+   }
+  },
+  {
+   "id": 25,
+   "type": "UnderdogDraftScene",
+   "pos": [
+    1227.4517578125,
+    3422
+   ],
+   "size": [
+    322.99765625,
+    258
+   ],
+   "flags": {},
+   "order": 23,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "script",
+     "name": "script",
+     "type": "STRING",
+     "link": 54
+    },
+    {
+     "localized_name": "owner",
+     "name": "owner",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "rival",
+     "name": "rival",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "regular",
+     "name": "regular",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 55
+    },
+    {
+     "localized_name": "hero1",
+     "name": "hero1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "hero2",
+     "name": "hero2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "location",
+     "name": "location",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 56
+    },
+    {
+     "localized_name": "rival_store_open",
+     "name": "rival_store_open",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 57
+    },
+    {
+     "localized_name": "rival_store_closed",
+     "name": "rival_store_closed",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "old_car",
+     "name": "old_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "prize_car",
+     "name": "prize_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "scene",
+     "name": "scene",
+     "type": "INT",
+     "widget": {
+      "name": "scene"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      95
+     ]
+    }
+   ],
+   "title": "Draft scene 10",
+   "properties": {
+    "Node name for S&R": "UnderdogDraftScene"
+   },
+   "widgets_values": [
+    10
+   ],
+   "widgets_values_named": {
+    "scene": 10
+   }
+  },
+  {
+   "id": 26,
+   "type": "UnderdogDraftScene",
+   "pos": [
+    1227.4517578125,
+    3790
+   ],
+   "size": [
+    322.99765625,
+    258
+   ],
+   "flags": {},
+   "order": 24,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "script",
+     "name": "script",
+     "type": "STRING",
+     "link": 58
+    },
+    {
+     "localized_name": "owner",
+     "name": "owner",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 59
+    },
+    {
+     "localized_name": "rival",
+     "name": "rival",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 60
+    },
+    {
+     "localized_name": "regular",
+     "name": "regular",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "hero1",
+     "name": "hero1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "hero2",
+     "name": "hero2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "location",
+     "name": "location",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 61
+    },
+    {
+     "localized_name": "rival_store_open",
+     "name": "rival_store_open",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 62
+    },
+    {
+     "localized_name": "rival_store_closed",
+     "name": "rival_store_closed",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "old_car",
+     "name": "old_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "prize_car",
+     "name": "prize_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "scene",
+     "name": "scene",
+     "type": "INT",
+     "widget": {
+      "name": "scene"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      96
+     ]
+    }
+   ],
+   "title": "Draft scene 11",
+   "properties": {
+    "Node name for S&R": "UnderdogDraftScene"
+   },
+   "widgets_values": [
+    11
+   ],
+   "widgets_values_named": {
+    "scene": 11
+   }
+  },
+  {
+   "id": 27,
+   "type": "UnderdogDraftScene",
+   "pos": [
+    1227.4517578125,
+    4158
+   ],
+   "size": [
+    322.99765625,
+    258
+   ],
+   "flags": {},
+   "order": 25,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "script",
+     "name": "script",
+     "type": "STRING",
+     "link": 63
+    },
+    {
+     "localized_name": "owner",
+     "name": "owner",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "rival",
+     "name": "rival",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 64
+    },
+    {
+     "localized_name": "regular",
+     "name": "regular",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "hero1",
+     "name": "hero1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "hero2",
+     "name": "hero2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "location",
+     "name": "location",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 66
+    },
+    {
+     "localized_name": "rival_store_open",
+     "name": "rival_store_open",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "rival_store_closed",
+     "name": "rival_store_closed",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 65
+    },
+    {
+     "localized_name": "old_car",
+     "name": "old_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "prize_car",
+     "name": "prize_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "scene",
+     "name": "scene",
+     "type": "INT",
+     "widget": {
+      "name": "scene"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      97
+     ]
+    }
+   ],
+   "title": "Draft scene 12",
+   "properties": {
+    "Node name for S&R": "UnderdogDraftScene"
+   },
+   "widgets_values": [
+    12
+   ],
+   "widgets_values_named": {
+    "scene": 12
+   }
+  },
+  {
+   "id": 28,
+   "type": "UnderdogDraftScene",
+   "pos": [
+    1227.4517578125,
+    4526
+   ],
+   "size": [
+    322.99765625,
+    258
+   ],
+   "flags": {},
+   "order": 26,
    "mode": 0,
    "inputs": [
     {
@@ -1658,42 +2643,63 @@
      "name": "rival",
      "shape": 7,
      "type": "IMAGE",
-     "link": 69
+     "link": null
     },
     {
      "localized_name": "regular",
      "name": "regular",
      "shape": 7,
      "type": "IMAGE",
-     "link": 70
+     "link": null
     },
     {
      "localized_name": "hero1",
      "name": "hero1",
      "shape": 7,
      "type": "IMAGE",
-     "link": 71
+     "link": null
     },
     {
      "localized_name": "hero2",
      "name": "hero2",
      "shape": 7,
      "type": "IMAGE",
-     "link": 72
+     "link": null
     },
     {
      "localized_name": "location",
      "name": "location",
      "shape": 7,
      "type": "IMAGE",
-     "link": 73
+     "link": 71
     },
     {
-     "localized_name": "rival_store",
-     "name": "rival_store",
+     "localized_name": "rival_store_open",
+     "name": "rival_store_open",
      "shape": 7,
      "type": "IMAGE",
-     "link": 74
+     "link": null
+    },
+    {
+     "localized_name": "rival_store_closed",
+     "name": "rival_store_closed",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 72
+    },
+    {
+     "localized_name": "old_car",
+     "name": "old_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 70
+    },
+    {
+     "localized_name": "prize_car",
+     "name": "prize_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 69
     },
     {
      "localized_name": "scene",
@@ -1711,41 +2717,41 @@
      "name": "VIDEO",
      "type": "VIDEO",
      "links": [
-      132
+      98
      ]
     }
    ],
-   "title": "Draft scene 9",
+   "title": "Draft scene 13",
    "properties": {
     "Node name for S&R": "UnderdogDraftScene"
    },
    "widgets_values": [
-    9
+    13
    ],
    "widgets_values_named": {
-    "scene": 9
+    "scene": 13
    }
   },
   {
-   "id": 20,
+   "id": 29,
    "type": "UnderdogDraftScene",
    "pos": [
-    831.93125,
-    2882
+    1227.4517578125,
+    4894
    ],
    "size": [
     322.99765625,
-    198
+    258
    ],
    "flags": {},
-   "order": 18,
+   "order": 27,
    "mode": 0,
    "inputs": [
     {
      "localized_name": "script",
      "name": "script",
      "type": "STRING",
-     "link": 75
+     "link": 73
     },
     {
      "localized_name": "owner",
@@ -1759,39 +2765,182 @@
      "name": "rival",
      "shape": 7,
      "type": "IMAGE",
-     "link": 77
+     "link": 74
     },
     {
      "localized_name": "regular",
      "name": "regular",
      "shape": 7,
      "type": "IMAGE",
-     "link": 78
+     "link": null
     },
     {
      "localized_name": "hero1",
      "name": "hero1",
      "shape": 7,
      "type": "IMAGE",
-     "link": 79
+     "link": null
     },
     {
      "localized_name": "hero2",
      "name": "hero2",
      "shape": 7,
      "type": "IMAGE",
-     "link": 80
+     "link": null
     },
     {
      "localized_name": "location",
      "name": "location",
      "shape": 7,
      "type": "IMAGE",
+     "link": 77
+    },
+    {
+     "localized_name": "rival_store_open",
+     "name": "rival_store_open",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "rival_store_closed",
+     "name": "rival_store_closed",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 78
+    },
+    {
+     "localized_name": "old_car",
+     "name": "old_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "prize_car",
+     "name": "prize_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 75
+    },
+    {
+     "localized_name": "scene",
+     "name": "scene",
+     "type": "INT",
+     "widget": {
+      "name": "scene"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      99
+     ]
+    }
+   ],
+   "title": "Draft scene 14",
+   "properties": {
+    "Node name for S&R": "UnderdogDraftScene"
+   },
+   "widgets_values": [
+    14
+   ],
+   "widgets_values_named": {
+    "scene": 14
+   }
+  },
+  {
+   "id": 30,
+   "type": "UnderdogDraftScene",
+   "pos": [
+    1227.4517578125,
+    5262
+   ],
+   "size": [
+    322.99765625,
+    258
+   ],
+   "flags": {},
+   "order": 28,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "script",
+     "name": "script",
+     "type": "STRING",
+     "link": 79
+    },
+    {
+     "localized_name": "owner",
+     "name": "owner",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 80
+    },
+    {
+     "localized_name": "rival",
+     "name": "rival",
+     "shape": 7,
+     "type": "IMAGE",
      "link": 81
     },
     {
-     "localized_name": "rival_store",
-     "name": "rival_store",
+     "localized_name": "regular",
+     "name": "regular",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "hero1",
+     "name": "hero1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "hero2",
+     "name": "hero2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "location",
+     "name": "location",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 83
+    },
+    {
+     "localized_name": "rival_store_open",
+     "name": "rival_store_open",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "rival_store_closed",
+     "name": "rival_store_closed",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 84
+    },
+    {
+     "localized_name": "old_car",
+     "name": "old_car",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": null
+    },
+    {
+     "localized_name": "prize_car",
+     "name": "prize_car",
      "shape": 7,
      "type": "IMAGE",
      "link": 82
@@ -1812,512 +2961,7 @@
      "name": "VIDEO",
      "type": "VIDEO",
      "links": [
-      133
-     ]
-    }
-   ],
-   "title": "Draft scene 10",
-   "properties": {
-    "Node name for S&R": "UnderdogDraftScene"
-   },
-   "widgets_values": [
-    10
-   ],
-   "widgets_values_named": {
-    "scene": 10
-   }
-  },
-  {
-   "id": 21,
-   "type": "UnderdogDraftScene",
-   "pos": [
-    831.93125,
-    3190
-   ],
-   "size": [
-    322.99765625,
-    198
-   ],
-   "flags": {},
-   "order": 19,
-   "mode": 0,
-   "inputs": [
-    {
-     "localized_name": "script",
-     "name": "script",
-     "type": "STRING",
-     "link": 83
-    },
-    {
-     "localized_name": "owner",
-     "name": "owner",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 84
-    },
-    {
-     "localized_name": "rival",
-     "name": "rival",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 85
-    },
-    {
-     "localized_name": "regular",
-     "name": "regular",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 86
-    },
-    {
-     "localized_name": "hero1",
-     "name": "hero1",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 87
-    },
-    {
-     "localized_name": "hero2",
-     "name": "hero2",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 88
-    },
-    {
-     "localized_name": "location",
-     "name": "location",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 89
-    },
-    {
-     "localized_name": "rival_store",
-     "name": "rival_store",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 90
-    },
-    {
-     "localized_name": "scene",
-     "name": "scene",
-     "type": "INT",
-     "widget": {
-      "name": "scene"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "localized_name": "VIDEO",
-     "name": "VIDEO",
-     "type": "VIDEO",
-     "links": [
-      134
-     ]
-    }
-   ],
-   "title": "Draft scene 11",
-   "properties": {
-    "Node name for S&R": "UnderdogDraftScene"
-   },
-   "widgets_values": [
-    11
-   ],
-   "widgets_values_named": {
-    "scene": 11
-   }
-  },
-  {
-   "id": 22,
-   "type": "UnderdogDraftScene",
-   "pos": [
-    831.93125,
-    3498
-   ],
-   "size": [
-    322.99765625,
-    198
-   ],
-   "flags": {},
-   "order": 20,
-   "mode": 0,
-   "inputs": [
-    {
-     "localized_name": "script",
-     "name": "script",
-     "type": "STRING",
-     "link": 91
-    },
-    {
-     "localized_name": "owner",
-     "name": "owner",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 92
-    },
-    {
-     "localized_name": "rival",
-     "name": "rival",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 93
-    },
-    {
-     "localized_name": "regular",
-     "name": "regular",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 94
-    },
-    {
-     "localized_name": "hero1",
-     "name": "hero1",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 95
-    },
-    {
-     "localized_name": "hero2",
-     "name": "hero2",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 96
-    },
-    {
-     "localized_name": "location",
-     "name": "location",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 97
-    },
-    {
-     "localized_name": "rival_store",
-     "name": "rival_store",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 98
-    },
-    {
-     "localized_name": "scene",
-     "name": "scene",
-     "type": "INT",
-     "widget": {
-      "name": "scene"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "localized_name": "VIDEO",
-     "name": "VIDEO",
-     "type": "VIDEO",
-     "links": [
-      135
-     ]
-    }
-   ],
-   "title": "Draft scene 12",
-   "properties": {
-    "Node name for S&R": "UnderdogDraftScene"
-   },
-   "widgets_values": [
-    12
-   ],
-   "widgets_values_named": {
-    "scene": 12
-   }
-  },
-  {
-   "id": 23,
-   "type": "UnderdogDraftScene",
-   "pos": [
-    831.93125,
-    3806
-   ],
-   "size": [
-    322.99765625,
-    198
-   ],
-   "flags": {},
-   "order": 21,
-   "mode": 0,
-   "inputs": [
-    {
-     "localized_name": "script",
-     "name": "script",
-     "type": "STRING",
-     "link": 99
-    },
-    {
-     "localized_name": "owner",
-     "name": "owner",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 100
-    },
-    {
-     "localized_name": "rival",
-     "name": "rival",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 101
-    },
-    {
-     "localized_name": "regular",
-     "name": "regular",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 102
-    },
-    {
-     "localized_name": "hero1",
-     "name": "hero1",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 103
-    },
-    {
-     "localized_name": "hero2",
-     "name": "hero2",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 104
-    },
-    {
-     "localized_name": "location",
-     "name": "location",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 105
-    },
-    {
-     "localized_name": "rival_store",
-     "name": "rival_store",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 106
-    },
-    {
-     "localized_name": "scene",
-     "name": "scene",
-     "type": "INT",
-     "widget": {
-      "name": "scene"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "localized_name": "VIDEO",
-     "name": "VIDEO",
-     "type": "VIDEO",
-     "links": [
-      136
-     ]
-    }
-   ],
-   "title": "Draft scene 13",
-   "properties": {
-    "Node name for S&R": "UnderdogDraftScene"
-   },
-   "widgets_values": [
-    13
-   ],
-   "widgets_values_named": {
-    "scene": 13
-   }
-  },
-  {
-   "id": 24,
-   "type": "UnderdogDraftScene",
-   "pos": [
-    831.93125,
-    4114
-   ],
-   "size": [
-    322.99765625,
-    198
-   ],
-   "flags": {},
-   "order": 22,
-   "mode": 0,
-   "inputs": [
-    {
-     "localized_name": "script",
-     "name": "script",
-     "type": "STRING",
-     "link": 107
-    },
-    {
-     "localized_name": "owner",
-     "name": "owner",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 108
-    },
-    {
-     "localized_name": "rival",
-     "name": "rival",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 109
-    },
-    {
-     "localized_name": "regular",
-     "name": "regular",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 110
-    },
-    {
-     "localized_name": "hero1",
-     "name": "hero1",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 111
-    },
-    {
-     "localized_name": "hero2",
-     "name": "hero2",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 112
-    },
-    {
-     "localized_name": "location",
-     "name": "location",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 113
-    },
-    {
-     "localized_name": "rival_store",
-     "name": "rival_store",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 114
-    },
-    {
-     "localized_name": "scene",
-     "name": "scene",
-     "type": "INT",
-     "widget": {
-      "name": "scene"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "localized_name": "VIDEO",
-     "name": "VIDEO",
-     "type": "VIDEO",
-     "links": [
-      137
-     ]
-    }
-   ],
-   "title": "Draft scene 14",
-   "properties": {
-    "Node name for S&R": "UnderdogDraftScene"
-   },
-   "widgets_values": [
-    14
-   ],
-   "widgets_values_named": {
-    "scene": 14
-   }
-  },
-  {
-   "id": 25,
-   "type": "UnderdogDraftScene",
-   "pos": [
-    831.93125,
-    4422
-   ],
-   "size": [
-    322.99765625,
-    198
-   ],
-   "flags": {},
-   "order": 23,
-   "mode": 0,
-   "inputs": [
-    {
-     "localized_name": "script",
-     "name": "script",
-     "type": "STRING",
-     "link": 115
-    },
-    {
-     "localized_name": "owner",
-     "name": "owner",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 116
-    },
-    {
-     "localized_name": "rival",
-     "name": "rival",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 117
-    },
-    {
-     "localized_name": "regular",
-     "name": "regular",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 118
-    },
-    {
-     "localized_name": "hero1",
-     "name": "hero1",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 119
-    },
-    {
-     "localized_name": "hero2",
-     "name": "hero2",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 120
-    },
-    {
-     "localized_name": "location",
-     "name": "location",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 121
-    },
-    {
-     "localized_name": "rival_store",
-     "name": "rival_store",
-     "shape": 7,
-     "type": "IMAGE",
-     "link": 122
-    },
-    {
-     "localized_name": "scene",
-     "name": "scene",
-     "type": "INT",
-     "widget": {
-      "name": "scene"
-     },
-     "link": null
-    }
-   ],
-   "outputs": [
-    {
-     "localized_name": "VIDEO",
-     "name": "VIDEO",
-     "type": "VIDEO",
-     "links": [
-      138
+      100
      ]
     }
    ],
@@ -2333,10 +2977,10 @@
    }
   },
   {
-   "id": 26,
+   "id": 31,
    "type": "UnderdogFinish",
    "pos": [
-    1234.92890625,
+    1630.4494140625002,
     110
    ],
    "size": [
@@ -2344,119 +2988,119 @@
     406
    ],
    "flags": {},
-   "order": 25,
+   "order": 30,
    "mode": 0,
    "inputs": [
     {
      "localized_name": "script",
      "name": "script",
      "type": "STRING",
-     "link": 123
+     "link": 85
     },
     {
      "localized_name": "scene_01",
      "name": "scene_01",
      "shape": 7,
      "type": "VIDEO",
-     "link": 124
+     "link": 86
     },
     {
      "localized_name": "scene_02",
      "name": "scene_02",
      "shape": 7,
      "type": "VIDEO",
-     "link": 125
+     "link": 87
     },
     {
      "localized_name": "scene_03",
      "name": "scene_03",
      "shape": 7,
      "type": "VIDEO",
-     "link": 126
+     "link": 88
     },
     {
      "localized_name": "scene_04",
      "name": "scene_04",
      "shape": 7,
      "type": "VIDEO",
-     "link": 127
+     "link": 89
     },
     {
      "localized_name": "scene_05",
      "name": "scene_05",
      "shape": 7,
      "type": "VIDEO",
-     "link": 128
+     "link": 90
     },
     {
      "localized_name": "scene_06",
      "name": "scene_06",
      "shape": 7,
      "type": "VIDEO",
-     "link": 129
+     "link": 91
     },
     {
      "localized_name": "scene_07",
      "name": "scene_07",
      "shape": 7,
      "type": "VIDEO",
-     "link": 130
+     "link": 92
     },
     {
      "localized_name": "scene_08",
      "name": "scene_08",
      "shape": 7,
      "type": "VIDEO",
-     "link": 131
+     "link": 93
     },
     {
      "localized_name": "scene_09",
      "name": "scene_09",
      "shape": 7,
      "type": "VIDEO",
-     "link": 132
+     "link": 94
     },
     {
      "localized_name": "scene_10",
      "name": "scene_10",
      "shape": 7,
      "type": "VIDEO",
-     "link": 133
+     "link": 95
     },
     {
      "localized_name": "scene_11",
      "name": "scene_11",
      "shape": 7,
      "type": "VIDEO",
-     "link": 134
+     "link": 96
     },
     {
      "localized_name": "scene_12",
      "name": "scene_12",
      "shape": 7,
      "type": "VIDEO",
-     "link": 135
+     "link": 97
     },
     {
      "localized_name": "scene_13",
      "name": "scene_13",
      "shape": 7,
      "type": "VIDEO",
-     "link": 136
+     "link": 98
     },
     {
      "localized_name": "scene_14",
      "name": "scene_14",
      "shape": 7,
      "type": "VIDEO",
-     "link": 137
+     "link": 99
     },
     {
      "localized_name": "scene_15",
      "name": "scene_15",
      "shape": 7,
      "type": "VIDEO",
-     "link": 138
+     "link": 100
     },
     {
      "label": "Burn in captions",
@@ -2493,7 +3137,7 @@
      "name": "VIDEO",
      "type": "VIDEO",
      "links": [
-      139
+      101
      ]
     }
    ],
@@ -2513,10 +3157,10 @@
    }
   },
   {
-   "id": 27,
+   "id": 32,
    "type": "UnderdogScoreMix",
    "pos": [
-    1586.1306640624998,
+    1981.6511718750003,
     110
    ],
    "size": [
@@ -2524,14 +3168,14 @@
     102
    ],
    "flags": {},
-   "order": 26,
+   "order": 31,
    "mode": 0,
    "inputs": [
     {
      "localized_name": "video",
      "name": "video",
      "type": "VIDEO",
-     "link": 139
+     "link": 101
     },
     {
      "localized_name": "music",
@@ -2565,7 +3209,7 @@
      "name": "VIDEO",
      "type": "VIDEO",
      "links": [
-      140
+      102
      ]
     }
    ],
@@ -2583,10 +3227,10 @@
    }
   },
   {
-   "id": 28,
+   "id": 33,
    "type": "SaveVideo",
    "pos": [
-    1945.3236328125,
+    2340.8441406250004,
     110
    ],
    "size": [
@@ -2594,14 +3238,14 @@
     106
    ],
    "flags": {},
-   "order": 27,
+   "order": 32,
    "mode": 0,
    "inputs": [
     {
      "localized_name": "video",
      "name": "video",
      "type": "VIDEO",
-     "link": 140
+     "link": 102
     },
     {
      "localized_name": "filename_prefix",
@@ -2670,383 +3314,383 @@
    1,
    1,
    0,
-   9,
+   12,
    0,
    "STRING"
   ],
   [
    2,
-   9,
    1,
-   10,
-   0,
+   1,
+   12,
+   1,
    "STRING"
   ],
   [
    3,
-   9,
+   2,
    0,
-   11,
-   0,
-   "STRING"
+   12,
+   2,
+   "IMAGE"
   ],
   [
    4,
-   2,
+   3,
    0,
-   11,
-   1,
+   12,
+   3,
    "IMAGE"
   ],
   [
    5,
-   3,
+   4,
    0,
-   11,
-   2,
+   12,
+   4,
    "IMAGE"
   ],
   [
    6,
-   4,
+   5,
    0,
-   11,
-   3,
+   12,
+   5,
    "IMAGE"
   ],
   [
    7,
-   5,
+   6,
    0,
-   11,
-   4,
+   12,
+   6,
    "IMAGE"
   ],
   [
    8,
-   6,
+   7,
    0,
-   11,
-   5,
+   12,
+   7,
    "IMAGE"
   ],
   [
    9,
-   7,
+   8,
    0,
-   11,
-   6,
+   12,
+   8,
    "IMAGE"
   ],
   [
    10,
-   8,
+   9,
    0,
-   11,
-   7,
+   12,
+   9,
    "IMAGE"
   ],
   [
    11,
-   9,
+   10,
    0,
    12,
-   0,
-   "STRING"
+   10,
+   "IMAGE"
   ],
   [
    12,
-   2,
+   11,
    0,
    12,
-   1,
+   11,
    "IMAGE"
   ],
   [
    13,
-   3,
-   0,
    12,
    2,
-   "IMAGE"
+   13,
+   0,
+   "STRING"
   ],
   [
    14,
-   4,
-   0,
    12,
-   3,
-   "IMAGE"
+   0,
+   14,
+   0,
+   "STRING"
   ],
   [
    15,
-   5,
+   14,
+   1,
+   15,
    0,
-   12,
-   4,
-   "IMAGE"
+   "STRING"
   ],
   [
    16,
-   6,
+   14,
    0,
-   12,
-   5,
-   "IMAGE"
+   16,
+   0,
+   "STRING"
   ],
   [
    17,
-   7,
+   3,
    0,
-   12,
-   6,
+   16,
+   2,
    "IMAGE"
   ],
   [
    18,
-   8,
+   2,
    0,
-   12,
-   7,
+   16,
+   1,
    "IMAGE"
   ],
   [
    19,
-   9,
+   8,
    0,
-   13,
-   0,
-   "STRING"
+   16,
+   7,
+   "IMAGE"
   ],
   [
    20,
-   2,
+   7,
    0,
-   13,
-   1,
+   16,
+   6,
    "IMAGE"
   ],
   [
    21,
-   3,
+   14,
    0,
-   13,
-   2,
-   "IMAGE"
+   17,
+   0,
+   "STRING"
   ],
   [
    22,
-   4,
+   2,
    0,
-   13,
-   3,
+   17,
+   1,
    "IMAGE"
   ],
   [
    23,
-   5,
-   0,
-   13,
    4,
+   0,
+   17,
+   3,
    "IMAGE"
   ],
   [
    24,
-   6,
+   7,
    0,
-   13,
-   5,
+   17,
+   6,
    "IMAGE"
   ],
   [
    25,
-   7,
+   14,
    0,
-   13,
-   6,
-   "IMAGE"
+   18,
+   0,
+   "STRING"
   ],
   [
    26,
-   8,
+   2,
    0,
-   13,
-   7,
+   18,
+   1,
    "IMAGE"
   ],
   [
    27,
-   9,
+   4,
    0,
-   14,
-   0,
-   "STRING"
+   18,
+   3,
+   "IMAGE"
   ],
   [
    28,
-   2,
+   7,
    0,
-   14,
-   1,
+   18,
+   6,
    "IMAGE"
   ],
   [
    29,
-   3,
+   8,
    0,
-   14,
-   2,
+   18,
+   7,
    "IMAGE"
   ],
   [
    30,
-   4,
-   0,
    14,
-   3,
-   "IMAGE"
+   0,
+   19,
+   0,
+   "STRING"
   ],
   [
    31,
-   5,
+   2,
    0,
-   14,
-   4,
+   19,
+   1,
    "IMAGE"
   ],
   [
    32,
-   6,
+   7,
    0,
-   14,
-   5,
+   19,
+   6,
    "IMAGE"
   ],
   [
    33,
-   7,
-   0,
    14,
-   6,
-   "IMAGE"
+   0,
+   20,
+   0,
+   "STRING"
   ],
   [
    34,
-   8,
+   2,
    0,
-   14,
-   7,
+   20,
+   1,
    "IMAGE"
   ],
   [
    35,
-   9,
+   10,
    0,
-   15,
+   20,
+   9,
+   "IMAGE"
+  ],
+  [
+   36,
+   14,
+   0,
+   21,
    0,
    "STRING"
   ],
   [
-   36,
-   2,
-   0,
-   15,
-   1,
-   "IMAGE"
-  ],
-  [
    37,
-   3,
-   0,
-   15,
    2,
+   0,
+   21,
+   1,
    "IMAGE"
   ],
   [
    38,
-   4,
+   5,
    0,
-   15,
-   3,
+   21,
+   4,
    "IMAGE"
   ],
   [
    39,
-   5,
+   6,
    0,
-   15,
-   4,
+   21,
+   5,
    "IMAGE"
   ],
   [
    40,
-   6,
+   7,
    0,
-   15,
-   5,
+   21,
+   6,
    "IMAGE"
   ],
   [
    41,
-   7,
+   14,
    0,
-   15,
-   6,
-   "IMAGE"
-  ],
-  [
-   42,
-   8,
-   0,
-   15,
-   7,
-   "IMAGE"
-  ],
-  [
-   43,
-   9,
-   0,
-   16,
+   22,
    0,
    "STRING"
   ],
   [
-   44,
+   42,
    2,
    0,
-   16,
+   22,
    1,
    "IMAGE"
   ],
   [
-   45,
-   3,
+   43,
+   5,
    0,
-   16,
-   2,
+   22,
+   4,
+   "IMAGE"
+  ],
+  [
+   44,
+   6,
+   0,
+   22,
+   5,
+   "IMAGE"
+  ],
+  [
+   45,
+   7,
+   0,
+   22,
+   6,
    "IMAGE"
   ],
   [
    46,
-   4,
+   14,
    0,
-   16,
-   3,
-   "IMAGE"
+   23,
+   0,
+   "STRING"
   ],
   [
    47,
-   5,
+   2,
    0,
-   16,
-   4,
+   23,
+   1,
    "IMAGE"
   ],
   [
    48,
    6,
    0,
-   16,
+   23,
    5,
    "IMAGE"
   ],
@@ -3054,151 +3698,151 @@
    49,
    7,
    0,
-   16,
+   23,
    6,
    "IMAGE"
   ],
   [
    50,
-   8,
+   14,
    0,
-   16,
-   7,
-   "IMAGE"
-  ],
-  [
-   51,
-   9,
-   0,
-   17,
+   24,
    0,
    "STRING"
   ],
   [
-   52,
+   51,
    2,
    0,
-   17,
+   24,
    1,
+   "IMAGE"
+  ],
+  [
+   52,
+   6,
+   0,
+   24,
+   5,
    "IMAGE"
   ],
   [
    53,
-   3,
+   7,
    0,
-   17,
-   2,
+   24,
+   6,
    "IMAGE"
   ],
   [
    54,
-   4,
+   14,
    0,
-   17,
-   3,
-   "IMAGE"
-  ],
-  [
-   55,
-   5,
-   0,
-   17,
-   4,
-   "IMAGE"
-  ],
-  [
-   56,
-   6,
-   0,
-   17,
-   5,
-   "IMAGE"
-  ],
-  [
-   57,
-   7,
-   0,
-   17,
-   6,
-   "IMAGE"
-  ],
-  [
-   58,
-   8,
-   0,
-   17,
-   7,
-   "IMAGE"
-  ],
-  [
-   59,
-   9,
-   0,
-   18,
+   25,
    0,
    "STRING"
   ],
   [
-   60,
+   55,
+   4,
+   0,
+   25,
+   3,
+   "IMAGE"
+  ],
+  [
+   56,
+   7,
+   0,
+   25,
+   6,
+   "IMAGE"
+  ],
+  [
+   57,
+   8,
+   0,
+   25,
+   7,
+   "IMAGE"
+  ],
+  [
+   58,
+   14,
+   0,
+   26,
+   0,
+   "STRING"
+  ],
+  [
+   59,
    2,
    0,
-   18,
+   26,
    1,
    "IMAGE"
   ],
   [
-   61,
+   60,
    3,
    0,
-   18,
+   26,
    2,
    "IMAGE"
   ],
   [
-   62,
-   4,
+   61,
+   7,
    0,
-   18,
-   3,
+   26,
+   6,
+   "IMAGE"
+  ],
+  [
+   62,
+   8,
+   0,
+   26,
+   7,
    "IMAGE"
   ],
   [
    63,
-   5,
+   14,
    0,
-   18,
-   4,
-   "IMAGE"
+   27,
+   0,
+   "STRING"
   ],
   [
    64,
-   6,
+   3,
    0,
-   18,
-   5,
+   27,
+   2,
    "IMAGE"
   ],
   [
    65,
-   7,
+   9,
    0,
-   18,
-   6,
+   27,
+   8,
    "IMAGE"
   ],
   [
    66,
-   8,
-   0,
-   18,
    7,
+   0,
+   27,
+   6,
    "IMAGE"
   ],
   [
    67,
-   9,
+   14,
    0,
-   19,
+   28,
    0,
    "STRING"
   ],
@@ -3206,583 +3850,279 @@
    68,
    2,
    0,
-   19,
+   28,
    1,
    "IMAGE"
   ],
   [
    69,
-   3,
+   11,
    0,
-   19,
-   2,
+   28,
+   10,
    "IMAGE"
   ],
   [
    70,
-   4,
+   10,
    0,
-   19,
-   3,
+   28,
+   9,
    "IMAGE"
   ],
   [
    71,
-   5,
+   7,
    0,
-   19,
-   4,
+   28,
+   6,
    "IMAGE"
   ],
   [
    72,
-   6,
+   9,
    0,
-   19,
-   5,
+   28,
+   8,
    "IMAGE"
   ],
   [
    73,
-   7,
+   14,
    0,
-   19,
-   6,
-   "IMAGE"
+   29,
+   0,
+   "STRING"
   ],
   [
    74,
-   8,
+   3,
    0,
-   19,
-   7,
+   29,
+   2,
    "IMAGE"
   ],
   [
    75,
-   9,
+   11,
    0,
-   20,
-   0,
-   "STRING"
+   29,
+   10,
+   "IMAGE"
   ],
   [
    76,
    2,
    0,
-   20,
+   29,
    1,
    "IMAGE"
   ],
   [
    77,
-   3,
+   7,
    0,
-   20,
-   2,
+   29,
+   6,
    "IMAGE"
   ],
   [
    78,
-   4,
+   9,
    0,
-   20,
-   3,
+   29,
+   8,
    "IMAGE"
   ],
   [
    79,
-   5,
+   14,
    0,
-   20,
-   4,
-   "IMAGE"
+   30,
+   0,
+   "STRING"
   ],
   [
    80,
-   6,
+   2,
    0,
-   20,
-   5,
+   30,
+   1,
    "IMAGE"
   ],
   [
    81,
-   7,
+   3,
    0,
-   20,
-   6,
+   30,
+   2,
    "IMAGE"
   ],
   [
    82,
-   8,
+   11,
    0,
-   20,
-   7,
+   30,
+   10,
    "IMAGE"
   ],
   [
    83,
-   9,
+   7,
    0,
-   21,
-   0,
-   "STRING"
+   30,
+   6,
+   "IMAGE"
   ],
   [
    84,
-   2,
+   9,
    0,
-   21,
-   1,
+   30,
+   8,
    "IMAGE"
   ],
   [
    85,
-   3,
+   14,
    0,
-   21,
-   2,
-   "IMAGE"
+   31,
+   0,
+   "STRING"
   ],
   [
    86,
-   4,
+   16,
    0,
-   21,
-   3,
-   "IMAGE"
+   31,
+   1,
+   "VIDEO"
   ],
   [
    87,
-   5,
+   17,
    0,
-   21,
-   4,
-   "IMAGE"
+   31,
+   2,
+   "VIDEO"
   ],
   [
    88,
-   6,
+   18,
    0,
-   21,
-   5,
-   "IMAGE"
+   31,
+   3,
+   "VIDEO"
   ],
   [
    89,
-   7,
+   19,
    0,
-   21,
-   6,
-   "IMAGE"
+   31,
+   4,
+   "VIDEO"
   ],
   [
    90,
-   8,
+   20,
    0,
-   21,
-   7,
-   "IMAGE"
+   31,
+   5,
+   "VIDEO"
   ],
   [
    91,
-   9,
+   21,
    0,
-   22,
-   0,
-   "STRING"
+   31,
+   6,
+   "VIDEO"
   ],
   [
    92,
-   2,
-   0,
    22,
-   1,
-   "IMAGE"
+   0,
+   31,
+   7,
+   "VIDEO"
   ],
   [
    93,
-   3,
+   23,
    0,
-   22,
-   2,
-   "IMAGE"
+   31,
+   8,
+   "VIDEO"
   ],
   [
    94,
-   4,
+   24,
    0,
-   22,
-   3,
-   "IMAGE"
+   31,
+   9,
+   "VIDEO"
   ],
   [
    95,
-   5,
-   0,
-   22,
-   4,
-   "IMAGE"
-  ],
-  [
-   96,
-   6,
-   0,
-   22,
-   5,
-   "IMAGE"
-  ],
-  [
-   97,
-   7,
-   0,
-   22,
-   6,
-   "IMAGE"
-  ],
-  [
-   98,
-   8,
-   0,
-   22,
-   7,
-   "IMAGE"
-  ],
-  [
-   99,
-   9,
-   0,
-   23,
-   0,
-   "STRING"
-  ],
-  [
-   100,
-   2,
-   0,
-   23,
-   1,
-   "IMAGE"
-  ],
-  [
-   101,
-   3,
-   0,
-   23,
-   2,
-   "IMAGE"
-  ],
-  [
-   102,
-   4,
-   0,
-   23,
-   3,
-   "IMAGE"
-  ],
-  [
-   103,
-   5,
-   0,
-   23,
-   4,
-   "IMAGE"
-  ],
-  [
-   104,
-   6,
-   0,
-   23,
-   5,
-   "IMAGE"
-  ],
-  [
-   105,
-   7,
-   0,
-   23,
-   6,
-   "IMAGE"
-  ],
-  [
-   106,
-   8,
-   0,
-   23,
-   7,
-   "IMAGE"
-  ],
-  [
-   107,
-   9,
-   0,
-   24,
-   0,
-   "STRING"
-  ],
-  [
-   108,
-   2,
-   0,
-   24,
-   1,
-   "IMAGE"
-  ],
-  [
-   109,
-   3,
-   0,
-   24,
-   2,
-   "IMAGE"
-  ],
-  [
-   110,
-   4,
-   0,
-   24,
-   3,
-   "IMAGE"
-  ],
-  [
-   111,
-   5,
-   0,
-   24,
-   4,
-   "IMAGE"
-  ],
-  [
-   112,
-   6,
-   0,
-   24,
-   5,
-   "IMAGE"
-  ],
-  [
-   113,
-   7,
-   0,
-   24,
-   6,
-   "IMAGE"
-  ],
-  [
-   114,
-   8,
-   0,
-   24,
-   7,
-   "IMAGE"
-  ],
-  [
-   115,
-   9,
-   0,
    25,
    0,
-   "STRING"
-  ],
-  [
-   116,
-   2,
-   0,
-   25,
-   1,
-   "IMAGE"
-  ],
-  [
-   117,
-   3,
-   0,
-   25,
-   2,
-   "IMAGE"
-  ],
-  [
-   118,
-   4,
-   0,
-   25,
-   3,
-   "IMAGE"
-  ],
-  [
-   119,
-   5,
-   0,
-   25,
-   4,
-   "IMAGE"
-  ],
-  [
-   120,
-   6,
-   0,
-   25,
-   5,
-   "IMAGE"
-  ],
-  [
-   121,
-   7,
-   0,
-   25,
-   6,
-   "IMAGE"
-  ],
-  [
-   122,
-   8,
-   0,
-   25,
-   7,
-   "IMAGE"
-  ],
-  [
-   123,
-   9,
-   0,
-   26,
-   0,
-   "STRING"
-  ],
-  [
-   124,
-   11,
-   0,
-   26,
-   1,
-   "VIDEO"
-  ],
-  [
-   125,
-   12,
-   0,
-   26,
-   2,
-   "VIDEO"
-  ],
-  [
-   126,
-   13,
-   0,
-   26,
-   3,
-   "VIDEO"
-  ],
-  [
-   127,
-   14,
-   0,
-   26,
-   4,
-   "VIDEO"
-  ],
-  [
-   128,
-   15,
-   0,
-   26,
-   5,
-   "VIDEO"
-  ],
-  [
-   129,
-   16,
-   0,
-   26,
-   6,
-   "VIDEO"
-  ],
-  [
-   130,
-   17,
-   0,
-   26,
-   7,
-   "VIDEO"
-  ],
-  [
-   131,
-   18,
-   0,
-   26,
-   8,
-   "VIDEO"
-  ],
-  [
-   132,
-   19,
-   0,
-   26,
-   9,
-   "VIDEO"
-  ],
-  [
-   133,
-   20,
-   0,
-   26,
+   31,
    10,
    "VIDEO"
   ],
   [
-   134,
-   21,
-   0,
+   96,
    26,
+   0,
+   31,
    11,
    "VIDEO"
   ],
   [
-   135,
-   22,
+   97,
+   27,
    0,
-   26,
+   31,
    12,
    "VIDEO"
   ],
   [
-   136,
-   23,
+   98,
+   28,
    0,
-   26,
+   31,
    13,
    "VIDEO"
   ],
   [
-   137,
-   24,
+   99,
+   29,
    0,
-   26,
+   31,
    14,
    "VIDEO"
   ],
   [
-   138,
-   25,
+   100,
+   30,
    0,
-   26,
+   31,
    15,
    "VIDEO"
   ],
   [
-   139,
-   26,
+   101,
+   31,
    0,
-   27,
+   32,
    0,
    "VIDEO"
   ],
   [
-   140,
-   27,
+   102,
+   32,
    0,
-   28,
+   33,
    0,
    "VIDEO"
   ]
@@ -3853,13 +4193,26 @@
      "image"
     ],
     [
-     26,
+     9,
+     "image"
+    ],
+    [
+     10,
+     "image"
+    ],
+    [
+     11,
+     "image"
+    ],
+    [
+     31,
      "captions"
     ]
    ],
    "outputs": [
-    28,
-    10
+    33,
+    13,
+    15
    ]
   }
  },

@@ -31,9 +31,9 @@ def test_dearer_model_would_be_refused():
     assert total > rpd.HARD_CAP
 
 
-def test_cap_above_ten_is_refused_before_anything_runs():
+def test_cap_above_the_approved_cap_is_refused_before_anything_runs():
     with pytest.raises(SystemExit, match="above the approved"):
-        rpd.main(["--cap", "12"])
+        rpd.main(["--cap", str(rpd.HARD_CAP + 0.5)])   # never a value under the cap: that would dry-run for real
 
 
 def test_badge_check_and_ledger(tmp_path):

@@ -22,7 +22,10 @@
   "rival": "assets/rival.png",
   "regular": "assets/regular.png",
   "location": "assets/location.png",
-  "rival_store": "assets/rival_store.png",
+  "rival_store_open": "assets/rival_store_open.png",
+  "rival_store_closed": "assets/rival_store_closed.png",
+  "old_car": "assets/old_car.png",
+  "prize_car": "assets/prize_car.png",
   "hero1": "assets/hero1.png",
   "hero2": "assets/hero2.png"
  },

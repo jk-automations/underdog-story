@@ -11,7 +11,9 @@ const ids = (cls) => Object.entries(api).filter(([, n]) => n.class_type === cls)
 const draft = ids("UnderdogDraftScene").length > 0;
 const brief = ids("UnderdogBrief")[0];
 const sheets = ids("LoadImage");
-const ROLE = ["owner", "rival influencer", "loyal regular", "hero 1", "hero 2", "location", "rival storefront"];
+// One label per LoadImage, in underdog_core.ROLES order: reference sheets for everything (people, places, props, states).
+const ROLE = ["owner", "rival influencer", "loyal regular", "hero 1", "hero 2", "location", "rival store OPEN (grand opening)",
+  "rival store CLOSED (dark, FOR LEASE)", "old car (incl. broken down)", "prize car"];
 const mix = ids("UnderdogScoreMix")[0];
 // What a user sees in App Mode. Everything else stays locked in the graph.
 const INPUTS = [
@@ -20,7 +22,7 @@ const INPUTS = [
   ...(draft ? [] : [[brief, "tone"], [brief, "model"], [mix, "score"]]), [ids("UnderdogFinish")[0], "captions"],
 ];
 const film = ids("SaveVideo").find((k) => api[api[k].inputs.video[0]].class_type === "UnderdogScoreMix");   // not the per-scene saves
-const OUTPUTS = [film, ...ids("PreviewImage"), ids("PreviewAny")[0]];
+const OUTPUTS = [film, ...ids("PreviewImage"), ...ids("PreviewAny")];   // the sheet-check report and the script
 
 const browser = await chromium.launch();
 const page = await browser.newPage({ viewport: { width: 1440, height: 1300 } });

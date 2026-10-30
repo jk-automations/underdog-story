@@ -11,11 +11,11 @@ import underdog_core as core  # noqa: E402
 
 
 def sheet_status(preset):
-    """[(role, path, ok, why)] for every sheet the preset needs. A sheet is accepted when it opens as an image of at least 512 px."""
-    p = core.load_preset(preset)
+    """[(role, path, ok, why)] for every sheet the preset needs (people, places, props and each prop state).
+    A sheet is accepted when it opens as an image of at least 512 px."""
     rows = []
-    for role in core.ROLES:
-        src = (core.PRESETS_DIR / preset / p["assets"][role]).resolve()
+    for role, rel, _ in core.sheet_rows(preset):
+        src = (core.PRESETS_DIR / preset / rel).resolve()
         if not src.exists():
             rows.append((role, src, False, "missing")); continue
         try:
@@ -32,9 +32,12 @@ if __name__ == "__main__":
     ap.add_argument("--input-dir"); ap.add_argument("--preset", default=core.list_presets()[0]); ap.add_argument("--check", action="store_true")
     a = ap.parse_args()
     rows = sheet_status(a.preset)
+    use = core.sheet_use()
     for role, src, ok, why in rows:
-        print(f"{'ok ' if ok else 'NO '} {role:<12} {why:<14} {src}")
+        print(f"{'ok ' if ok else 'NO '} {role:<18} {why:<14} {src.name:<22} scenes {','.join(map(str, use[role]))}")
     bad = [r for r in rows if not r[2]]
+    if bad:
+        print(core.missing_sheets_message([r[0] for r in bad]))
     if a.check:
         sys.exit(1 if bad else 0)
     if bad:

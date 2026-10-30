@@ -66,5 +66,9 @@ await page.waitForTimeout(2500);
 await page.screenshot({ path: shot });
 const scriptShown = await page.evaluate(() => /SIX MONTHS LATER|Back of the line/.test(document.body.innerText));
 console.log("script text visible", scriptShown, "page errors", errors.length, JSON.stringify(errors.slice(0, 3)));
+// Reference sheets for everything: the free draft runs on placeholders and shows the missing-sheet list as a warning.
+const report = hist && hist[promptId] ? JSON.stringify(hist[promptId].outputs || {}) : "";
+const warned = /Missing reference sheets/.test(report);
+console.log("sheet warning in outputs", warned, "| shown on page", await page.evaluate(() => /Missing reference sheets/.test(document.body.innerText)));
 await browser.close();
-process.exit(status === "success" && films.length ? 0 : 1);
+process.exit(status === "success" && films.length && warned ? 0 : 1);
