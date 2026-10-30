@@ -1,10 +1,12 @@
 .comfy-base/
 .testdeps/
-presets/*/assets/
+presets/*/assets/*
+!presets/*/assets/README.md
 runs/
 __pycache__/
 .pytest_cache/
 *.mp4
+!docs/examples/*.mp4
 .env*
 node_modules/
 presets/*/out/

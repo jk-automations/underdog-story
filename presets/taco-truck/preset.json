@@ -1,0 +1,53 @@
+{
+ "name": "taco-truck",
+ "title": "The Last Taco",
+ "version": "v9",
+ "business_name": "La Esquina Tacos",
+ "business_type": "taco truck",
+ "cast": {
+  "owner": "the taco cook with a long black braid, a red bandana and a white apron",
+  "rival": "the influencer with slicked-back hair and mirrored sunglasses in a gold bomber jacket",
+  "regular": "the construction worker in an orange hi-vis vest and a dusty hard hat",
+  "hero1": "the muscular bearded man with wavy dark hair in a black t-shirt with thin green stripes",
+  "hero2": "the muscular man with short curly dark hair and a thin moustache in a plain black t-shirt"
+ },
+ "cast_names": [],
+ "assets": {
+  "owner": "assets/owner.png",
+  "rival": "assets/rival.png",
+  "regular": "assets/regular.png",
+  "location": "assets/location.png",
+  "rival_store": "assets/rival_store.png",
+  "hero1": "../small-business-rescue-bakery/assets/hero1.png",
+  "hero2": "../small-business-rescue-bakery/assets/hero2.png"
+ },
+ "slots": {
+  "noun": "taco truck",
+  "place": "the little turquoise taco truck on the corner, with string lights and two folding tables",
+  "counter": "the truck's order window",
+  "product": "taco",
+  "products": "tacos",
+  "rival_brand": "MEGATACO",
+  "rival_place": "gold-wrapped mega food hall with a giant spinning taco on the roof",
+  "gimmick": "free gold-leaf tacos",
+  "busy": "Customers line up at the order window while tortillas sizzle on the griddle and people eat at the folding tables.",
+  "unsold": "A stack of unused tortillas and a full pot of untouched salsa sit by the griddle.",
+  "count_line": "Six orders today. Six.",
+  "regular_line": "Best tacos in the city. Don't you ever change.",
+  "offer_item": "A single fresh taco sits on a paper plate on the order window ledge, in plain view.",
+  "offer_action": "slides the last taco across the window ledge toward them and says kindly",
+  "offer_line": "Last one. On the house.",
+  "taste_setup": "{hero1} holds the last taco, about to bite; {hero2} stands beside, curious.",
+  "taste": "bites the taco: a crunchy, juicy bite; a silent stunned beat, mouth closed while chewing",
+  "bad_idea_line": "Okay. Ideas. A dancing taco mascot? Gold-leaf tortillas?",
+  "good_idea_line": "...No. This should have a line around the block.",
+  "heirloom": "a worn stone molcajete bowl and a faded photo of a grandmother at a market stall",
+  "heirloom_line": "My grandmother's salsa. Same stone bowl, sixty years.",
+  "craft": "grinding salsa in the old stone bowl by hand",
+  "craft_line": "Don't look at us. Look at the salsa.",
+  "showdown_line": "Back of the line, amigo.",
+  "old_car": "the old dented white minivan",
+  "payoff": "a glossy sunflower-yellow original convertible with no badges, no emblems and no plate text",
+  "dm_business": "barbershop"
+ }
+}

@@ -1,0 +1,53 @@
+{
+ "name": "nail-salon",
+ "title": "The Last Appointment",
+ "version": "v9",
+ "business_name": "Steady Hands Nails",
+ "business_type": "nail salon",
+ "cast": {
+  "owner": "the nail artist with a short silver bob, cat-eye glasses and a lavender smock",
+  "rival": "the influencer with long platinum hair extensions in a pink sequin jacket",
+  "regular": "the retired schoolteacher with curly white hair in a bright floral blouse",
+  "hero1": "the muscular bearded man with wavy dark hair in a black t-shirt with thin green stripes",
+  "hero2": "the muscular man with short curly dark hair and a thin moustache in a plain black t-shirt"
+ },
+ "cast_names": [],
+ "assets": {
+  "owner": "assets/owner.png",
+  "rival": "assets/rival.png",
+  "regular": "assets/regular.png",
+  "location": "assets/location.png",
+  "rival_store": "assets/rival_store.png",
+  "hero1": "../small-business-rescue-bakery/assets/hero1.png",
+  "hero2": "../small-business-rescue-bakery/assets/hero2.png"
+ },
+ "slots": {
+  "noun": "nail salon",
+  "place": "the small family nail salon with pastel walls and shelves of polish bottles",
+  "counter": "the manicure table by the window",
+  "product": "manicure",
+  "products": "manicures",
+  "rival_brand": "MEGANAILS",
+  "rival_place": "glittering pink mega-spa with a giant diamond nail on the roof",
+  "gimmick": "free diamond-dust nails",
+  "busy": "Customers chat at the manicure tables while walls of colorful polish bottles glow.",
+  "unsold": "Rows of polish bottles stand untouched and every manicure chair is empty.",
+  "count_line": "Six clients today. Six.",
+  "regular_line": "Best manicures in town. Don't you ever change.",
+  "offer_item": "One manicure chair stands empty with a fresh towel and a bottle of red polish set out, in plain view.",
+  "offer_action": "pats the empty manicure chair and says kindly",
+  "offer_line": "Chair's open. First one's on the house.",
+  "taste_setup": "{hero1} sits at the manicure table admiring a fresh, perfect manicure; {hero2} stands beside, curious.",
+  "taste": "holds the freshly painted nails up to the light: a silent stunned beat, mouth closed",
+  "bad_idea_line": "Okay. Ideas. A dancing polish-bottle mascot? Diamond-dust Fridays?",
+  "good_idea_line": "...No. This should have a line around the block.",
+  "heirloom": "a framed photo of a mother at the first salon and a hand-painted sign from opening day",
+  "heirloom_line": "My mom's first salon. Thirty years of steady hands.",
+  "craft": "painting a tiny flower on a nail with a fine brush",
+  "craft_line": "Don't look at us. Look at the brush.",
+  "showdown_line": "Back of the line, sweetie.",
+  "old_car": "the old faded silver sedan",
+  "payoff": "a glossy pastel-pink original convertible with no badges, no emblems and no plate text",
+  "dm_business": "pizza shop"
+ }
+}

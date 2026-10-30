@@ -1,0 +1,3867 @@
+{
+ "id": "ecbb484d-1c08-4b6d-8aba-a28428a57237",
+ "revision": 0,
+ "last_node_id": 28,
+ "last_link_id": 140,
+ "nodes": [
+  {
+   "id": 1,
+   "type": "UnderdogBrief",
+   "pos": [
+    80,
+    110
+   ],
+   "size": [
+    400,
+    464
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Business name",
+     "localized_name": "business_name",
+     "name": "business_name",
+     "type": "STRING",
+     "widget": {
+      "name": "business_name"
+     },
+     "link": null
+    },
+    {
+     "label": "Business type (for Gemini)",
+     "localized_name": "business_type",
+     "name": "business_type",
+     "type": "STRING",
+     "widget": {
+      "name": "business_type"
+     },
+     "link": null
+    },
+    {
+     "label": "Owner: looks, no names",
+     "localized_name": "owner",
+     "name": "owner",
+     "type": "STRING",
+     "widget": {
+      "name": "owner"
+     },
+     "link": null
+    },
+    {
+     "label": "Rival influencer: looks",
+     "localized_name": "rival",
+     "name": "rival",
+     "type": "STRING",
+     "widget": {
+      "name": "rival"
+     },
+     "link": null
+    },
+    {
+     "label": "Loyal regular: looks",
+     "localized_name": "regular",
+     "name": "regular",
+     "type": "STRING",
+     "widget": {
+      "name": "regular"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "hero_1",
+     "name": "hero_1",
+     "type": "STRING",
+     "widget": {
+      "name": "hero_1"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "hero_2",
+     "name": "hero_2",
+     "type": "STRING",
+     "widget": {
+      "name": "hero_2"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "tone",
+     "name": "tone",
+     "type": "COMBO",
+     "widget": {
+      "name": "tone"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "model",
+     "name": "model",
+     "type": "COMBO",
+     "widget": {
+      "name": "model"
+     },
+     "link": null
+    },
+    {
+     "label": "Business",
+     "localized_name": "script_source",
+     "name": "script_source",
+     "type": "COMBO",
+     "widget": {
+      "name": "script_source"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "brief",
+     "name": "brief",
+     "type": "STRING",
+     "links": [
+      1
+     ]
+    },
+    {
+     "localized_name": "writer_prompt",
+     "name": "writer_prompt",
+     "type": "STRING",
+     "links": null
+    },
+    {
+     "localized_name": "veo_model",
+     "name": "veo_model",
+     "type": "COMBO",
+     "links": null
+    }
+   ],
+   "title": "Your story",
+   "properties": {
+    "Node name for S&R": "UnderdogBrief"
+   },
+   "widgets_values": [
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "",
+    "funny",
+    "veo-3.1-lite",
+    "preset: barber-shop"
+   ],
+   "widgets_values_named": {
+    "business_name": "",
+    "business_type": "",
+    "owner": "",
+    "rival": "",
+    "regular": "",
+    "hero_1": "",
+    "hero_2": "",
+    "tone": "funny",
+    "model": "veo-3.1-lite",
+    "script_source": "preset: barber-shop"
+   }
+  },
+  {
+   "id": 2,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    684
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 1,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Sheet: owner",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      4,
+      12,
+      20,
+      28,
+      36,
+      44,
+      52,
+      60,
+      68,
+      76,
+      84,
+      92,
+      100,
+      108,
+      116
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Sheet: owner",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "underdog_blank.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "underdog_blank.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 3,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    896
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 2,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Sheet: rival influencer",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      5,
+      13,
+      21,
+      29,
+      37,
+      45,
+      53,
+      61,
+      69,
+      77,
+      85,
+      93,
+      101,
+      109,
+      117
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Sheet: rival",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "underdog_blank.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "underdog_blank.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 4,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    1108
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 3,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Sheet: loyal regular",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      6,
+      14,
+      22,
+      30,
+      38,
+      46,
+      54,
+      62,
+      70,
+      78,
+      86,
+      94,
+      102,
+      110,
+      118
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Sheet: regular",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "underdog_blank.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "underdog_blank.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 5,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    1320
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 4,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Sheet: hero 1",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      7,
+      15,
+      23,
+      31,
+      39,
+      47,
+      55,
+      63,
+      71,
+      79,
+      87,
+      95,
+      103,
+      111,
+      119
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Sheet: hero1",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "underdog_blank.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "underdog_blank.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 6,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    1532
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 5,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Sheet: hero 2",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      8,
+      16,
+      24,
+      32,
+      40,
+      48,
+      56,
+      64,
+      72,
+      80,
+      88,
+      96,
+      104,
+      112,
+      120
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Sheet: hero2",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "underdog_blank.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "underdog_blank.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 7,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    1744
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 6,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Sheet: location",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      9,
+      17,
+      25,
+      33,
+      41,
+      49,
+      57,
+      65,
+      73,
+      81,
+      89,
+      97,
+      105,
+      113,
+      121
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Sheet: location",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "underdog_blank.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "underdog_blank.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 8,
+   "type": "LoadImage",
+   "pos": [
+    80,
+    1956
+   ],
+   "size": [
+    282.798828125,
+    102
+   ],
+   "flags": {},
+   "order": 7,
+   "mode": 0,
+   "inputs": [
+    {
+     "label": "Sheet: rival storefront",
+     "localized_name": "image",
+     "name": "image",
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "choose file to upload",
+     "name": "upload",
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "IMAGE",
+     "name": "IMAGE",
+     "type": "IMAGE",
+     "links": [
+      10,
+      18,
+      26,
+      34,
+      42,
+      50,
+      58,
+      66,
+      74,
+      82,
+      90,
+      98,
+      106,
+      114,
+      122
+     ]
+    },
+    {
+     "localized_name": "MASK",
+     "name": "MASK",
+     "type": "MASK",
+     "links": null
+    }
+   ],
+   "title": "Sheet: rival_store",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "underdog_blank.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "underdog_blank.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 9,
+   "type": "UnderdogScript",
+   "pos": [
+    560,
+    110
+   ],
+   "size": [
+    191.93125,
+    46
+   ],
+   "flags": {},
+   "order": 8,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "brief",
+     "name": "brief",
+     "type": "STRING",
+     "link": 1
+    },
+    {
+     "localized_name": "writer_reply",
+     "name": "writer_reply",
+     "shape": 7,
+     "type": "STRING",
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "script",
+     "name": "script",
+     "type": "STRING",
+     "links": [
+      3,
+      11,
+      19,
+      27,
+      35,
+      43,
+      51,
+      59,
+      67,
+      75,
+      83,
+      91,
+      99,
+      107,
+      115,
+      123
+     ]
+    },
+    {
+     "localized_name": "script_text",
+     "name": "script_text",
+     "type": "STRING",
+     "links": [
+      2
+     ]
+    }
+   ],
+   "title": "Script",
+   "properties": {
+    "Node name for S&R": "UnderdogScript"
+   }
+  },
+  {
+   "id": 10,
+   "type": "PreviewAny",
+   "pos": [
+    831.93125,
+    4730
+   ],
+   "size": [
+    210,
+    122
+   ],
+   "flags": {},
+   "order": 24,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "source",
+     "name": "source",
+     "type": "*",
+     "link": 2
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "STRING",
+     "name": "STRING",
+     "type": "STRING",
+     "links": null
+    }
+   ],
+   "title": "Script preview",
+   "properties": {
+    "Node name for S&R": "PreviewAny"
+   },
+   "widgets_values": [],
+   "widgets_values_named": {}
+  },
+  {
+   "id": 11,
+   "type": "UnderdogDraftScene",
+   "pos": [
+    831.93125,
+    110
+   ],
+   "size": [
+    322.99765625,
+    198
+   ],
+   "flags": {},
+   "order": 9,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "script",
+     "name": "script",
+     "type": "STRING",
+     "link": 3
+    },
+    {
+     "localized_name": "owner",
+     "name": "owner",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 4
+    },
+    {
+     "localized_name": "rival",
+     "name": "rival",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 5
+    },
+    {
+     "localized_name": "regular",
+     "name": "regular",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 6
+    },
+    {
+     "localized_name": "hero1",
+     "name": "hero1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 7
+    },
+    {
+     "localized_name": "hero2",
+     "name": "hero2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 8
+    },
+    {
+     "localized_name": "location",
+     "name": "location",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 9
+    },
+    {
+     "localized_name": "rival_store",
+     "name": "rival_store",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 10
+    },
+    {
+     "localized_name": "scene",
+     "name": "scene",
+     "type": "INT",
+     "widget": {
+      "name": "scene"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      124
+     ]
+    }
+   ],
+   "title": "Draft scene 1",
+   "properties": {
+    "Node name for S&R": "UnderdogDraftScene"
+   },
+   "widgets_values": [
+    1
+   ],
+   "widgets_values_named": {
+    "scene": 1
+   }
+  },
+  {
+   "id": 12,
+   "type": "UnderdogDraftScene",
+   "pos": [
+    831.93125,
+    418
+   ],
+   "size": [
+    322.99765625,
+    198
+   ],
+   "flags": {},
+   "order": 10,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "script",
+     "name": "script",
+     "type": "STRING",
+     "link": 11
+    },
+    {
+     "localized_name": "owner",
+     "name": "owner",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 12
+    },
+    {
+     "localized_name": "rival",
+     "name": "rival",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 13
+    },
+    {
+     "localized_name": "regular",
+     "name": "regular",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 14
+    },
+    {
+     "localized_name": "hero1",
+     "name": "hero1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 15
+    },
+    {
+     "localized_name": "hero2",
+     "name": "hero2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 16
+    },
+    {
+     "localized_name": "location",
+     "name": "location",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 17
+    },
+    {
+     "localized_name": "rival_store",
+     "name": "rival_store",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 18
+    },
+    {
+     "localized_name": "scene",
+     "name": "scene",
+     "type": "INT",
+     "widget": {
+      "name": "scene"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      125
+     ]
+    }
+   ],
+   "title": "Draft scene 2",
+   "properties": {
+    "Node name for S&R": "UnderdogDraftScene"
+   },
+   "widgets_values": [
+    2
+   ],
+   "widgets_values_named": {
+    "scene": 2
+   }
+  },
+  {
+   "id": 13,
+   "type": "UnderdogDraftScene",
+   "pos": [
+    831.93125,
+    726
+   ],
+   "size": [
+    322.99765625,
+    198
+   ],
+   "flags": {},
+   "order": 11,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "script",
+     "name": "script",
+     "type": "STRING",
+     "link": 19
+    },
+    {
+     "localized_name": "owner",
+     "name": "owner",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 20
+    },
+    {
+     "localized_name": "rival",
+     "name": "rival",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 21
+    },
+    {
+     "localized_name": "regular",
+     "name": "regular",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 22
+    },
+    {
+     "localized_name": "hero1",
+     "name": "hero1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 23
+    },
+    {
+     "localized_name": "hero2",
+     "name": "hero2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 24
+    },
+    {
+     "localized_name": "location",
+     "name": "location",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 25
+    },
+    {
+     "localized_name": "rival_store",
+     "name": "rival_store",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 26
+    },
+    {
+     "localized_name": "scene",
+     "name": "scene",
+     "type": "INT",
+     "widget": {
+      "name": "scene"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      126
+     ]
+    }
+   ],
+   "title": "Draft scene 3",
+   "properties": {
+    "Node name for S&R": "UnderdogDraftScene"
+   },
+   "widgets_values": [
+    3
+   ],
+   "widgets_values_named": {
+    "scene": 3
+   }
+  },
+  {
+   "id": 14,
+   "type": "UnderdogDraftScene",
+   "pos": [
+    831.93125,
+    1034
+   ],
+   "size": [
+    322.99765625,
+    198
+   ],
+   "flags": {},
+   "order": 12,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "script",
+     "name": "script",
+     "type": "STRING",
+     "link": 27
+    },
+    {
+     "localized_name": "owner",
+     "name": "owner",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 28
+    },
+    {
+     "localized_name": "rival",
+     "name": "rival",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 29
+    },
+    {
+     "localized_name": "regular",
+     "name": "regular",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 30
+    },
+    {
+     "localized_name": "hero1",
+     "name": "hero1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 31
+    },
+    {
+     "localized_name": "hero2",
+     "name": "hero2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 32
+    },
+    {
+     "localized_name": "location",
+     "name": "location",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 33
+    },
+    {
+     "localized_name": "rival_store",
+     "name": "rival_store",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 34
+    },
+    {
+     "localized_name": "scene",
+     "name": "scene",
+     "type": "INT",
+     "widget": {
+      "name": "scene"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      127
+     ]
+    }
+   ],
+   "title": "Draft scene 4",
+   "properties": {
+    "Node name for S&R": "UnderdogDraftScene"
+   },
+   "widgets_values": [
+    4
+   ],
+   "widgets_values_named": {
+    "scene": 4
+   }
+  },
+  {
+   "id": 15,
+   "type": "UnderdogDraftScene",
+   "pos": [
+    831.93125,
+    1342
+   ],
+   "size": [
+    322.99765625,
+    198
+   ],
+   "flags": {},
+   "order": 13,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "script",
+     "name": "script",
+     "type": "STRING",
+     "link": 35
+    },
+    {
+     "localized_name": "owner",
+     "name": "owner",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 36
+    },
+    {
+     "localized_name": "rival",
+     "name": "rival",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 37
+    },
+    {
+     "localized_name": "regular",
+     "name": "regular",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 38
+    },
+    {
+     "localized_name": "hero1",
+     "name": "hero1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 39
+    },
+    {
+     "localized_name": "hero2",
+     "name": "hero2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 40
+    },
+    {
+     "localized_name": "location",
+     "name": "location",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 41
+    },
+    {
+     "localized_name": "rival_store",
+     "name": "rival_store",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 42
+    },
+    {
+     "localized_name": "scene",
+     "name": "scene",
+     "type": "INT",
+     "widget": {
+      "name": "scene"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      128
+     ]
+    }
+   ],
+   "title": "Draft scene 5",
+   "properties": {
+    "Node name for S&R": "UnderdogDraftScene"
+   },
+   "widgets_values": [
+    5
+   ],
+   "widgets_values_named": {
+    "scene": 5
+   }
+  },
+  {
+   "id": 16,
+   "type": "UnderdogDraftScene",
+   "pos": [
+    831.93125,
+    1650
+   ],
+   "size": [
+    322.99765625,
+    198
+   ],
+   "flags": {},
+   "order": 14,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "script",
+     "name": "script",
+     "type": "STRING",
+     "link": 43
+    },
+    {
+     "localized_name": "owner",
+     "name": "owner",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 44
+    },
+    {
+     "localized_name": "rival",
+     "name": "rival",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 45
+    },
+    {
+     "localized_name": "regular",
+     "name": "regular",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 46
+    },
+    {
+     "localized_name": "hero1",
+     "name": "hero1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 47
+    },
+    {
+     "localized_name": "hero2",
+     "name": "hero2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 48
+    },
+    {
+     "localized_name": "location",
+     "name": "location",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 49
+    },
+    {
+     "localized_name": "rival_store",
+     "name": "rival_store",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 50
+    },
+    {
+     "localized_name": "scene",
+     "name": "scene",
+     "type": "INT",
+     "widget": {
+      "name": "scene"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      129
+     ]
+    }
+   ],
+   "title": "Draft scene 6",
+   "properties": {
+    "Node name for S&R": "UnderdogDraftScene"
+   },
+   "widgets_values": [
+    6
+   ],
+   "widgets_values_named": {
+    "scene": 6
+   }
+  },
+  {
+   "id": 17,
+   "type": "UnderdogDraftScene",
+   "pos": [
+    831.93125,
+    1958
+   ],
+   "size": [
+    322.99765625,
+    198
+   ],
+   "flags": {},
+   "order": 15,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "script",
+     "name": "script",
+     "type": "STRING",
+     "link": 51
+    },
+    {
+     "localized_name": "owner",
+     "name": "owner",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 52
+    },
+    {
+     "localized_name": "rival",
+     "name": "rival",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 53
+    },
+    {
+     "localized_name": "regular",
+     "name": "regular",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 54
+    },
+    {
+     "localized_name": "hero1",
+     "name": "hero1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 55
+    },
+    {
+     "localized_name": "hero2",
+     "name": "hero2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 56
+    },
+    {
+     "localized_name": "location",
+     "name": "location",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 57
+    },
+    {
+     "localized_name": "rival_store",
+     "name": "rival_store",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 58
+    },
+    {
+     "localized_name": "scene",
+     "name": "scene",
+     "type": "INT",
+     "widget": {
+      "name": "scene"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      130
+     ]
+    }
+   ],
+   "title": "Draft scene 7",
+   "properties": {
+    "Node name for S&R": "UnderdogDraftScene"
+   },
+   "widgets_values": [
+    7
+   ],
+   "widgets_values_named": {
+    "scene": 7
+   }
+  },
+  {
+   "id": 18,
+   "type": "UnderdogDraftScene",
+   "pos": [
+    831.93125,
+    2266
+   ],
+   "size": [
+    322.99765625,
+    198
+   ],
+   "flags": {},
+   "order": 16,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "script",
+     "name": "script",
+     "type": "STRING",
+     "link": 59
+    },
+    {
+     "localized_name": "owner",
+     "name": "owner",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 60
+    },
+    {
+     "localized_name": "rival",
+     "name": "rival",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 61
+    },
+    {
+     "localized_name": "regular",
+     "name": "regular",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 62
+    },
+    {
+     "localized_name": "hero1",
+     "name": "hero1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 63
+    },
+    {
+     "localized_name": "hero2",
+     "name": "hero2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 64
+    },
+    {
+     "localized_name": "location",
+     "name": "location",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 65
+    },
+    {
+     "localized_name": "rival_store",
+     "name": "rival_store",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 66
+    },
+    {
+     "localized_name": "scene",
+     "name": "scene",
+     "type": "INT",
+     "widget": {
+      "name": "scene"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      131
+     ]
+    }
+   ],
+   "title": "Draft scene 8",
+   "properties": {
+    "Node name for S&R": "UnderdogDraftScene"
+   },
+   "widgets_values": [
+    8
+   ],
+   "widgets_values_named": {
+    "scene": 8
+   }
+  },
+  {
+   "id": 19,
+   "type": "UnderdogDraftScene",
+   "pos": [
+    831.93125,
+    2574
+   ],
+   "size": [
+    322.99765625,
+    198
+   ],
+   "flags": {},
+   "order": 17,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "script",
+     "name": "script",
+     "type": "STRING",
+     "link": 67
+    },
+    {
+     "localized_name": "owner",
+     "name": "owner",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 68
+    },
+    {
+     "localized_name": "rival",
+     "name": "rival",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 69
+    },
+    {
+     "localized_name": "regular",
+     "name": "regular",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 70
+    },
+    {
+     "localized_name": "hero1",
+     "name": "hero1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 71
+    },
+    {
+     "localized_name": "hero2",
+     "name": "hero2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 72
+    },
+    {
+     "localized_name": "location",
+     "name": "location",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 73
+    },
+    {
+     "localized_name": "rival_store",
+     "name": "rival_store",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 74
+    },
+    {
+     "localized_name": "scene",
+     "name": "scene",
+     "type": "INT",
+     "widget": {
+      "name": "scene"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      132
+     ]
+    }
+   ],
+   "title": "Draft scene 9",
+   "properties": {
+    "Node name for S&R": "UnderdogDraftScene"
+   },
+   "widgets_values": [
+    9
+   ],
+   "widgets_values_named": {
+    "scene": 9
+   }
+  },
+  {
+   "id": 20,
+   "type": "UnderdogDraftScene",
+   "pos": [
+    831.93125,
+    2882
+   ],
+   "size": [
+    322.99765625,
+    198
+   ],
+   "flags": {},
+   "order": 18,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "script",
+     "name": "script",
+     "type": "STRING",
+     "link": 75
+    },
+    {
+     "localized_name": "owner",
+     "name": "owner",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 76
+    },
+    {
+     "localized_name": "rival",
+     "name": "rival",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 77
+    },
+    {
+     "localized_name": "regular",
+     "name": "regular",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 78
+    },
+    {
+     "localized_name": "hero1",
+     "name": "hero1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 79
+    },
+    {
+     "localized_name": "hero2",
+     "name": "hero2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 80
+    },
+    {
+     "localized_name": "location",
+     "name": "location",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 81
+    },
+    {
+     "localized_name": "rival_store",
+     "name": "rival_store",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 82
+    },
+    {
+     "localized_name": "scene",
+     "name": "scene",
+     "type": "INT",
+     "widget": {
+      "name": "scene"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      133
+     ]
+    }
+   ],
+   "title": "Draft scene 10",
+   "properties": {
+    "Node name for S&R": "UnderdogDraftScene"
+   },
+   "widgets_values": [
+    10
+   ],
+   "widgets_values_named": {
+    "scene": 10
+   }
+  },
+  {
+   "id": 21,
+   "type": "UnderdogDraftScene",
+   "pos": [
+    831.93125,
+    3190
+   ],
+   "size": [
+    322.99765625,
+    198
+   ],
+   "flags": {},
+   "order": 19,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "script",
+     "name": "script",
+     "type": "STRING",
+     "link": 83
+    },
+    {
+     "localized_name": "owner",
+     "name": "owner",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 84
+    },
+    {
+     "localized_name": "rival",
+     "name": "rival",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 85
+    },
+    {
+     "localized_name": "regular",
+     "name": "regular",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 86
+    },
+    {
+     "localized_name": "hero1",
+     "name": "hero1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 87
+    },
+    {
+     "localized_name": "hero2",
+     "name": "hero2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 88
+    },
+    {
+     "localized_name": "location",
+     "name": "location",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 89
+    },
+    {
+     "localized_name": "rival_store",
+     "name": "rival_store",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 90
+    },
+    {
+     "localized_name": "scene",
+     "name": "scene",
+     "type": "INT",
+     "widget": {
+      "name": "scene"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      134
+     ]
+    }
+   ],
+   "title": "Draft scene 11",
+   "properties": {
+    "Node name for S&R": "UnderdogDraftScene"
+   },
+   "widgets_values": [
+    11
+   ],
+   "widgets_values_named": {
+    "scene": 11
+   }
+  },
+  {
+   "id": 22,
+   "type": "UnderdogDraftScene",
+   "pos": [
+    831.93125,
+    3498
+   ],
+   "size": [
+    322.99765625,
+    198
+   ],
+   "flags": {},
+   "order": 20,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "script",
+     "name": "script",
+     "type": "STRING",
+     "link": 91
+    },
+    {
+     "localized_name": "owner",
+     "name": "owner",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 92
+    },
+    {
+     "localized_name": "rival",
+     "name": "rival",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 93
+    },
+    {
+     "localized_name": "regular",
+     "name": "regular",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 94
+    },
+    {
+     "localized_name": "hero1",
+     "name": "hero1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 95
+    },
+    {
+     "localized_name": "hero2",
+     "name": "hero2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 96
+    },
+    {
+     "localized_name": "location",
+     "name": "location",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 97
+    },
+    {
+     "localized_name": "rival_store",
+     "name": "rival_store",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 98
+    },
+    {
+     "localized_name": "scene",
+     "name": "scene",
+     "type": "INT",
+     "widget": {
+      "name": "scene"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      135
+     ]
+    }
+   ],
+   "title": "Draft scene 12",
+   "properties": {
+    "Node name for S&R": "UnderdogDraftScene"
+   },
+   "widgets_values": [
+    12
+   ],
+   "widgets_values_named": {
+    "scene": 12
+   }
+  },
+  {
+   "id": 23,
+   "type": "UnderdogDraftScene",
+   "pos": [
+    831.93125,
+    3806
+   ],
+   "size": [
+    322.99765625,
+    198
+   ],
+   "flags": {},
+   "order": 21,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "script",
+     "name": "script",
+     "type": "STRING",
+     "link": 99
+    },
+    {
+     "localized_name": "owner",
+     "name": "owner",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 100
+    },
+    {
+     "localized_name": "rival",
+     "name": "rival",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 101
+    },
+    {
+     "localized_name": "regular",
+     "name": "regular",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 102
+    },
+    {
+     "localized_name": "hero1",
+     "name": "hero1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 103
+    },
+    {
+     "localized_name": "hero2",
+     "name": "hero2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 104
+    },
+    {
+     "localized_name": "location",
+     "name": "location",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 105
+    },
+    {
+     "localized_name": "rival_store",
+     "name": "rival_store",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 106
+    },
+    {
+     "localized_name": "scene",
+     "name": "scene",
+     "type": "INT",
+     "widget": {
+      "name": "scene"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      136
+     ]
+    }
+   ],
+   "title": "Draft scene 13",
+   "properties": {
+    "Node name for S&R": "UnderdogDraftScene"
+   },
+   "widgets_values": [
+    13
+   ],
+   "widgets_values_named": {
+    "scene": 13
+   }
+  },
+  {
+   "id": 24,
+   "type": "UnderdogDraftScene",
+   "pos": [
+    831.93125,
+    4114
+   ],
+   "size": [
+    322.99765625,
+    198
+   ],
+   "flags": {},
+   "order": 22,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "script",
+     "name": "script",
+     "type": "STRING",
+     "link": 107
+    },
+    {
+     "localized_name": "owner",
+     "name": "owner",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 108
+    },
+    {
+     "localized_name": "rival",
+     "name": "rival",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 109
+    },
+    {
+     "localized_name": "regular",
+     "name": "regular",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 110
+    },
+    {
+     "localized_name": "hero1",
+     "name": "hero1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 111
+    },
+    {
+     "localized_name": "hero2",
+     "name": "hero2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 112
+    },
+    {
+     "localized_name": "location",
+     "name": "location",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 113
+    },
+    {
+     "localized_name": "rival_store",
+     "name": "rival_store",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 114
+    },
+    {
+     "localized_name": "scene",
+     "name": "scene",
+     "type": "INT",
+     "widget": {
+      "name": "scene"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      137
+     ]
+    }
+   ],
+   "title": "Draft scene 14",
+   "properties": {
+    "Node name for S&R": "UnderdogDraftScene"
+   },
+   "widgets_values": [
+    14
+   ],
+   "widgets_values_named": {
+    "scene": 14
+   }
+  },
+  {
+   "id": 25,
+   "type": "UnderdogDraftScene",
+   "pos": [
+    831.93125,
+    4422
+   ],
+   "size": [
+    322.99765625,
+    198
+   ],
+   "flags": {},
+   "order": 23,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "script",
+     "name": "script",
+     "type": "STRING",
+     "link": 115
+    },
+    {
+     "localized_name": "owner",
+     "name": "owner",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 116
+    },
+    {
+     "localized_name": "rival",
+     "name": "rival",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 117
+    },
+    {
+     "localized_name": "regular",
+     "name": "regular",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 118
+    },
+    {
+     "localized_name": "hero1",
+     "name": "hero1",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 119
+    },
+    {
+     "localized_name": "hero2",
+     "name": "hero2",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 120
+    },
+    {
+     "localized_name": "location",
+     "name": "location",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 121
+    },
+    {
+     "localized_name": "rival_store",
+     "name": "rival_store",
+     "shape": 7,
+     "type": "IMAGE",
+     "link": 122
+    },
+    {
+     "localized_name": "scene",
+     "name": "scene",
+     "type": "INT",
+     "widget": {
+      "name": "scene"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      138
+     ]
+    }
+   ],
+   "title": "Draft scene 15",
+   "properties": {
+    "Node name for S&R": "UnderdogDraftScene"
+   },
+   "widgets_values": [
+    15
+   ],
+   "widgets_values_named": {
+    "scene": 15
+   }
+  },
+  {
+   "id": 26,
+   "type": "UnderdogFinish",
+   "pos": [
+    1234.92890625,
+    110
+   ],
+   "size": [
+    271.2017578125,
+    406
+   ],
+   "flags": {},
+   "order": 25,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "script",
+     "name": "script",
+     "type": "STRING",
+     "link": 123
+    },
+    {
+     "localized_name": "scene_01",
+     "name": "scene_01",
+     "shape": 7,
+     "type": "VIDEO",
+     "link": 124
+    },
+    {
+     "localized_name": "scene_02",
+     "name": "scene_02",
+     "shape": 7,
+     "type": "VIDEO",
+     "link": 125
+    },
+    {
+     "localized_name": "scene_03",
+     "name": "scene_03",
+     "shape": 7,
+     "type": "VIDEO",
+     "link": 126
+    },
+    {
+     "localized_name": "scene_04",
+     "name": "scene_04",
+     "shape": 7,
+     "type": "VIDEO",
+     "link": 127
+    },
+    {
+     "localized_name": "scene_05",
+     "name": "scene_05",
+     "shape": 7,
+     "type": "VIDEO",
+     "link": 128
+    },
+    {
+     "localized_name": "scene_06",
+     "name": "scene_06",
+     "shape": 7,
+     "type": "VIDEO",
+     "link": 129
+    },
+    {
+     "localized_name": "scene_07",
+     "name": "scene_07",
+     "shape": 7,
+     "type": "VIDEO",
+     "link": 130
+    },
+    {
+     "localized_name": "scene_08",
+     "name": "scene_08",
+     "shape": 7,
+     "type": "VIDEO",
+     "link": 131
+    },
+    {
+     "localized_name": "scene_09",
+     "name": "scene_09",
+     "shape": 7,
+     "type": "VIDEO",
+     "link": 132
+    },
+    {
+     "localized_name": "scene_10",
+     "name": "scene_10",
+     "shape": 7,
+     "type": "VIDEO",
+     "link": 133
+    },
+    {
+     "localized_name": "scene_11",
+     "name": "scene_11",
+     "shape": 7,
+     "type": "VIDEO",
+     "link": 134
+    },
+    {
+     "localized_name": "scene_12",
+     "name": "scene_12",
+     "shape": 7,
+     "type": "VIDEO",
+     "link": 135
+    },
+    {
+     "localized_name": "scene_13",
+     "name": "scene_13",
+     "shape": 7,
+     "type": "VIDEO",
+     "link": 136
+    },
+    {
+     "localized_name": "scene_14",
+     "name": "scene_14",
+     "shape": 7,
+     "type": "VIDEO",
+     "link": 137
+    },
+    {
+     "localized_name": "scene_15",
+     "name": "scene_15",
+     "shape": 7,
+     "type": "VIDEO",
+     "link": 138
+    },
+    {
+     "label": "Burn in captions",
+     "localized_name": "captions",
+     "name": "captions",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "captions"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "ai_label",
+     "name": "ai_label",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "ai_label"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "credit",
+     "name": "credit",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "credit"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      139
+     ]
+    }
+   ],
+   "title": "Final cut",
+   "properties": {
+    "Node name for S&R": "UnderdogFinish"
+   },
+   "widgets_values": [
+    true,
+    true,
+    true
+   ],
+   "widgets_values_named": {
+    "captions": true,
+    "ai_label": true,
+    "credit": true
+   }
+  },
+  {
+   "id": 27,
+   "type": "UnderdogScoreMix",
+   "pos": [
+    1586.1306640624998,
+    110
+   ],
+   "size": [
+    279.19296875,
+    102
+   ],
+   "flags": {},
+   "order": 26,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "video",
+     "name": "video",
+     "type": "VIDEO",
+     "link": 139
+    },
+    {
+     "localized_name": "music",
+     "name": "music",
+     "shape": 7,
+     "type": "AUDIO",
+     "link": null
+    },
+    {
+     "localized_name": "score",
+     "name": "score",
+     "type": "BOOLEAN",
+     "widget": {
+      "name": "score"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "music_path",
+     "name": "music_path",
+     "type": "STRING",
+     "widget": {
+      "name": "music_path"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "VIDEO",
+     "name": "VIDEO",
+     "type": "VIDEO",
+     "links": [
+      140
+     ]
+    }
+   ],
+   "title": "Master",
+   "properties": {
+    "Node name for S&R": "UnderdogScoreMix"
+   },
+   "widgets_values": [
+    false,
+    ""
+   ],
+   "widgets_values_named": {
+    "score": false,
+    "music_path": ""
+   }
+  },
+  {
+   "id": 28,
+   "type": "SaveVideo",
+   "pos": [
+    1945.3236328125,
+    110
+   ],
+   "size": [
+    270,
+    106
+   ],
+   "flags": {},
+   "order": 27,
+   "mode": 0,
+   "inputs": [
+    {
+     "localized_name": "video",
+     "name": "video",
+     "type": "VIDEO",
+     "link": 140
+    },
+    {
+     "localized_name": "filename_prefix",
+     "name": "filename_prefix",
+     "type": "STRING",
+     "widget": {
+      "name": "filename_prefix"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "format",
+     "name": "format",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "format"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "codec",
+     "name": "format.codec",
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "format.codec"
+     },
+     "link": null
+    },
+    {
+     "localized_name": "codec",
+     "name": "codec",
+     "shape": 7,
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "codec"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "localized_name": "video",
+     "name": "video",
+     "type": "VIDEO",
+     "links": null
+    }
+   ],
+   "title": "Your film",
+   "properties": {},
+   "widgets_values": [
+    "underdog/draft",
+    "mp4",
+    "auto",
+    "auto"
+   ],
+   "widgets_values_named": {
+    "filename_prefix": "underdog/draft",
+    "format": "mp4",
+    "format.codec": "auto",
+    "codec": "auto"
+   }
+  }
+ ],
+ "links": [
+  [
+   1,
+   1,
+   0,
+   9,
+   0,
+   "STRING"
+  ],
+  [
+   2,
+   9,
+   1,
+   10,
+   0,
+   "STRING"
+  ],
+  [
+   3,
+   9,
+   0,
+   11,
+   0,
+   "STRING"
+  ],
+  [
+   4,
+   2,
+   0,
+   11,
+   1,
+   "IMAGE"
+  ],
+  [
+   5,
+   3,
+   0,
+   11,
+   2,
+   "IMAGE"
+  ],
+  [
+   6,
+   4,
+   0,
+   11,
+   3,
+   "IMAGE"
+  ],
+  [
+   7,
+   5,
+   0,
+   11,
+   4,
+   "IMAGE"
+  ],
+  [
+   8,
+   6,
+   0,
+   11,
+   5,
+   "IMAGE"
+  ],
+  [
+   9,
+   7,
+   0,
+   11,
+   6,
+   "IMAGE"
+  ],
+  [
+   10,
+   8,
+   0,
+   11,
+   7,
+   "IMAGE"
+  ],
+  [
+   11,
+   9,
+   0,
+   12,
+   0,
+   "STRING"
+  ],
+  [
+   12,
+   2,
+   0,
+   12,
+   1,
+   "IMAGE"
+  ],
+  [
+   13,
+   3,
+   0,
+   12,
+   2,
+   "IMAGE"
+  ],
+  [
+   14,
+   4,
+   0,
+   12,
+   3,
+   "IMAGE"
+  ],
+  [
+   15,
+   5,
+   0,
+   12,
+   4,
+   "IMAGE"
+  ],
+  [
+   16,
+   6,
+   0,
+   12,
+   5,
+   "IMAGE"
+  ],
+  [
+   17,
+   7,
+   0,
+   12,
+   6,
+   "IMAGE"
+  ],
+  [
+   18,
+   8,
+   0,
+   12,
+   7,
+   "IMAGE"
+  ],
+  [
+   19,
+   9,
+   0,
+   13,
+   0,
+   "STRING"
+  ],
+  [
+   20,
+   2,
+   0,
+   13,
+   1,
+   "IMAGE"
+  ],
+  [
+   21,
+   3,
+   0,
+   13,
+   2,
+   "IMAGE"
+  ],
+  [
+   22,
+   4,
+   0,
+   13,
+   3,
+   "IMAGE"
+  ],
+  [
+   23,
+   5,
+   0,
+   13,
+   4,
+   "IMAGE"
+  ],
+  [
+   24,
+   6,
+   0,
+   13,
+   5,
+   "IMAGE"
+  ],
+  [
+   25,
+   7,
+   0,
+   13,
+   6,
+   "IMAGE"
+  ],
+  [
+   26,
+   8,
+   0,
+   13,
+   7,
+   "IMAGE"
+  ],
+  [
+   27,
+   9,
+   0,
+   14,
+   0,
+   "STRING"
+  ],
+  [
+   28,
+   2,
+   0,
+   14,
+   1,
+   "IMAGE"
+  ],
+  [
+   29,
+   3,
+   0,
+   14,
+   2,
+   "IMAGE"
+  ],
+  [
+   30,
+   4,
+   0,
+   14,
+   3,
+   "IMAGE"
+  ],
+  [
+   31,
+   5,
+   0,
+   14,
+   4,
+   "IMAGE"
+  ],
+  [
+   32,
+   6,
+   0,
+   14,
+   5,
+   "IMAGE"
+  ],
+  [
+   33,
+   7,
+   0,
+   14,
+   6,
+   "IMAGE"
+  ],
+  [
+   34,
+   8,
+   0,
+   14,
+   7,
+   "IMAGE"
+  ],
+  [
+   35,
+   9,
+   0,
+   15,
+   0,
+   "STRING"
+  ],
+  [
+   36,
+   2,
+   0,
+   15,
+   1,
+   "IMAGE"
+  ],
+  [
+   37,
+   3,
+   0,
+   15,
+   2,
+   "IMAGE"
+  ],
+  [
+   38,
+   4,
+   0,
+   15,
+   3,
+   "IMAGE"
+  ],
+  [
+   39,
+   5,
+   0,
+   15,
+   4,
+   "IMAGE"
+  ],
+  [
+   40,
+   6,
+   0,
+   15,
+   5,
+   "IMAGE"
+  ],
+  [
+   41,
+   7,
+   0,
+   15,
+   6,
+   "IMAGE"
+  ],
+  [
+   42,
+   8,
+   0,
+   15,
+   7,
+   "IMAGE"
+  ],
+  [
+   43,
+   9,
+   0,
+   16,
+   0,
+   "STRING"
+  ],
+  [
+   44,
+   2,
+   0,
+   16,
+   1,
+   "IMAGE"
+  ],
+  [
+   45,
+   3,
+   0,
+   16,
+   2,
+   "IMAGE"
+  ],
+  [
+   46,
+   4,
+   0,
+   16,
+   3,
+   "IMAGE"
+  ],
+  [
+   47,
+   5,
+   0,
+   16,
+   4,
+   "IMAGE"
+  ],
+  [
+   48,
+   6,
+   0,
+   16,
+   5,
+   "IMAGE"
+  ],
+  [
+   49,
+   7,
+   0,
+   16,
+   6,
+   "IMAGE"
+  ],
+  [
+   50,
+   8,
+   0,
+   16,
+   7,
+   "IMAGE"
+  ],
+  [
+   51,
+   9,
+   0,
+   17,
+   0,
+   "STRING"
+  ],
+  [
+   52,
+   2,
+   0,
+   17,
+   1,
+   "IMAGE"
+  ],
+  [
+   53,
+   3,
+   0,
+   17,
+   2,
+   "IMAGE"
+  ],
+  [
+   54,
+   4,
+   0,
+   17,
+   3,
+   "IMAGE"
+  ],
+  [
+   55,
+   5,
+   0,
+   17,
+   4,
+   "IMAGE"
+  ],
+  [
+   56,
+   6,
+   0,
+   17,
+   5,
+   "IMAGE"
+  ],
+  [
+   57,
+   7,
+   0,
+   17,
+   6,
+   "IMAGE"
+  ],
+  [
+   58,
+   8,
+   0,
+   17,
+   7,
+   "IMAGE"
+  ],
+  [
+   59,
+   9,
+   0,
+   18,
+   0,
+   "STRING"
+  ],
+  [
+   60,
+   2,
+   0,
+   18,
+   1,
+   "IMAGE"
+  ],
+  [
+   61,
+   3,
+   0,
+   18,
+   2,
+   "IMAGE"
+  ],
+  [
+   62,
+   4,
+   0,
+   18,
+   3,
+   "IMAGE"
+  ],
+  [
+   63,
+   5,
+   0,
+   18,
+   4,
+   "IMAGE"
+  ],
+  [
+   64,
+   6,
+   0,
+   18,
+   5,
+   "IMAGE"
+  ],
+  [
+   65,
+   7,
+   0,
+   18,
+   6,
+   "IMAGE"
+  ],
+  [
+   66,
+   8,
+   0,
+   18,
+   7,
+   "IMAGE"
+  ],
+  [
+   67,
+   9,
+   0,
+   19,
+   0,
+   "STRING"
+  ],
+  [
+   68,
+   2,
+   0,
+   19,
+   1,
+   "IMAGE"
+  ],
+  [
+   69,
+   3,
+   0,
+   19,
+   2,
+   "IMAGE"
+  ],
+  [
+   70,
+   4,
+   0,
+   19,
+   3,
+   "IMAGE"
+  ],
+  [
+   71,
+   5,
+   0,
+   19,
+   4,
+   "IMAGE"
+  ],
+  [
+   72,
+   6,
+   0,
+   19,
+   5,
+   "IMAGE"
+  ],
+  [
+   73,
+   7,
+   0,
+   19,
+   6,
+   "IMAGE"
+  ],
+  [
+   74,
+   8,
+   0,
+   19,
+   7,
+   "IMAGE"
+  ],
+  [
+   75,
+   9,
+   0,
+   20,
+   0,
+   "STRING"
+  ],
+  [
+   76,
+   2,
+   0,
+   20,
+   1,
+   "IMAGE"
+  ],
+  [
+   77,
+   3,
+   0,
+   20,
+   2,
+   "IMAGE"
+  ],
+  [
+   78,
+   4,
+   0,
+   20,
+   3,
+   "IMAGE"
+  ],
+  [
+   79,
+   5,
+   0,
+   20,
+   4,
+   "IMAGE"
+  ],
+  [
+   80,
+   6,
+   0,
+   20,
+   5,
+   "IMAGE"
+  ],
+  [
+   81,
+   7,
+   0,
+   20,
+   6,
+   "IMAGE"
+  ],
+  [
+   82,
+   8,
+   0,
+   20,
+   7,
+   "IMAGE"
+  ],
+  [
+   83,
+   9,
+   0,
+   21,
+   0,
+   "STRING"
+  ],
+  [
+   84,
+   2,
+   0,
+   21,
+   1,
+   "IMAGE"
+  ],
+  [
+   85,
+   3,
+   0,
+   21,
+   2,
+   "IMAGE"
+  ],
+  [
+   86,
+   4,
+   0,
+   21,
+   3,
+   "IMAGE"
+  ],
+  [
+   87,
+   5,
+   0,
+   21,
+   4,
+   "IMAGE"
+  ],
+  [
+   88,
+   6,
+   0,
+   21,
+   5,
+   "IMAGE"
+  ],
+  [
+   89,
+   7,
+   0,
+   21,
+   6,
+   "IMAGE"
+  ],
+  [
+   90,
+   8,
+   0,
+   21,
+   7,
+   "IMAGE"
+  ],
+  [
+   91,
+   9,
+   0,
+   22,
+   0,
+   "STRING"
+  ],
+  [
+   92,
+   2,
+   0,
+   22,
+   1,
+   "IMAGE"
+  ],
+  [
+   93,
+   3,
+   0,
+   22,
+   2,
+   "IMAGE"
+  ],
+  [
+   94,
+   4,
+   0,
+   22,
+   3,
+   "IMAGE"
+  ],
+  [
+   95,
+   5,
+   0,
+   22,
+   4,
+   "IMAGE"
+  ],
+  [
+   96,
+   6,
+   0,
+   22,
+   5,
+   "IMAGE"
+  ],
+  [
+   97,
+   7,
+   0,
+   22,
+   6,
+   "IMAGE"
+  ],
+  [
+   98,
+   8,
+   0,
+   22,
+   7,
+   "IMAGE"
+  ],
+  [
+   99,
+   9,
+   0,
+   23,
+   0,
+   "STRING"
+  ],
+  [
+   100,
+   2,
+   0,
+   23,
+   1,
+   "IMAGE"
+  ],
+  [
+   101,
+   3,
+   0,
+   23,
+   2,
+   "IMAGE"
+  ],
+  [
+   102,
+   4,
+   0,
+   23,
+   3,
+   "IMAGE"
+  ],
+  [
+   103,
+   5,
+   0,
+   23,
+   4,
+   "IMAGE"
+  ],
+  [
+   104,
+   6,
+   0,
+   23,
+   5,
+   "IMAGE"
+  ],
+  [
+   105,
+   7,
+   0,
+   23,
+   6,
+   "IMAGE"
+  ],
+  [
+   106,
+   8,
+   0,
+   23,
+   7,
+   "IMAGE"
+  ],
+  [
+   107,
+   9,
+   0,
+   24,
+   0,
+   "STRING"
+  ],
+  [
+   108,
+   2,
+   0,
+   24,
+   1,
+   "IMAGE"
+  ],
+  [
+   109,
+   3,
+   0,
+   24,
+   2,
+   "IMAGE"
+  ],
+  [
+   110,
+   4,
+   0,
+   24,
+   3,
+   "IMAGE"
+  ],
+  [
+   111,
+   5,
+   0,
+   24,
+   4,
+   "IMAGE"
+  ],
+  [
+   112,
+   6,
+   0,
+   24,
+   5,
+   "IMAGE"
+  ],
+  [
+   113,
+   7,
+   0,
+   24,
+   6,
+   "IMAGE"
+  ],
+  [
+   114,
+   8,
+   0,
+   24,
+   7,
+   "IMAGE"
+  ],
+  [
+   115,
+   9,
+   0,
+   25,
+   0,
+   "STRING"
+  ],
+  [
+   116,
+   2,
+   0,
+   25,
+   1,
+   "IMAGE"
+  ],
+  [
+   117,
+   3,
+   0,
+   25,
+   2,
+   "IMAGE"
+  ],
+  [
+   118,
+   4,
+   0,
+   25,
+   3,
+   "IMAGE"
+  ],
+  [
+   119,
+   5,
+   0,
+   25,
+   4,
+   "IMAGE"
+  ],
+  [
+   120,
+   6,
+   0,
+   25,
+   5,
+   "IMAGE"
+  ],
+  [
+   121,
+   7,
+   0,
+   25,
+   6,
+   "IMAGE"
+  ],
+  [
+   122,
+   8,
+   0,
+   25,
+   7,
+   "IMAGE"
+  ],
+  [
+   123,
+   9,
+   0,
+   26,
+   0,
+   "STRING"
+  ],
+  [
+   124,
+   11,
+   0,
+   26,
+   1,
+   "VIDEO"
+  ],
+  [
+   125,
+   12,
+   0,
+   26,
+   2,
+   "VIDEO"
+  ],
+  [
+   126,
+   13,
+   0,
+   26,
+   3,
+   "VIDEO"
+  ],
+  [
+   127,
+   14,
+   0,
+   26,
+   4,
+   "VIDEO"
+  ],
+  [
+   128,
+   15,
+   0,
+   26,
+   5,
+   "VIDEO"
+  ],
+  [
+   129,
+   16,
+   0,
+   26,
+   6,
+   "VIDEO"
+  ],
+  [
+   130,
+   17,
+   0,
+   26,
+   7,
+   "VIDEO"
+  ],
+  [
+   131,
+   18,
+   0,
+   26,
+   8,
+   "VIDEO"
+  ],
+  [
+   132,
+   19,
+   0,
+   26,
+   9,
+   "VIDEO"
+  ],
+  [
+   133,
+   20,
+   0,
+   26,
+   10,
+   "VIDEO"
+  ],
+  [
+   134,
+   21,
+   0,
+   26,
+   11,
+   "VIDEO"
+  ],
+  [
+   135,
+   22,
+   0,
+   26,
+   12,
+   "VIDEO"
+  ],
+  [
+   136,
+   23,
+   0,
+   26,
+   13,
+   "VIDEO"
+  ],
+  [
+   137,
+   24,
+   0,
+   26,
+   14,
+   "VIDEO"
+  ],
+  [
+   138,
+   25,
+   0,
+   26,
+   15,
+   "VIDEO"
+  ],
+  [
+   139,
+   26,
+   0,
+   27,
+   0,
+   "VIDEO"
+  ],
+  [
+   140,
+   27,
+   0,
+   28,
+   0,
+   "VIDEO"
+  ]
+ ],
+ "groups": [],
+ "config": {},
+ "extra": {
+  "ds": {
+   "scale": 0.9,
+   "offset": [
+    416,
+    110
+   ]
+  },
+  "linearMode": true,
+  "linearData": {
+   "inputs": [
+    [
+     1,
+     "script_source"
+    ],
+    [
+     1,
+     "business_name"
+    ],
+    [
+     1,
+     "business_type"
+    ],
+    [
+     1,
+     "owner"
+    ],
+    [
+     1,
+     "rival"
+    ],
+    [
+     1,
+     "regular"
+    ],
+    [
+     2,
+     "image"
+    ],
+    [
+     3,
+     "image"
+    ],
+    [
+     4,
+     "image"
+    ],
+    [
+     5,
+     "image"
+    ],
+    [
+     6,
+     "image"
+    ],
+    [
+     7,
+     "image"
+    ],
+    [
+     8,
+     "image"
+    ],
+    [
+     26,
+     "captions"
+    ]
+   ],
+   "outputs": [
+    28,
+    10
+   ]
+  }
+ },
+ "version": 0.4
+}

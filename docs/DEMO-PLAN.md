@@ -1,42 +1,34 @@
-# Demo plan: the app makes the film
+# Demo plan: one form, any business (under 2 minutes)
 
-Goal: one short screen recording where a viewer watches Underdog Story turn a form into a finished, funny vertical
-film. Flow (Google's web tool) is where we iterate shots; this app is the reproducible, shareable version, so the demo
-shows the *app* doing every step.
+Goal: a viewer sees Underdog Story turn a short form into a finished, funny vertical episode, for a barber shop, and
+understands it works for any small business. The bakery v9 cut (drafted in Google Flow with the same arc) shows how
+far the arc carries.
 
-## Before the paid run (no money spent)
+## Before recording (no money spent)
 
-1. `python3 -m pytest` passes (script rules, final cut on test clips, nodes with the partner nodes mocked).
-2. `tools/check_graph.py workflows/underdog-story-api.json` against the ComfyUI that will run the demo: OK.
-3. Put the six sheets in `presets/small-business-rescue-bakery/assets/` (git-ignored: fictional characters, or people
-   who gave written permission), then `python3 tools/stage_preset.py --input-dir <ComfyUI>/input`.
-4. Founder approval for the spend: about **$6** (Veo 3.1 lite 12 × 8 s ≈ $4.80, Nano Banana 2 12 × 1K ≈ $1), one run,
-   plus a cap of about $3 for re-running failed scenes.
-5. Sign in to the Comfy account (or set the API key) in that ComfyUI. Check the credit balance.
+1. `python3 -m pytest` passes; `tools/check_graph.py` against the ComfyUI that will run the demo prints OK.
+2. The five barber sheets are in `presets/barber-shop/assets/` (`python3 tools/stage_preset.py --preset barber-shop --check`
+   prints `ok` for all seven roles).
+3. `python3 tools/run_paid_demo.py` (dry run) prints the estimate, about **$7.59**, under the $10 cap.
+4. Founder runs `python3 tools/run_paid_demo.py --confirm-spend` himself. The ledger row is written before anything is
+   queued. Output: `runs/paid/barber-shop/underdog-barber-demo.mp4`, `keyframes.png`, `receipt.json`.
 
-## The run (recorded)
-
-1. Open `workflows/underdog-story.json` (App Mode). Pick the six staged sheets, keep `veo-3.1-lite`, `funny`, the preset.
-2. Start the screen recording, then press **Run**.
-3. The recording shows, in order: the script text (the 12 beats with the jokes), the keyframe sheet filling in, the
-   job queue as the 12 Veo clips render, and the finished MP4 playing in the app's output panel.
-4. If a scene is blocked or breaks character, fix that scene's sheet or line and press Run again: fixed seeds mean only
-   that scene is paid for again.
-
-## The demo video (about 45 s, 9:16 and 16:9)
+## The video (about 110 s, 9:16 and 16:9)
 
 | Time | Shows |
 |---|---|
-| 0–3 s | Hook: the end of the film (the supercar beat), then "made with one ComfyUI app" |
-| 3–12 s | The form: business name, cast lines, sheets dropped in, Run |
-| 12–20 s | Sped-up progress: script text → keyframe sheet → clips arriving |
-| 20–40 s | The film's best moments with captions: the threat, the low point, the viral ad, the showdown |
-| 40–45 s | End card + "Underdog Story for ComfyUI · Apache-2.0" |
+| 0–4 s | Hook: the barber's "Hmm. No." and the car pulling away, then "one ComfyUI app, any small business" |
+| 4–20 s | The form in App Mode: Business = barber shop, sheets dropped in, Sonilo score on, **Run** |
+| 20–32 s | Sped up: the script text (15 beats, SIX MONTHS LATER), the keyframe sheet filling in, clips arriving |
+| 32–70 s | Barber highlights: MEGAFADE's grand opening, the pickup dying, "My father's razor. Fifty years in this chair.", the view counter, the line back with MEGAFADE locked in frame, "Back of the line, kid." |
+| 70–95 s | "Same arc, any business": the bakery v9 (Flow draft) highlights, MEGABUN, "Abuela's recipe. Forty years.", the red car, the episode 2 DM |
+| 95–110 s | The form again: business type "dog groomer" → the $0 draft plays → end card "Underdog Story for ComfyUI · Apache-2.0" |
 
-Post the full film next to it so viewers can judge it whole. Both carry the AI-generated label.
+Label the bakery part on screen: "drafted in Google Flow with the same arc". Both films carry the AI-generated label.
+Post the full barber film next to the demo so viewers can judge it whole.
 
 ## Proof to keep
 
-- The run's MP4 from `output/underdog/`, the keyframe sheet, the script text.
-- ComfyUI's history JSON for the run (`/history`), which shows every partner call and the exact prompts.
-- The credit charge for the run, to back the cost line in the README.
+- The barber MP4, the keyframe sheet, the script text, `receipt.json` and the ledger rows.
+- ComfyUI's `/history` JSON for the run (every partner call and its exact prompt).
+- The credit charge, to back the cost table in the README.

@@ -1,28 +1,41 @@
-"""The shipped App Mode workflow (made by tools/make_app.mjs in the real ComfyUI frontend)."""
+"""The shipped App Mode workflows (made by tools/make_app.mjs in the real ComfyUI frontend)."""
 import json
 from pathlib import Path
+import pytest
 
-WF = json.loads((Path(__file__).resolve().parent.parent / "workflows" / "underdog-story.json").read_text())
-NODES = {n["id"]: n for n in WF["nodes"]}
-
-
-def test_opens_in_app_mode_with_the_form():
-    assert WF["extra"]["linearMode"] is True
-    ins = WF["extra"]["linearData"]["inputs"]
-    names = [(NODES[i]["type"], w) for i, w in ins]
-    assert names.count(("LoadImage", "image")) == 6
-    for w in ("business_name", "business_type", "owner", "rival", "partner", "hero_1", "hero_2", "tone", "model", "script_source"):
-        assert ("UnderdogBrief", w) in names
-    outs = sorted(NODES[i]["type"] for i in WF["extra"]["linearData"]["outputs"])
-    assert outs == ["PreviewAny", "PreviewImage", "SaveVideo"]
-    assert NODES[next(i for i in WF["extra"]["linearData"]["outputs"] if NODES[i]["type"] == "SaveVideo")]["title"] == "Your film"
+WF_DIR = Path(__file__).resolve().parent.parent / "workflows"
+PARTNER = {"GeminiNode", "GeminiNanoBanana2", "Veo3VideoGenerationNode", "SoniloVideoToMusic"}
 
 
-def test_partner_nodes_and_no_random_seeds():
-    types = [n["type"] for n in WF["nodes"]]
-    assert types.count("Veo3VideoGenerationNode") == 12 and types.count("GeminiNanoBanana2") == 12 and types.count("GeminiNode") == 1
-    assert not any("randomize" in (n.get("widgets_values") or []) for n in WF["nodes"]), "a re-run must reuse paid steps"
-    for n in WF["nodes"]:
-        if n["type"] == "Veo3VideoGenerationNode":
-            model = next(i for i in n["inputs"] if i["name"] == "model")
-            assert model["link"] is not None, "Veo model follows the app's model choice"
+def load(name):
+    wf = json.loads((WF_DIR / name).read_text())
+    return wf, {n["id"]: n for n in wf["nodes"]}
+
+
+@pytest.mark.parametrize("name", ["underdog-story.json", "underdog-story-draft.json"])
+def test_opens_in_app_mode_with_the_form(name):
+    wf, nodes = load(name)
+    assert wf["extra"]["linearMode"] is True
+    ins = [(nodes[i]["type"], w) for i, w in wf["extra"]["linearData"]["inputs"]]
+    assert ins.count(("LoadImage", "image")) == 7
+    for w in ("script_source", "business_name", "business_type", "owner", "rival", "regular"):
+        assert ("UnderdogBrief", w) in ins
+    film = [i for i in wf["extra"]["linearData"]["outputs"] if nodes[i]["type"] == "SaveVideo"]
+    assert len(film) == 1 and nodes[film[0]]["title"] == "Your film"
+    assert "PreviewAny" in [nodes[i]["type"] for i in wf["extra"]["linearData"]["outputs"]]
+    assert not any("randomize" in (n.get("widgets_values") or []) for n in wf["nodes"]), "a re-run must reuse paid steps"
+
+
+def test_full_app_uses_the_partner_nodes():
+    wf, nodes = load("underdog-story.json")
+    types = [n["type"] for n in wf["nodes"]]
+    assert types.count("Veo3VideoGenerationNode") == 15 and types.count("GeminiNanoBanana2") == 15
+    assert types.count("GeminiNode") == 1 and types.count("SoniloVideoToMusic") == 1
+    ins = [(nodes[i]["type"], w) for i, w in wf["extra"]["linearData"]["inputs"]]
+    assert ("UnderdogScoreMix", "score") in ins and ("UnderdogBrief", "model") in ins
+
+
+def test_draft_app_costs_nothing():
+    wf, _ = load("underdog-story-draft.json")
+    types = {n["type"] for n in wf["nodes"]}
+    assert not types & PARTNER and "UnderdogDraftScene" in types

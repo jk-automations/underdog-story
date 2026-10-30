@@ -1,13 +1,14 @@
 {
  "name": "small-business-rescue-bakery",
  "title": "The Last Croissant",
- "version": "v6",
+ "version": "v9",
  "business_name": "Abuela's Bakery",
  "business_type": "family bakery",
+ "note": "The founder-approved v9 story. Its rough cut was drafted in Google Flow with the same arc (docs/examples).",
  "cast": {
   "owner": "the baker in round glasses and a yellow headscarf",
   "rival": "the blond influencer in a gold puffer vest",
-  "partner": "the tired man with short wavy brown hair and light stubble in a navy delivery jacket",
+  "regular": "the cheerful old man in a flat cap and a green cardigan",
   "hero1": "the muscular bearded man with wavy dark hair in a black t-shirt with thin green stripes",
   "hero2": "the muscular man with short curly dark hair and a thin moustache in a plain black t-shirt"
  },
@@ -19,304 +20,41 @@
  "assets": {
   "owner": "assets/owner.png",
   "rival": "assets/rival.png",
-  "partner": "assets/partner.png",
+  "regular": "assets/regular.png",
+  "location": "assets/location.png",
+  "rival_store": "assets/rival_store.png",
   "hero1": "assets/hero1.png",
-  "hero2": "assets/hero2.png",
-  "location": "assets/location.png"
+  "hero2": "assets/hero2.png"
  },
- "scenes": [
-  {
-   "beat": 1,
-   "keyframe": "Early morning, Inside the small cozy bakery from the location image: {owner} is always screen-left behind the counter, visitors screen-right. A single golden croissant sits alone in the empty glass display case in the foreground, beside a small hand-lettered card that reads exactly \"CLOSING SUNDAY\". A gold flyer is stuck to the front window behind it. {owner} stands screen-left behind the counter, staring at the croissant, tired. Cool grey light, empty shop. The only readable text is \"CLOSING SUNDAY\".",
-   "camera": "slow push-in past the lone croissant to her face",
-   "performance": [
-    {
-     "who": "owner",
-     "how": "stares at the croissant, eyeline just right of lens, and says quietly",
-     "line": "...Last one."
-    }
-   ],
-   "music": "Quiet, a clock ticking.",
-   "refs": [
-    "owner",
-    "location"
-   ],
-   "transition": "cut"
-  },
-  {
-   "beat": 2,
-   "keyframe": "Daytime, Inside the small cozy bakery from the location image: {owner} is always screen-left behind the counter, visitors screen-right. {rival} stands screen-right in the open shop doorway, smiling sweetly while he peels a gold flyer off her glass door. {owner} stands screen-left behind the counter with a tight, polite smile. Medium shot, his gold vest glinting.",
-   "camera": "static medium shot favouring him",
-   "performance": [
-    {
-     "who": "rival",
-     "how": "peels the flyer off the glass, looks around the shop and says sweetly",
-     "line": "Love the little shop. Very... vintage."
-    },
-    {
-     "who": "owner",
-     "how": "keeps a tight smile, mouth closed, perfectly still",
-     "line": null
-    }
-   ],
-   "music": "A small comic pluck.",
-   "refs": [
-    "owner",
-    "rival",
-    "location"
-   ],
-   "transition": "cut"
-  },
-  {
-   "beat": 3,
-   "keyframe": "Late afternoon, Inside the small cozy bakery from the location image: {owner} is always screen-left behind the counter, visitors screen-right. {partner} sits screen-right at the little cafe table doing sums on a paper napkin with a pen. {owner} stands screen-left wiping an already clean counter, not looking up. Medium shot on him, she is soft in the background.",
-   "camera": "slow push-in on him",
-   "performance": [
-    {
-     "who": "partner",
-     "how": "taps the pen on the napkin, looks up and says flatly",
-     "line": "Babe. Six today."
-    },
-    {
-     "who": "owner",
-     "how": "keeps wiping the counter, mouth closed, not looking up",
-     "line": null
-    }
-   ],
-   "music": "Room tone, a slow sad piano note.",
-   "refs": [
-    "owner",
-    "partner",
-    "location"
-   ],
-   "transition": "cut"
-  },
-  {
-   "beat": 4,
-   "keyframe": "Evening, Inside the small cozy bakery from the location image: {owner} is always screen-left behind the counter, visitors screen-right. {partner} stands screen-right by the door pulling on his jacket, eyes flicking toward the window. {owner} stands screen-left behind the counter, wiping, not looking at him. Medium two-shot, she is sharp in the foreground.",
-   "camera": "static, the camera holds on her",
-   "performance": [
-    {
-     "who": "owner",
-     "how": "keeps wiping, does not look at him, and says evenly",
-     "line": "Go. You'll be late."
-    },
-    {
-     "who": "partner",
-     "how": "pauses, mouth closed, then walks out; the door bell rings and the door swings shut",
-     "line": null
-    }
-   ],
-   "music": "The bell fades, then silence.",
-   "refs": [
-    "owner",
-    "partner",
-    "location"
-   ],
-   "transition": "fadeblack"
-  },
-  {
-   "beat": 5,
-   "keyframe": "Rainy evening, Inside the small cozy bakery from the location image: {owner} is always screen-left behind the counter, visitors screen-right. {hero1} stands screen-right at the glass case, leaning in and pointing at the single croissant inside. {hero2} stands just behind him holding up a phone, filming the steam off the oven. {owner} stands screen-left behind the counter, surprised. Warm light, rain on the window.",
-   "camera": "medium shot on him, slight push-in",
-   "performance": [
-    {
-     "who": "hero1",
-     "how": "points at the croissant, eyeline to frame left, and asks",
-     "line": "Is that the last one?"
-    },
-    {
-     "who": "hero2",
-     "how": "keeps filming, mouth closed",
-     "line": null
-    },
-    {
-     "who": "owner",
-     "how": "slides the croissant across the counter, mouth closed",
-     "line": null
-    }
-   ],
-   "music": "Rain, a hopeful soft note.",
-   "refs": [
-    "owner",
-    "hero1",
-    "hero2",
-    "location"
-   ],
-   "transition": "cut"
-  },
-  {
-   "beat": 6,
-   "keyframe": "Rainy evening, Inside the small cozy bakery from the location image: {owner} is always screen-left behind the counter, visitors screen-right. {hero1} stands screen-right holding the croissant, about to bite. {hero2} stands beside him filming close with his phone. {owner} stands screen-left behind the counter, arms crossed, watching. Medium shot.",
-   "camera": "static medium shot, a slow push-in after the bite",
-   "performance": [
-    {
-     "who": "hero1",
-     "how": "bites the croissant: a loud crunch, flakes everywhere; he holds a silent stunned beat, mouth closed while chewing, then slowly turns the croissant toward the phone",
-     "line": null
-    },
-    {
-     "who": "hero2",
-     "how": "lowers the phone a little and says quietly",
-     "line": "Again. Slower."
-    },
-    {
-     "who": "owner",
-     "how": "raises an eyebrow, mouth closed",
-     "line": null
-    }
-   ],
-   "music": "The crunch, then silence.",
-   "refs": [
-    "owner",
-    "hero1",
-    "hero2",
-    "location"
-   ],
-   "transition": "cut"
-  },
-  {
-   "beat": 7,
-   "keyframe": "Night, Inside the small cozy bakery from the location image: {owner} is always screen-left behind the counter, visitors screen-right. {owner} stands screen-left at the floury counter folding a butter block into dough with her hands. Pinned to the wall beside her: a faded old photo of an elderly woman baking in this same bakery and a handwritten recipe card. {hero2} stands screen-right in the soft background, filming. Warm low light, close medium shot on her.",
-   "camera": "slow push-in on her hands, then her face",
-   "performance": [
-    {
-     "who": "owner",
-     "how": "folds the dough, glances at the old photo and says softly, with pride",
-     "line": "Abuela's recipe. Forty years."
-    },
-    {
-     "who": "hero2",
-     "how": "keeps filming in the background, mouth closed",
-     "line": null
-    }
-   ],
-   "music": "Gentle piano.",
-   "refs": [
-    "owner",
-    "hero2",
-    "location"
-   ],
-   "transition": "fade"
-  },
-  {
-   "beat": 8,
-   "keyframe": "Night, Inside the small cozy bakery from the location image: {owner} is always screen-left behind the counter, visitors screen-right. Over-the-shoulder shot: {owner}'s shoulder and yellow headscarf soft in the foreground screen-left. {hero2} stands screen-right in focus, holding his phone up, filming her, calm. Warm light.",
-   "camera": "static over-the-shoulder shot",
-   "performance": [
-    {
-     "who": "hero2",
-     "how": "lowers the phone slightly, eyeline to frame left, and says simply",
-     "line": "We make ads."
-    },
-    {
-     "who": "owner",
-     "how": "stays still in the foreground, mouth closed",
-     "line": null
-    }
-   ],
-   "music": "A soft rising note.",
-   "refs": [
-    "owner",
-    "hero2",
-    "location"
-   ],
-   "transition": "whip_left"
-  },
-  {
-   "beat": 9,
-   "keyframe": "Bright next morning, Inside the small cozy bakery from the location image: {owner} is always screen-left behind the counter, visitors screen-right. {owner} stands screen-left at the front window, pulling the blinds open, frozen in shock. Through the window: a huge line of excited customers wraps around the block, phones held up. Across the street, the gold mega-bakery with the sign \"MEGABUN\" stands empty. The only readable text is \"MEGABUN\".",
-   "camera": "slow push-in on her face as the blinds open",
-   "performance": [
-    {
-     "who": "owner",
-     "how": "pulls the blinds open, freezes, eyes wide, and says",
-     "line": "...Oh no."
-    }
-   ],
-   "music": "A hard silence, then crowd murmur.",
-   "refs": [
-    "owner",
-    "location"
-   ],
-   "transition": "cut"
-  },
-  {
-   "beat": 10,
-   "keyframe": "Busy morning, Inside the small cozy bakery from the location image: {owner} is always screen-left behind the counter, visitors screen-right. The shop is full. {rival} stands screen-right at the front of the counter, having cut the line, slapping a shiny gold card down. {owner} stands screen-left behind the counter boxing croissants, not stopping work. Customers wait behind him, quiet. Medium shot on her.",
-   "camera": "static medium shot on her",
-   "performance": [
-    {
-     "who": "rival",
-     "how": "slaps the gold card on the counter, mouth closed, smug",
-     "line": null
-    },
-    {
-     "who": "owner",
-     "how": "keeps boxing croissants, does not look up, and says flatly",
-     "line": "Back of the line, Chad."
-    },
-    {
-     "who": "rival",
-     "how": "deflates, mouth closed, and slinks off screen-right",
-     "line": null
-    }
-   ],
-   "music": "Upbeat bass line.",
-   "refs": [
-    "owner",
-    "rival",
-    "location"
-   ],
-   "transition": "cut"
-  },
-  {
-   "beat": 11,
-   "keyframe": "Sunny afternoon on the street corner outside the small cozy bakery from the location image. {partner}, now wearing a gold mega-bakery visor, stands at the curb holding a big gold \"CLOSING SALE\" sign. A glossy candy-red original exotic supercar, low and wide with sharp angular lines, no badges, no emblems, no logos, no plate text, slides to the curb beside him. Low angle, medium shot on him. The only readable text is \"CLOSING SALE\".",
-   "camera": "low angle, slight push-in on him as the car slides in with an exhaust roar",
-   "performance": [
-    {
-     "who": "partner",
-     "how": "lets the sign slowly stop spinning, stares at the car and says",
-     "line": "Oh wow... that's your car?"
-    }
-   ],
-   "music": "An exhaust roar, then a beat of silence.",
-   "refs": [
-    "partner",
-    "location"
-   ],
-   "transition": "cut"
-  },
-  {
-   "beat": 12,
-   "keyframe": "Sunny afternoon at the curb. {owner} sits in the driver's seat of the glossy candy-red supercar with no badges, window down, round glasses under sunglasses, holding a single croissant. {partner}, in the gold visor, leans toward the window screen-right, out of focus in the foreground. In the far background on the sidewalk, {hero1} grins and {hero2} films on his phone. Close medium shot on her.",
-   "camera": "static close medium shot on her",
-   "performance": [
-    {
-     "who": "owner",
-     "how": "pushes her sunglasses down, looks him over, takes a beat and says",
-     "line": "One of them."
-    },
-    {
-     "who": "owner",
-     "how": "holds up a single croissant and says",
-     "line": "Last one."
-    },
-    {
-     "who": "partner",
-     "how": "stays leaning in, mouth closed; she bites the croissant and the window goes up",
-     "line": null
-    }
-   ],
-   "music": "A smug little sting.",
-   "refs": [
-    "owner",
-    "partner",
-    "hero1",
-    "hero2"
-   ],
-   "transition": "fade"
-  }
- ]
+ "slots": {
+  "noun": "bakery",
+  "place": "the small cozy family bakery with a striped awning",
+  "counter": "the glass display counter",
+  "product": "croissant",
+  "products": "croissants",
+  "rival_brand": "MEGABUN",
+  "rival_place": "gold mega-bakery with a giant inflatable bun on the roof",
+  "gimmick": "free gold croissants",
+  "busy": "Customers queue with paper bags of warm croissants while fresh trays fill the display case.",
+  "unsold": "A full tray of unsold croissants sits in the display case.",
+  "count_line": "Six. We sold six croissants today.",
+  "regular_line": "Best croissants in town, Rosa! Don't you ever change.",
+  "offer_item": "A single golden croissant sits alone on the counter, in plain view.",
+  "offer_action": "slides the last croissant across the counter toward them and says kindly",
+  "offer_line": "Last one. On the house.",
+  "taste_setup": "{hero1} holds the last croissant, about to bite; {hero2} stands beside, curious.",
+  "taste": "bites the croissant: a loud flaky crunch, flakes everywhere; a silent stunned beat, mouth closed while chewing",
+  "bad_idea_line": "Okay. Ideas. A dancing croissant mascot? Free gold croissants?",
+  "good_idea_line": "...No. This should have a line around the block.",
+  "heirloom": "a faded photo of a grandmother baking in this same bakery and a handwritten recipe card",
+  "heirloom_line": "Abuela's recipe. Forty years.",
+  "craft": "folding butter into dough by hand",
+  "craft_line": "Don't look at us. Look at the dough.",
+  "regular_back_line": "Told you. They always come back.",
+  "showdown_line": "Back of the line, Chad.",
+  "old_car": "the old dented blue hatchback",
+  "payoff": "a glossy candy-red original two-seat convertible with no badges, no emblems and no plate text",
+  "payoff_line": "Okay, okay... ONE treat.",
+  "dm_business": "taco truck"
+ }
 }

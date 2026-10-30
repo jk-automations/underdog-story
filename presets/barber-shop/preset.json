@@ -1,0 +1,53 @@
+{
+ "name": "barber-shop",
+ "title": "The Last Chair",
+ "version": "v9",
+ "business_name": "Corner Chair Barbershop",
+ "business_type": "barber shop",
+ "cast": {
+  "owner": "the barber in his sixties with a grey pompadour, a neat white beard and a navy barber smock",
+  "rival": "the young influencer with bleached spiky hair in a shiny silver tracksuit",
+  "regular": "the retired mail carrier with a big grey moustache in a tan windbreaker",
+  "hero1": "the muscular bearded man with wavy dark hair in a black t-shirt with thin green stripes",
+  "hero2": "the muscular man with short curly dark hair and a thin moustache in a plain black t-shirt"
+ },
+ "cast_names": [],
+ "assets": {
+  "owner": "assets/owner.png",
+  "rival": "assets/rival.png",
+  "regular": "assets/regular.png",
+  "location": "assets/location.png",
+  "rival_store": "assets/rival_store.png",
+  "hero1": "../small-business-rescue-bakery/assets/hero1.png",
+  "hero2": "../small-business-rescue-bakery/assets/hero2.png"
+ },
+ "slots": {
+  "noun": "barbershop",
+  "place": "the old corner barbershop with a red-and-white barber pole",
+  "counter": "the vintage barber chair by the big mirror",
+  "product": "haircut",
+  "products": "haircuts",
+  "rival_brand": "MEGAFADE",
+  "rival_place": "chrome mega-salon with a giant spinning razor on the roof",
+  "gimmick": "free four-minute glitter fades",
+  "busy": "Customers wait on the bench reading newspapers while clippers buzz and a hot towel steams.",
+  "unsold": "A row of empty waiting chairs and a stack of untouched hot towels.",
+  "count_line": "Six cuts today. Six.",
+  "regular_line": "Same as always. Don't you ever change this place.",
+  "offer_item": "The vintage barber chair stands empty and ready with a clean cape folded on it, in plain view.",
+  "offer_action": "pats the empty barber chair and says kindly",
+  "offer_line": "Chair's open. First cut's on the house.",
+  "taste_setup": "{hero1} sits in the barber chair with a fresh sharp cut, the cape still on; {hero2} stands beside, curious.",
+  "taste": "checks the fresh cut in the mirror: a silent stunned beat, mouth closed, running a hand over it",
+  "bad_idea_line": "Okay. Ideas. A dancing razor mascot? Glitter fade Fridays?",
+  "good_idea_line": "...No. This should have a line around the block.",
+  "heirloom": "an old straight razor in a small glass case and a framed black-and-white photo of the shop on opening day",
+  "heirloom_line": "My father's razor. Fifty years in this chair.",
+  "craft": "giving a careful straight-razor shave with a hot towel",
+  "craft_line": "Don't look at us. Look at the razor.",
+  "showdown_line": "Back of the line, kid.",
+  "old_car": "the old rusty green pickup truck",
+  "payoff": "a glossy cherry-red original vintage-style coupe with whitewall tires, no badges, no emblems and no plate text",
+  "dm_business": "nail salon"
+ }
+}
