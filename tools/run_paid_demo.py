@@ -89,6 +89,7 @@ def main(argv=None):
     ap.add_argument("--confirm-spend", action="store_true", help="really queue the paid run")
     ap.add_argument("--cap", type=float, default=HARD_CAP)
     ap.add_argument("--max-attempts", type=int, default=2)
+    ap.add_argument("--spent-so-far", type=float, default=0.0, help="with --resume: worst-case USD already spent on this film")
     ap.add_argument("--resume", action="store_true", help="keep saved scene clips; count them (plus every keyframe) as already spent")
     ap.add_argument("--whisper-model", default=str(Path.home() / ".cache/whisper.cpp/ggml-base.en.bin"))
     a = ap.parse_args(argv)
@@ -124,6 +125,38 @@ def main(argv=None):
                    (["--staged"] if staged else []), check=True)
     subprocess.run([sys.executable, str(ROOT / "tools/check_graph.py"), str(api_path), "--url", a.url], check=True)
     g = json.loads(api_path.read_text())
+
+    if a.resume:
+        # never regenerate a finished scene: its Veo node becomes a LoadVideo of the saved clip, its keyframe and the
+        # contact sheet are dropped (a server restart empties ComfyUI's cache, so "cached" is no guarantee)
+        sdir = base / "output" / "underdog" / "scenes"
+
+        def node_scene(k):
+            n = g[k]
+            if n["class_type"] == "Veo3VideoGenerationNode":
+                return g[g[n["inputs"]["image"][0]]["inputs"]["prompt"][0]]["inputs"]["scene"]
+
+        drop = set()
+        for k in list(g):
+            sc = node_scene(k)
+            clips = sorted(sdir.glob(f"scene_{sc:02d}_*.mp4"), key=os.path.getmtime) if sc else []
+            if clips:
+                name = f"resume_scene_{sc:02d}.mp4"
+                shutil.copy(clips[-1], base / "input" / name)
+                drop.add(g[k]["inputs"]["image"][0])
+                g[k] = {"class_type": "LoadVideo", "inputs": {"file": name}}
+                drop |= {k2 for k2, n2 in g.items() if n2["class_type"] == "SaveVideo" and n2["inputs"].get("video", [None])[0] == k}
+        drop |= {k for k, n in g.items() if n["class_type"] == "UnderdogContactSheet"}
+        while True:
+            more = {k for k, n in g.items() if k not in drop
+                    and any(isinstance(v, list) and v and v[0] in drop for v in n["inputs"].values())}
+            if not more:
+                break
+            drop |= more
+        for k in drop:
+            g.pop(k, None)
+        api_path.write_text(json.dumps(g, indent=1))
+        subprocess.run([sys.executable, str(ROOT / "tools/check_graph.py"), str(api_path), "--url", a.url], check=True)
 
     # ---------- 2. the estimate, from the live price badges ----------
     check_badges(get("/object_info"))
@@ -161,9 +194,8 @@ def main(argv=None):
         raise SystemExit(f"old scene clips in {scene_dir}; move them away first so the accounting is exact")
     if a.resume:
         # blocked or never-run Veo clips are not charged; saved scenes and every keyframe may have been
-        missing = [s for s in range(1, n_scenes + 1) if s not in saved_scenes()]
-        spent_worst = round(sum(per_scene[s] for s in saved_scenes()) + NB2_1K * len(missing), 4)
-        log(f"resume: scenes saved {sorted(saved_scenes())}; counted as already spent ${spent_worst:.2f}")
+        spent_worst = a.spent_so_far
+        log(f"resume: scenes saved {sorted(saved_scenes())}; spend so far counted as ${spent_worst:.2f}")
     for attempt in range(1, a.max_attempts + 1):
         todo = [s for s in range(1, n_scenes + 1) if s not in saved_scenes()]
         add = round(sum(per_scene[s] for s in todo) + sonilo, 4)
